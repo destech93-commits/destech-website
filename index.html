@@ -5,45 +5,91 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DesTech</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
-body {
-  margin: 0;
-  font-family: Arial;
-  background: #050816;
-  color: white;
-  text-align: center;
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:#050816;
+  color:white;
 }
 
-header {
-  padding: 20px;
-  background: black;
+header{
+  display:flex;
+  justify-content:space-between;
+  padding:20px 40px;
+  background:black;
 }
 
-.hero {
-  padding: 100px 20px;
+.logo{
+  font-weight:600;
+  letter-spacing:2px;
 }
 
-.btn {
-  background: purple;
-  padding: 12px 20px;
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
+nav a{
+  color:white;
+  margin-left:20px;
+  text-decoration:none;
+}
+
+.hero{
+  text-align:center;
+  padding:100px 20px;
+}
+
+.hero h1{
+  font-size:42px;
+}
+
+.hero p{
+  opacity:0.7;
+}
+
+.btn{
+  display:inline-block;
+  margin-top:20px;
+  background:#7c3aed;
+  padding:12px 25px;
+  border-radius:8px;
+  text-decoration:none;
+  color:white;
+}
+
+.btn:hover{
+  box-shadow:0 0 20px #7c3aed;
+}
+
+.floating-ig{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#E1306C;
+  padding:15px;
+  border-radius:50%;
+  color:white;
+  text-decoration:none;
 }
 </style>
-
 </head>
+
 <body>
 
 <header>
-  <h2>DesTech</h2>
+<div class="logo">DesTech</div>
+<nav>
+<a href="services.html">Services</a>
+<a href="client-login.html">Client</a>
+</nav>
 </header>
 
 <section class="hero">
-  <h1>Premium Design & Web Solutions</h1>
-  <p>We create high converting designs and websites</p>
-  <a href="services.html" class="btn">Explore Services</a>
+<h1>Premium Design & Web Solutions</h1>
+<p>Luxury designs that turn views into clients</p>
+<a href="services.html" class="btn">Explore Services</a>
 </section>
+
+<a href="https://www.instagram.com/destech2026/" class="floating-ig">IG</a>
 
 </body>
 </html>

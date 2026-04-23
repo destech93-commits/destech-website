@@ -7,26 +7,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-<style<style>
-
-body{
-  margin:0;
-  font-family:'Poppins',sans-serif;
-  background:#050816;
-  color:white;
-}
-
-/* 👇 ADD IT HERE */
-.hero {
-  animation: fadeIn 1.5s ease;
-}
-
-@keyframes fadeIn {
-  from {opacity:0; transform:translateY(30px);}
-  to {opacity:1; transform:translateY(0);}
-}
-
-</style>>
+<style>
 body{
   margin:0;
   font-family:'Poppins',sans-serif;
@@ -55,44 +36,17 @@ nav a{
 .hero{
   text-align:center;
   padding:100px 20px;
+  animation: fadeIn 1.5s ease;
 }
-<br><br>
 
-<input type="text" id="search" placeholder="Search services (logo, website, branding...)" 
-style="padding:12px;width:60%;border-radius:8px;border:none;">
-
-<div id="results" style="margin-top:10px;"></div>
-
-<script>
-const services = ["Logo Design","Website Design","Branding","Social Media Design"];
-
-document.getElementById("search").addEventListener("input", function(){
-  let value = this.value.toLowerCase();
-  let output = "";
-  services.forEach(s => {
-    if(s.toLowerCase().includes(value)){
-      output += "<p>"+s+"</p>";
-    }
-  });
-  document.getElementById("results").innerHTML = output;
-});
-</script>
 .hero h1{
-  font-size:42px;
+  font-size:38px;
 }
 
 .hero p{
-  opacity:0.7;
+  opacity:0.8;
 }
-<section style="padding:60px;text-align:center;">
-<h2>How It Works</h2>
 
-<p>1. Choose a service</p>
-<p>2. Make payment</p>
-<p>3. Track your project</p>
-<p>4. Receive your design</p>
-
-</section>
 .btn{
   display:inline-block;
   margin-top:20px;
@@ -103,8 +57,13 @@ document.getElementById("search").addEventListener("input", function(){
   color:white;
 }
 
-.btn:hover{
-  box-shadow:0 0 20px #7c3aed;
+section{
+  padding:60px 20px;
+  text-align:center;
+}
+
+.dark{
+  background:#0b0f1f;
 }
 
 .floating-ig{
@@ -117,6 +76,11 @@ document.getElementById("search").addEventListener("input", function(){
   color:white;
   text-decoration:none;
 }
+
+@keyframes fadeIn {
+  from {opacity:0; transform:translateY(30px);}
+  to {opacity:1; transform:translateY(0);}
+}
 </style>
 </head>
 
@@ -124,6 +88,7 @@ document.getElementById("search").addEventListener("input", function(){
 
 <header>
 <div class="logo">DesTech</div>
+
 <nav>
 <a href="services.html">Services</a>
 <a href="portfolio.html">Portfolio</a>
@@ -131,40 +96,58 @@ document.getElementById("search").addEventListener("input", function(){
 </nav>
 </header>
 
+<!-- HERO -->
 <section class="hero">
-<h1>Premium Design & Web Solutions</h1>
-<p>Luxury designs that turn views into clients</p>
+<h1>I Design High-Converting Logos & Websites That Turn Visitors Into Clients</h1>
+
+<p>I help businesses grow with professional branding, modern websites, and eye-catching designs.</p>
+
 <a href="services.html" class="btn">Explore Services</a>
+
+<p style="margin-top:15px;font-size:14px;opacity:0.8;">
+✔ Fast delivery ✔ Professional quality ✔ 100% satisfaction
+</p>
+</section>
+
+<!-- WHY CHOOSE ME -->
+<section>
+<h2>Why Choose DesTech?</h2>
+
+<p>✔ Unique and professional designs tailored to your brand</p>
+<p>✔ Fast turnaround time</p>
+<p>✔ Clear communication and support</p>
+<p>✔ Designs that help you stand out and get clients</p>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="dark">
+<h2>How It Works</h2>
+
+<p>1. Choose a service</p>
+<p>2. Make payment</p>
+<p>3. Track your project</p>
+<p>4. Receive your design</p>
+</section>
+
+<!-- TESTIMONIALS -->
+<section>
+<h2>What Clients Say</h2>
+
+<p>“DesTech gave my brand a completely new look. I started getting more clients immediately.” – NovaTech CEO</p>
+
+<p>“Very fast and professional. The website design was exactly what I needed.” – UrbanNest Realty</p>
+
+<p>“Top quality work. I will definitely work with DesTech again.” – Veloura Fashion</p>
+</section>
+
+<!-- FINAL CTA -->
+<section class="dark">
+<h2>Ready to Grow Your Business?</h2>
+
+<a href="services.html" class="btn">Start Your Project Now</a>
 </section>
 
 <a href="https://www.instagram.com/destech2026/" class="floating-ig">IG</a>
-<div id="chatBox" style="position:fixed;bottom:80px;right:20px;width:250px;background:#0b0f1f;border-radius:10px;padding:15px;display:none;">
-  <h4>Live Chat</h4>
-  <p style="font-size:12px;opacity:0.7;">We usually reply fast</p>
-  <input placeholder="Type message..." style="width:100%;padding:8px;margin-top:10px;">
-</div>
 
-<button onclick="toggleChat()" style="position:fixed;bottom:20px;left:20px;background:#7c3aed;color:white;padding:12px;border:none;border-radius:50%;">
-💬
-</button>
-
-<script>
-function toggleChat(){
-  var box = document.getElementById("chatBox");
-  box.style.display = box.style.display === "none" ? "block" : "none";
-}
-</script>
 </body>
 </html>
-<section style="padding:60px;text-align:center;background:#0b0f1f;">
-<h2>What Clients Say</h2>
-
-<p>“DesTech transformed our brand completely!” – NovaTech</p>
-<p>“Very professional and fast delivery.” – UrbanNest</p>
-<p>“Top quality designs, highly recommended.” – Veloura</p>
-
-</section>
-<a href="https://www.instagram.com/destech2026/" 
-style="position:fixed;bottom:20px;right:20px;background:#E1306C;padding:15px;border-radius:50%;color:white;text-decoration:none;">
-IG
-</a>

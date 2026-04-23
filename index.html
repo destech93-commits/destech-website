@@ -3,113 +3,156 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Search Results</title>
+<title>DesTech</title>
 
 <style>
 body{
+  margin:0;
   font-family:Arial;
   background:#020617;
   color:white;
-  margin:0;
 }
 
-h1{
-  text-align:center;
-  padding:20px;
+/* HEADER */
+header{
+  display:flex;
+  justify-content:space-between;
+  padding:20px 40px;
+  background:black;
 }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+.logo{font-weight:bold;letter-spacing:2px;}
+.logo span{color:#7c3aed;}
+
+nav a{
+  color:white;
+  margin-left:20px;
+  text-decoration:none;
+}
+
+/* SEARCH */
+.search-box{
+  display:flex;
+  max-width:500px;
+  margin:30px auto;
+  background:white;
+  border-radius:30px;
+  overflow:hidden;
+}
+
+.search-box input{
+  flex:1;
+  padding:15px;
+  border:none;
+}
+
+.search-box button{
+  background:#7c3aed;
+  color:white;
+  border:none;
+  padding:0 20px;
+}
+
+/* SECTIONS */
+section{padding:60px 20px;text-align:center;}
+
+.services{
+  display:flex;
   gap:20px;
-  padding:20px;
+  flex-wrap:wrap;
+  justify-content:center;
 }
 
 .card{
   background:#0b0f1f;
-  padding:15px;
+  padding:20px;
   border-radius:10px;
-  cursor:pointer;
-  transition:0.3s;
+  width:220px;
 }
 
-.card:hover{
-  transform:translateY(-5px);
+.card a{
+  display:inline-block;
+  margin-top:10px;
+  background:#7c3aed;
+  padding:8px 15px;
+  color:white;
+  text-decoration:none;
+  border-radius:5px;
 }
-
-.card img{
-  width:100%;
-  border-radius:10px;
-}
-
 </style>
 </head>
 
 <body>
 
-<h1 id="title">Results</h1>
+<header>
+<div class="logo">DES<span>TECH</span></div>
+<nav>
+<a href="services.html">Services</a>
+</nav>
+</header>
 
-<div class="grid" id="results"></div>
+<!-- SEARCH -->
+<div class="search-box">
+<input id="searchInput" placeholder="Search logo, website, flyer...">
+<button onclick="goSearch()">Search</button>
+</div>
+
+<p style="text-align:center;opacity:0.6;">
+Popular: Logo, Website, E-commerce, Flyer
+</p>
+
+<!-- SERVICES -->
+<section>
+<h2>Popular Services</h2>
+
+<div class="services">
+
+<div class="card">
+<h3>Logo Design</h3>
+<p>Professional branding</p>
+<a href="services.html#logo">View</a>
+</div>
+
+<div class="card">
+<h3>Website Design</h3>
+<p>Modern websites</p>
+<a href="services.html#website">View</a>
+</div>
+
+<div class="card">
+<h3>E-commerce</h3>
+<p>Online stores</p>
+<a href="services.html#ecommerce">View</a>
+</div>
+
+<div class="card">
+<h3>Graphics Design</h3>
+<p>Flyers & ads</p>
+<a href="services.html#graphics">View</a>
+</div>
+
+</div>
+</section>
+
+<!-- HOW -->
+<section>
+<h2>How It Works</h2>
+<p>1. Choose service → 2. Make payment → 3. Get delivery</p>
+</section>
+
+<!-- TESTIMONIAL -->
+<section>
+<h2>Clients</h2>
+<p>“Very professional and fast delivery”</p>
+</section>
 
 <script>
-
-const services = [
-  {
-    name:"Logo Design",
-    image:"https://images.unsplash.com/photo-1586717791821-3f44a563fa4c",
-    link:"services.html#logo"
-  },
-  {
-    name:"Website Design",
-    image:"https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
-    link:"services.html#website"
-  },
-  {
-    name:"Branding",
-    image:"https://images.unsplash.com/photo-1542744173-8e7e53415bb0",
-    link:"services.html#branding"
-  },
-  {
-    name:"Flyer Design",
-    image:"https://images.unsplash.com/photo-1581090700227-1e8a2d4b6f9c",
-    link:"services.html#flyer"
-  },
-  {
-    name:"Brochure Design",
-    image:"https://images.unsplash.com/photo-1559028012-481c04fa702d",
-    link:"services.html#brochure"
+function goSearch(){
+  let q = document.getElementById("searchInput").value;
+  if(q.trim() !== ""){
+    window.location.href = "search-results.html?q=" + encodeURIComponent(q);
   }
-];
-
-// GET QUERY
-const params = new URLSearchParams(window.location.search);
-const query = params.get("q")?.toLowerCase() || "";
-
-document.getElementById("title").innerText = "Results for: " + query;
-
-// FILTER
-const filtered = services.filter(service =>
-  service.name.toLowerCase().includes(query)
-);
-
-const container = document.getElementById("results");
-
-// DISPLAY
-if(filtered.length === 0){
-  container.innerHTML = "<p>No results found</p>";
-}else{
-  filtered.forEach(service=>{
-    const div = document.createElement("div");
-    div.className = "card";
-    div.innerHTML = `
-      <img src="${service.image}">
-      <h3>${service.name}</h3>
-    `;
-    div.onclick = ()=> window.location.href = service.link;
-    container.appendChild(div);
-  });
 }
-
 </script>
 
 </body>

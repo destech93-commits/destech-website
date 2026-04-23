@@ -1,0 +1,151 @@
+<!-- ======================= DesTech ELITE FULL WEBSITE (ALL FILES) ======================= -->
+
+<!-- ======================= index.html ======================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DesTech - Premium Design & Web Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Poppins',sans-serif;background:#050816;color:white}
+header{display:flex;justify-content:space-between;padding:20px 40px;background:#000}
+.logo{display:flex;align-items:center;gap:10px}
+.logo img{height:45px}
+nav a{color:white;margin-left:20px;text-decoration:none}
+.hero{display:flex;justify-content:space-between;align-items:center;padding:80px}
+.hero img{width:400px;animation:float 4s infinite}
+@keyframes float{50%{transform:translateY(-20px)}}
+.btn{background:#7c3aed;padding:12px 25px;border-radius:8px;text-decoration:none;color:white}
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;padding:40px}
+.card{background:#0b0f1f;padding:20px;border-radius:12px;transition:.3s}
+.card:hover{transform:translateY(-8px);box-shadow:0 0 20px #7c3aed}
+.floating-ig{position:fixed;bottom:20px;right:20px;background:#E1306C;padding:15px;border-radius:50%;color:white;text-decoration:none}
+</style>
+</head>
+<body>
+<header>
+<div class="logo"><img src="destech.png"><h2>DesTech</h2></div>
+<nav><a href="services.html">Services</a><a href="client-login.html">Client</a></nav>
+</header>
+<section class="hero">
+<div>
+<h1>Premium Design & Web Solutions</h1>
+<p>Luxury designs for modern brands</p>
+<a href="services.html" class="btn">Explore</a>
+</div>
+<img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
+</section>
+<section class="services">
+<div class="card">Logo Design</div>
+<div class="card">Website Design</div>
+<div class="card">Branding</div>
+<div class="card">Social Media</div>
+</section>
+<a href="https://www.instagram.com/destech2026/" class="floating-ig">IG</a>
+</body>
+</html>
+
+<!-- ======================= services.html ======================= -->
+<!DOCTYPE html>
+<html>
+<body style="background:#050816;color:white;font-family:Poppins">
+<h1 style="text-align:center">Services Marketplace</h1>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;padding:40px">
+<div onclick="location.href='service-logo.html'">Logo Design (Real Estate, Tech, Fashion, 3D, Minimal)</div>
+<div onclick="location.href='service-website.html'">Website Design (Ecommerce, Portfolio, Business)</div>
+<div onclick="location.href='service-branding.html'">Branding (Full identity systems)</div>
+<div onclick="location.href='service-social.html'">Social Media Ads & Campaigns</div>
+</div>
+</body>
+</html>
+
+<!-- ======================= service-logo.html ======================= -->
+<!DOCTYPE html>
+<html>
+<body style="background:#050816;color:white;padding:40px;font-family:Poppins">
+<h1>Logo Design</h1>
+<p>We design logos for brands like:</p>
+<ul>
+<li>NovaTech Solutions (Tech)</li>
+<li>UrbanNest Realty (Real Estate)</li>
+<li>Veloura Fashion (Clothing)</li>
+<li>Skyline Logistics (Corporate)</li>
+</ul>
+<a href="payment.html">Start Project</a>
+</body>
+</html>
+
+<!-- ======================= client-login.html ======================= -->
+<!DOCTYPE html>
+<html>
+<body style="background:#050816;color:white;text-align:center;padding:100px">
+<h1>Client Login</h1>
+<input placeholder="Email"><br><br>
+<input placeholder="Password"><br><br>
+<button onclick="location.href='client-dashboard.html'">Login</button>
+</body>
+</html>
+
+<!-- ======================= client-dashboard.html ======================= -->
+<!DOCTYPE html>
+<html>
+<body style="background:#050816;color:white;padding:40px;font-family:Poppins">
+<h1>Dashboard</h1>
+<h3>Status: In Progress</h3>
+<div style="background:#1f2937;border-radius:10px">
+<div style="width:75%;height:20px;background:#7c3aed;border-radius:10px;transition:1s"></div>
+</div>
+<h3>Timeline</h3>
+<p>✓ Pending → ✓ Paid → ✓ In Progress → Completed</p>
+<h3>Chat</h3>
+<div style="background:#1f2937;padding:20px;border-radius:10px">
+<p><b>Client:</b> Hello</p>
+<input placeholder="Message"><button>Send</button>
+</div>
+</body>
+</html>
+
+<!-- ======================= admin-login.html ======================= -->
+<!DOCTYPE html>
+<html>
+<body style="text-align:center;padding:100px">
+<h1>Admin Login</h1>
+<input placeholder="Password"><br><br>
+<button onclick="location.href='admin-dashboard.html'">Login</button>
+</body>
+</html>
+
+<!-- ======================= admin-dashboard.html ======================= -->
+<!DOCTYPE html>
+<html>
+<body style="padding:40px;font-family:Poppins">
+<h1>Admin Dashboard</h1>
+<p>Update client status manually</p>
+</body>
+</html>
+
+<!-- ======================= payment.html ======================= -->
+<!DOCTYPE html>
+<html>
+<body style="background:#050816;color:white;text-align:center;padding:80px">
+<h1>Payment</h1>
+<p>OPay: 8151980291</p>
+<p>Name: Okunola Comfort</p>
+<input type="file"><br><br>
+<button>Upload Proof</button>
+</body>
+</html>
+
+<!-- ======================= terms.html ======================= -->
+<!DOCTYPE html>
+<html><body><h1>Terms</h1><p>No refunds after work starts.</p></body></html>
+
+<!-- ======================= privacy.html ======================= -->
+<!DOCTYPE html>
+<html><body><h1>Privacy</h1><p>Your data is safe.</p></body></html>
+
+<!-- ======================= refund.html ======================= -->
+<!DOCTYPE html>
+<html><body><h1>Refund</h1><p>No refunds policy.</p></body></html>

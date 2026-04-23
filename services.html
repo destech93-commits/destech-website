@@ -1,69 +1,595 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Services</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DesTech | Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 <style>
-body{background:#050816;color:white;font-family:Poppins;text-align:center;padding:50px}
-.card{background:#0b0f1f;padding:20px;margin:20px;border-radius:10px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Poppins,sans-serif;background:#07070f;color:#fff}
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px 40px;background:rgba(10,10,20,.72);backdrop-filter:blur(12px)
+}
+.logo{font-weight:800}
+.logo span{color:#b56dff}
+nav a{color:#fff;text-decoration:none;margin-left:18px;opacity:.85}
+nav a:hover{opacity:1}
+.hero{
+  min-height:52vh;padding:130px 20px 70px;text-align:center;position:relative;overflow:hidden
+}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at top,#7a00ff 0%,#2f155e 38%,#07070f 75%);
+  z-index:-2
+}
+.hero h1{font-size:clamp(2.2rem,5vw,4rem);font-weight:800;max-width:900px;margin:0 auto 14px}
+.hero p{max-width:780px;margin:0 auto;opacity:.85;line-height:1.7}
+.section{padding:80px 20px}
+.container{max-width:1180px;margin:0 auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:26px}
+.card{
+  background:linear-gradient(145deg,#12131d,#0d0e18);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:18px;padding:22px;transition:.3s;
+  box-shadow:0 14px 40px rgba(0,0,0,.26)
+}
+.card:hover{transform:translateY(-8px)}
+.card h3{font-size:1.1rem;margin-bottom:10px}
+.card p{opacity:.78;line-height:1.6;font-size:.95rem}
+.split{
+  display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:start
+}
+.subgroup{
+  background:#111221;border:1px solid rgba(255,255,255,.06);
+  border-radius:18px;padding:22px;margin-bottom:18px
+}
+.subgroup h3{margin-bottom:10px}
+.subgroup ul{list-style:none}
+.subgroup li{padding:9px 0;border-bottom:1px solid rgba(255,255,255,.06);opacity:.86}
+.subgroup li:last-child{border-bottom:none}
+.packages{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:24px
+}
+.pkg{
+  background:#111221;border:1px solid rgba(255,255,255,.06);
+  border-radius:18px;padding:20px
+}
+.pkg .name{font-weight:700;font-size:1rem;margin-bottom:6px}
+.pkg .price{font-size:1.7rem;font-weight:800;margin-bottom:12px}
+.pkg ul{list-style:none;margin:0 0 16px 0;padding:0}
+.pkg li{padding:7px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:.92rem;opacity:.88}
+.pkg li:last-child{border-bottom:none}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#ff2e7a,#7a00ff);
+  color:#fff;text-decoration:none;border:none;cursor:pointer;
+  padding:13px 18px;border-radius:999px;font-weight:700;transition:.25s
+}
+.btn:hover{transform:translateY(-2px)}
+.order{
+  max-width:1040px;margin:0 auto;
+  display:grid;grid-template-columns:.9fr 1.1fr;gap:22px
+}
+.order-box,.order-form{
+  background:#111221;border:1px solid rgba(255,255,255,.06);
+  border-radius:20px;padding:24px
+}
+.order-box p{opacity:.86;line-height:1.8}
+.order-form input,.order-form textarea,.order-form select{
+  width:100%;background:#0b0c15;color:#fff;border:1px solid rgba(255,255,255,.10);
+  border-radius:12px;padding:13px 14px;margin-bottom:12px;outline:none
+}
+.order-form textarea{min-height:140px;resize:vertical}
+.order-form button{width:100%}
+.footer{
+  padding:28px 20px;border-top:1px solid rgba(255,255,255,.06);
+  text-align:center;color:rgba(255,255,255,.68)
+}
+@media (max-width: 980px){
+  .split,.order{grid-template-columns:1fr}
+}
+@media (max-width: 720px){
+  header{padding:16px 16px}
+  nav a{margin-left:12px;font-size:.95rem}
+  .section{padding:68px 16px}
+}
 </style>
 </head>
-
 <body>
 
-<h1>Our Services</h1>
+<header>
+  <div class="logo">DES<span>TECH</span></div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="about.html">About</a>
+  </nav>
+</header>
 
-<div class="card">Logo Design (All industries)</div>
-<div class="card">Website Design (All niches)</div>
-<div class="card">Branding & Identity</div>
-<div class="card">Social Media Design</div>
-<a href="payment.html" class="btn">Start Project</a>
+<section class="hero">
+  <h1>Services Built for Brands That Want to Stand Out</h1>
+  <p>Explore the categories, open a service, review its packages, and continue straight to the order section when you are ready.</p>
+</section>
+
+<section class="section" id="logo">
+  <div class="container">
+    <h2>Logo Design</h2>
+    <div class="split">
+      <div>
+        <div class="subgroup">
+          <h3>Logo Types</h3>
+          <ul>
+            <li>Wordmark logo</li>
+            <li>Lettermark logo</li>
+            <li>Monogram logo</li>
+            <li>Brandmark (symbol/icon logo)</li>
+            <li>Combination mark logo</li>
+            <li>Emblem logo</li>
+            <li>Mascot logo</li>
+            <li>Abstract logo</li>
+            <li>Geometric logo</li>
+            <li>Minimalist logo</li>
+          </ul>
+        </div>
+        <div class="subgroup">
+          <h3>Industries</h3>
+          <ul>
+            <li>Luxury logo</li>
+            <li>Tech logo</li>
+            <li>Corporate logo</li>
+            <li>Fashion logo</li>
+            <li>Real estate logo</li>
+            <li>Restaurant logo</li>
+            <li>Fitness logo</li>
+            <li>Medical logo</li>
+            <li>Educational logo</li>
+            <li>Personal brand logo</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:12px">Packages</h3>
+        <div class="packages">
+          <div class="pkg">
+            <div class="name">Basic</div>
+            <div class="price">₦20k</div>
+            <ul>
+              <li>1 concept</li>
+              <li>PNG / JPG</li>
+              <li>1 revision</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Logo Design - Basic')">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Standard</div>
+            <div class="price">₦45k</div>
+            <ul>
+              <li>3 concepts</li>
+              <li>Vector files</li>
+              <li>3 revisions</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Logo Design - Standard')">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Premium</div>
+            <div class="price">₦80k</div>
+            <ul>
+              <li>Full brand identity</li>
+              <li>Source files</li>
+              <li>Unlimited revisions</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Logo Design - Premium')">Continue</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="website">
+  <div class="container">
+    <h2>Website Design</h2>
+    <div class="split">
+      <div>
+        <div class="subgroup">
+          <h3>Core Skills</h3>
+          <ul>
+            <li>Wireframing</li>
+            <li>Prototyping</li>
+            <li>UI (User Interface) design</li>
+            <li>UX (User Experience) design</li>
+            <li>Layout design</li>
+            <li>Grid systems</li>
+            <li>Typography for web</li>
+            <li>Color theory for web</li>
+            <li>Visual hierarchy</li>
+            <li>Responsive design</li>
+            <li>Mobile-first design</li>
+            <li>Interaction design</li>
+            <li>Usability testing</li>
+            <li>User research</li>
+            <li>Information architecture</li>
+            <li>Navigation design</li>
+            <li>Accessibility (WCAG basics)</li>
+            <li>Design systems creation</li>
+            <li>Style guide development</li>
+            <li>Branding integration</li>
+            <li>Landing page design</li>
+            <li>E-commerce design</li>
+            <li>Dashboard design</li>
+            <li>Form design</li>
+            <li>Conversion rate optimization (CRO)</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:12px">Packages</h3>
+        <div class="packages">
+          <div class="pkg">
+            <div class="name">Basic</div>
+            <div class="price">₦50k</div>
+            <ul>
+              <li>Single landing page</li>
+              <li>Responsive layout</li>
+              <li>Basic sections</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Website Design - Basic')">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Standard</div>
+            <div class="price">₦95k</div>
+            <ul>
+              <li>Multi-page website</li>
+              <li>SEO basics</li>
+              <li>Custom sections</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Website Design - Standard')">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Premium</div>
+            <div class="price">₦180k</div>
+            <ul>
+              <li>Advanced UI/UX</li>
+              <li>Motion-ready design</li>
+              <li>Full brand system</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Website Design - Premium')">Continue</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="branding">
+  <div class="container">
+    <h2>Branding</h2>
+    <div class="split">
+      <div>
+        <div class="subgroup">
+          <h3>Branding Skills</h3>
+          <ul>
+            <li>Brand strategy development</li>
+            <li>Brand positioning</li>
+            <li>Brand identity design</li>
+            <li>Brand architecture</li>
+            <li>Rebranding strategy</li>
+            <li>Brand messaging</li>
+            <li>Creative direction</li>
+            <li>Art direction</li>
+            <li>Target audience profiling</li>
+            <li>Brand guidelines creation</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:12px">Packages</h3>
+        <div class="packages">
+          <div class="pkg">
+            <div class="name">Basic</div>
+            <div class="price">₦35k</div>
+            <ul>
+              <li>Logo + palette</li>
+              <li>Basic direction</li>
+              <li>1 revision</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Branding - Basic')">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Standard</div>
+            <div class="price">₦70k</div>
+            <ul>
+              <li>Identity system</li>
+              <li>Messaging direction</li>
+              <li>3 revisions</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Branding - Standard')">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Premium</div>
+            <div class="price">₦140k</div>
+            <ul>
+              <li>Brand strategy</li>
+              <li>Guidelines</li>
+              <li>Unlimited revisions</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Branding - Premium')">Continue</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="flyers">
+  <div class="container">
+    <h2>Flyer Design</h2>
+    <div class="split">
+      <div>
+        <div class="subgroup">
+          <h3>Flyer Skills</h3>
+          <ul>
+            <li>Layout design</li>
+            <li>Typography selection</li>
+            <li>Font pairing</li>
+            <li>Text hierarchy</li>
+            <li>Color theory</li>
+            <li>Image selection</li>
+            <li>Composition principles</li>
+            <li>Alignment and spacing</li>
+            <li>Visual hierarchy</li>
+            <li>Print-ready file preparation</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:12px">Packages</h3>
+        <div class="packages">
+          <div class="pkg">
+            <div class="name">Basic</div>
+            <div class="price">₦10k</div>
+            <ul>
+              <li>1 flyer</li>
+              <li>JPG / PNG</li>
+              <li>1 revision</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Flyer Design - Basic')">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Standard</div>
+            <div class="price">₦20k</div>
+            <ul>
+              <li>2 concepts</li>
+              <li>Print-ready</li>
+              <li>3 revisions</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Flyer Design - Standard')">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Premium</div>
+            <div class="price">₦40k</div>
+            <ul>
+              <li>Campaign set</li>
+              <li>Multiple sizes</li>
+              <li>Unlimited revisions</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Flyer Design - Premium')">Continue</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="socialmedia">
+  <div class="container">
+    <h2>Social Media Design</h2>
+    <div class="split">
+      <div>
+        <div class="subgroup">
+          <h3>Social Skills</h3>
+          <ul>
+            <li>Content planning</li>
+            <li>Copywriting</li>
+            <li>Caption writing</li>
+            <li>Hashtag research</li>
+            <li>Audience research</li>
+            <li>Visual content design</li>
+            <li>Short-form video editing</li>
+            <li>Ad campaign setup</li>
+            <li>Analytics tracking</li>
+            <li>Conversion optimization</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:12px">Packages</h3>
+        <div class="packages">
+          <div class="pkg">
+            <div class="name">Basic</div>
+            <div class="price">₦15k</div>
+            <ul>
+              <li>3 posts</li>
+              <li>Static designs</li>
+              <li>1 revision</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Social Media Design - Basic')">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Standard</div>
+            <div class="price">₦30k</div>
+            <ul>
+              <li>6 posts</li>
+              <li>Brand kit</li>
+              <li>3 revisions</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Social Media Design - Standard')">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Premium</div>
+            <div class="price">₦60k</div>
+            <ul>
+              <li>Monthly content</li>
+              <li>Ads creatives</li>
+              <li>Unlimited revisions</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Social Media Design - Premium')">Continue</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="animation">
+  <div class="container">
+    <h2>Video Animation</h2>
+    <div class="split">
+      <div>
+        <div class="subgroup">
+          <h3>Animation Skills</h3>
+          <ul>
+            <li>Storyboarding</li>
+            <li>Scriptwriting</li>
+            <li>Motion graphics</li>
+            <li>Keyframing</li>
+            <li>Timing and spacing</li>
+            <li>Logo animation</li>
+            <li>Explainer video creation</li>
+            <li>Social media video animation</li>
+            <li>Sound design</li>
+            <li>Rendering and exporting</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:12px">Packages</h3>
+        <div class="packages">
+          <div class="pkg">
+            <div class="name">Basic</div>
+            <div class="price">₦25k</div>
+            <ul>
+              <li>Short motion clip</li>
+              <li>1 style</li>
+              <li>1 revision</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Animation - Basic')">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Standard</div>
+            <div class="price">₦55k</div>
+            <ul>
+              <li>Explainer edit</li>
+              <li>Sound sync</li>
+              <li>3 revisions</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Animation - Standard')">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Premium</div>
+            <div class="price">₦120k</div>
+            <ul>
+              <li>Full motion package</li>
+              <li>Logo animation</li>
+              <li>Unlimited revisions</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Animation - Premium')">Continue</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="jobsearch">
+  <div class="container">
+    <h2>Job Search</h2>
+    <div class="split">
+      <div>
+        <div class="subgroup">
+          <h3>Job Search Skills</h3>
+          <ul>
+            <li>Resume/CV writing</li>
+            <li>Cover letter writing</li>
+            <li>Personal branding</li>
+            <li>LinkedIn profile optimization</li>
+            <li>Interview preparation</li>
+            <li>Salary negotiation</li>
+            <li>Job application tracking</li>
+            <li>Networking skills</li>
+            <li>Cold emailing</li>
+            <li>Job portal usage</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:12px">Packages</h3>
+        <div class="packages">
+          <div class="pkg">
+            <div class="name">Basic</div>
+            <div class="price">₦12k</div>
+            <ul>
+              <li>CV review</li>
+              <li>Basic improvements</li>
+              <li>1 revision</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Job Search - Basic')">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Standard</div>
+            <div class="price">₦25k</div>
+            <ul>
+              <li>CV + cover letter</li>
+              <li>LinkedIn optimization</li>
+              <li>3 revisions</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Job Search - Standard')">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Premium</div>
+            <div class="price">₦50k</div>
+            <ul>
+              <li>Full job search package</li>
+              <li>Interview prep</li>
+              <li>Unlimited revisions</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Job Search - Premium')">Continue</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="order">
+  <div class="container">
+    <h2>Order</h2>
+    <div class="order">
+      <input id="selectedService" placeholder="Selected service">
+      <input id="clientEmail" placeholder="Your email">
+      <textarea id="projectDetails" placeholder="Details"></textarea>
+      <button class="btn" style="width:100%" onclick="sendMail()">Submit</button>
+    </div>
+  </div>
+</section>
+
+<script>
+function fillOrder(service){
+  document.getElementById('selectedService').value = service;
+  document.getElementById('order').scrollIntoView({behavior:'smooth'});
+}
+
+function sendMail(){
+  const service = document.getElementById('selectedService').value.trim();
+  const email = document.getElementById('clientEmail').value.trim();
+  const details = document.getElementById('projectDetails').value.trim();
+  const subject = encodeURIComponent(`New Order - ${service || 'Service Request'}`);
+  const body = encodeURIComponent(`Email: ${email}\nService: ${service}\nDetails: ${details}`);
+  window.location.href = `mailto:desmondroder93@gmail.com?subject=${subject}&body=${body}`;
+}
+</script>
 </body>
 </html>
-<a href="payment.html" class="btn">Start Project</a>
-<a href="https://www.instagram.com/destech2026/" 
-style="position:fixed;bottom:20px;right:20px;background:#E1306C;padding:15px;border-radius:50%;color:white;text-decoration:none;">
-IG
-</a>
-<section id="portfolio">
-<h2>Featured Work</h2>
-
-<div class="services">
-
-<div class="card">
-<h3>NovaTech Solutions</h3>
-<p><strong>Logo & Branding</strong></p>
-<p>Designed a modern tech logo to position the brand as premium and innovative.</p>
-</div>
-
-<div class="card">
-<h3>UrbanNest Realty</h3>
-<p><strong>Website Design</strong></p>
-<p>Built a clean real estate website focused on lead generation and trust.</p>
-</div>
-
-<div class="card">
-<h3>Veloura Fashion</h3>
-<p><strong>Branding & Brochure</strong></p>
-<p>Created a luxury fashion identity with marketing materials for promotion.</p>
-</div>
-
-<div class="card">
-<h3>Skyline Logistics</h3>
-<p><strong>Corporate Website</strong></p>
-<p>Developed a professional logistics site to attract B2B clients.</p>
-</div>
-
-<div class="card">
-<h3>Glow Beauty</h3>
-<p><strong>Social Media Design</strong></p>
-<p>Designed high-converting Instagram creatives for product marketing.</p>
-</div>
-
-<div class="card">
-<h3>PrimeCars</h3>
-<p><strong>Landing Page</strong></p>
-<p>Built a conversion-focused landing page for car sales campaigns.</p>
-</div>
-
-</div>
-</section>

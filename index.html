@@ -3,140 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DesTech</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<title>Search Results</title>
 
 <style>
-
-/* GLOBAL */
 body{
+  font-family:Arial;
+  background:#020617;
+  color:white;
   margin:0;
-  font-family:'Poppins',sans-serif;
-  color:white;
-  background:
-    radial-gradient(circle at 20% 30%, rgba(124,58,237,0.25), transparent 40%),
-    radial-gradient(circle at 80% 20%, rgba(168,85,247,0.15), transparent 40%),
-    radial-gradient(circle at 50% 80%, rgba(124,58,237,0.15), transparent 50%),
-    #020617;
 }
 
-/* HEADER */
-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px 40px;
-  background:black;
-}
-
-/* LOGO */
-.logo-text{
-  font-weight:700;
-  font-size:22px;
-}
-
-.logo-text span{
-  color:#7c3aed;
-  letter-spacing:3px;
-}
-
-/* NAV */
-nav a{
-  color:white;
-  margin-left:25px;
-  text-decoration:none;
-  opacity:0.8;
-}
-
-nav a:hover{
-  color:#7c3aed;
-}
-
-/* SEARCH BAR (FIVERR STYLE) */
-.search-box{
-  position:sticky;
-  top:10px;
-  z-index:999;
-  display:flex;
-  max-width:500px;
-  margin:20px auto;
-  background:white;
-  border-radius:40px;
-  overflow:hidden;
-}
-
-.search-box input{
-  flex:1;
-  padding:15px;
-  border:none;
-  outline:none;
-}
-
-.search-box button{
-  background:#7c3aed;
-  color:white;
-  border:none;
-  padding:0 20px;
-}
-
-/* HERO */
-.hero{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-  padding:80px 40px;
-}
-
-.hero-text{
-  max-width:520px;
-}
-
-.hero h1{
-  font-size:42px;
-}
-
-.hero img{
-  width:420px;
-  border-radius:20px;
-  box-shadow:0 0 80px rgba(124,58,237,0.5);
-}
-
-/* BUTTON */
-.btn{
-  display:inline-block;
-  background:#7c3aed;
-  padding:12px 25px;
-  border-radius:8px;
-  text-decoration:none;
-  color:white;
-  margin-top:15px;
-}
-
-/* INSTAGRAM */
-.instagram-btn{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:linear-gradient(45deg,#E1306C,#FD1D1D,#FCAF45);
-  padding:12px 18px;
-  border-radius:30px;
-  color:white;
-  text-decoration:none;
-  z-index:1000;
-}
-
-/* MOBILE */
-@media(max-width:768px){
-.hero{
-  flex-direction:column;
+h1{
   text-align:center;
+  padding:20px;
 }
-.hero img{
-  width:90%;
-  margin-top:20px;
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+  padding:20px;
 }
+
+.card{
+  background:#0b0f1f;
+  padding:15px;
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+}
+
+.card img{
+  width:100%;
+  border-radius:10px;
 }
 
 </style>
@@ -144,54 +47,70 @@ nav a:hover{
 
 <body>
 
-<header>
-<div class="logo-text">DES<span>TECH</span></div>
+<h1 id="title">Results</h1>
 
-<nav>
-<a href="#">Services</a>
-<a href="#">Portfolio</a>
-<a href="#">Client</a>
-</nav>
-</header>
+<div class="grid" id="results"></div>
 
-<!-- SEARCH -->
-<div class="search-box">
-<input type="text" placeholder="Search logo design, website design, branding...">
-<button>Search</button>
-</div>
+<script>
 
-<!-- HERO -->
-<section class="hero">
+const services = [
+  {
+    name:"Logo Design",
+    image:"https://images.unsplash.com/photo-1586717791821-3f44a563fa4c",
+    link:"services.html#logo"
+  },
+  {
+    name:"Website Design",
+    image:"https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
+    link:"services.html#website"
+  },
+  {
+    name:"Branding",
+    image:"https://images.unsplash.com/photo-1542744173-8e7e53415bb0",
+    link:"services.html#branding"
+  },
+  {
+    name:"Flyer Design",
+    image:"https://images.unsplash.com/photo-1581090700227-1e8a2d4b6f9c",
+    link:"services.html#flyer"
+  },
+  {
+    name:"Brochure Design",
+    image:"https://images.unsplash.com/photo-1559028012-481c04fa702d",
+    link:"services.html#brochure"
+  }
+];
 
-<div class="hero-text">
+// GET QUERY
+const params = new URLSearchParams(window.location.search);
+const query = params.get("q")?.toLowerCase() || "";
 
-<p style="
-display:inline-block;
-background:rgba(124,58,237,0.15);
-padding:6px 12px;
-border-radius:20px;
-font-size:12px;
-margin-bottom:15px;
-">
-🚀 Premium Designs. Real Results.
-</p>
+document.getElementById("title").innerText = "Results for: " + query;
 
-<h1>I Design High-Converting Logos & Websites That Turn Visitors Into Clients</h1>
+// FILTER
+const filtered = services.filter(service =>
+  service.name.toLowerCase().includes(query)
+);
 
-<p>Professional branding, modern websites, and designs that help your business grow fast.</p>
+const container = document.getElementById("results");
 
-<a href="#" class="btn">Explore Services</a>
+// DISPLAY
+if(filtered.length === 0){
+  container.innerHTML = "<p>No results found</p>";
+}else{
+  filtered.forEach(service=>{
+    const div = document.createElement("div");
+    div.className = "card";
+    div.innerHTML = `
+      <img src="${service.image}">
+      <h3>${service.name}</h3>
+    `;
+    div.onclick = ()=> window.location.href = service.link;
+    container.appendChild(div);
+  });
+}
 
-</div>
-
-<img src="https://images.unsplash.com/photo-1559028012-481c04fa702d">
-
-</section>
-
-<!-- INSTAGRAM -->
-<a href="https://www.instagram.com/destech2026/" target="_blank" class="instagram-btn">
-💬 Message me on Instagram
-</a>
+</script>
 
 </body>
 </html>

@@ -1,586 +1,367 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>DesTech | Home</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Destech | Design That Converts</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Poppins,sans-serif;background:#07070f;color:#fff;overflow-x:hidden}
-header{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  display:flex;justify-content:space-between;align-items:center;
-  padding:18px 40px;background:rgba(10,10,20,.72);backdrop-filter:blur(12px)
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#0a0a0f;color:#fff;scroll-behavior:smooth;}
+
+h1,h2,h3{font-weight:700}
+
+/* NAV */
+nav{
+display:flex;justify-content:space-between;padding:20px 8%;
+background:rgba(0,0,0,0.6);backdrop-filter:blur(10px);
+position:sticky;top:0;z-index:1000;
 }
-.logo{font-weight:800;letter-spacing:1px}
-.logo span{color:#b56dff}
-nav a{color:#fff;text-decoration:none;margin-left:18px;opacity:.85}
-nav a:hover{opacity:1}
+nav a{color:#fff;text-decoration:none;margin-left:20px}
+
+/* HERO */
 .hero{
-  min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
-  text-align:center;position:relative;padding:120px 20px 60px;overflow:hidden
+height:90vh;
+display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+background:linear-gradient(135deg,#5f0fff,#c400ff);
+position:relative;
+overflow:hidden;
 }
-.hero::before{
-  content:"";position:absolute;inset:0;
-  background:radial-gradient(circle at top,#7a00ff 0%,#2f155e 35%,#07070f 72%);
-  z-index:-3
+
+.hero img{
+position:absolute;
+top:-50px;
+width:120%;
+opacity:0.15;
+animation:float 6s infinite ease-in-out;
 }
-.hero-bg{
-  position:absolute;top:-140px;left:50%;transform:translateX(-50%);
-  width:min(1200px,110%);opacity:.18;filter:saturate(1.1) contrast(1.05);
-  animation:drop 1.2s ease forwards, floaty 9s ease-in-out infinite;
-  z-index:-2;
+
+@keyframes float{
+0%{transform:translateY(0)}
+50%{transform:translateY(20px)}
+100%{transform:translateY(0)}
 }
-@keyframes drop{from{top:-240px;opacity:0}to{top:-140px;opacity:.18}}
-@keyframes floaty{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(10px)}}
-.hero h1{
-  font-size:clamp(2.3rem,5vw,4.4rem);
-  line-height:1.05;font-weight:800;max-width:980px;
-  margin:0 auto 16px
+
+.hero h1{font-size:42px;margin-bottom:20px}
+
+/* SEARCH */
+.search-box{
+display:flex;background:#fff;border-radius:50px;overflow:hidden;width:90%;max-width:500px;
 }
-.hero h1 .accent{color:#d0a3ff}
-.hero p{
-  max-width:780px;font-size:1.05rem;line-height:1.7;opacity:.86;
-  margin:0 auto 28px
+
+.search-box input{
+flex:1;padding:15px;border:none;outline:none;
 }
-.search-wrap{width:min(820px,92vw);position:relative}
-.search{
-  width:100%;display:flex;align-items:center;gap:10px;
-  background:rgba(255,255,255,.10);backdrop-filter:blur(14px);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:999px;padding:10px 10px 10px 18px;
-  box-shadow:0 20px 60px rgba(0,0,0,.28)
+
+.search-box button{
+background:#ff2d75;color:#fff;border:none;padding:0 20px;cursor:pointer;
 }
-.search input{
-  flex:1;background:transparent;border:none;outline:none;color:#fff;
-  font-size:1rem;padding:8px 0
-}
-.search input::placeholder{color:rgba(255,255,255,.72)}
-.search button{
-  border:none;cursor:pointer;width:48px;height:48px;border-radius:50%;
-  background:linear-gradient(135deg,#ff2e7a,#7a00ff);color:#fff;font-size:1rem
-}
-.results{
-  position:absolute;top:66px;left:0;right:0;display:none;z-index:30;
-  background:#0f1020;border:1px solid rgba(255,255,255,.08);
-  border-radius:18px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.4)
-}
-.result-item{
-  padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.06);
-  cursor:pointer;text-align:left
-}
-.result-item:hover{background:#17182c}
-.result-item small{display:block;opacity:.7;margin-top:3px}
-.pills{
-  margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center
-}
-.pill{
-  border:1px solid rgba(255,255,255,.18);color:#fff;
-  padding:10px 14px;border-radius:999px;font-size:.9rem;
-  background:rgba(255,255,255,.04);cursor:pointer;transition:.25s
-}
-.pill:hover{transform:translateY(-2px);border-color:#d0a3ff}
-.section{padding:96px 20px}
-.section h2{
-  font-size:clamp(1.7rem,3vw,2.5rem);
-  text-align:center;margin-bottom:30px;font-weight:800
-}
-.container{max-width:1180px;margin:0 auto}
+
+/* SERVICES */
+.services{padding:80px 8%;}
 .grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:20px;
 }
+
 .card{
-  background:linear-gradient(145deg,#12131d,#0d0e18);
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:18px;padding:22px;transition:.3s;
-  box-shadow:0 14px 40px rgba(0,0,0,.26)
+background:rgba(255,255,255,0.05);
+padding:25px;border-radius:15px;cursor:pointer;
+transition:0.3s;
 }
-.card:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(122,0,255,.18)}
-.card h3{font-size:1.1rem;margin-bottom:10px}
-.card p{opacity:.78;line-height:1.6;font-size:.95rem}
-.split{
-  display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center
+
+.card:hover{
+transform:translateY(-8px);
+background:linear-gradient(135deg,#5f0fff,#c400ff);
 }
-.mock{
-  border-radius:22px;overflow:hidden;
-  box-shadow:0 24px 70px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.05)
+
+.details{
+max-height:0;overflow:hidden;transition:0.4s ease;
 }
-.mock img{width:100%;display:block}
-.badge{
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
-  padding:8px 14px;border-radius:999px;font-size:.85rem;margin-bottom:18px
+
+.card.active .details{
+max-height:400px;margin-top:15px;
 }
-.packages{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px;margin-top:24px
+
+.btn{
+display:block;margin-top:10px;padding:10px;
+background:#ff2d75;text-align:center;color:#fff;border-radius:6px;text-decoration:none;
 }
-.pkg{
-  background:#111221;border:1px solid rgba(255,255,255,.06);
-  border-radius:18px;padding:20px;transition:.25s
+
+/* PORTFOLIO */
+.portfolio{padding:80px 8%;}
+.portfolio-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
 }
-.pkg:hover{transform:translateY(-4px)}
-.pkg .name{font-weight:700;font-size:1rem;margin-bottom:6px}
-.pkg .price{font-size:1.8rem;font-weight:800;margin-bottom:12px}
-.pkg ul{list-style:none;margin:0 0 16px 0;padding:0}
-.pkg li{padding:7px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:.92rem;opacity:.88}
-.pkg li:last-child{border-bottom:none}
-.cta-btn, .btn{
-  display:inline-flex;align-items:center;justify-content:center;
-  background:linear-gradient(135deg,#ff2e7a,#7a00ff);
-  color:#fff;text-decoration:none;border:none;cursor:pointer;
-  padding:13px 18px;border-radius:999px;font-weight:700;transition:.25s
+
+.portfolio-card{
+position:relative;overflow:hidden;border-radius:15px;
 }
-.cta-btn:hover, .btn:hover{transform:translateY(-2px)}
-.slider{
-  display:grid;gap:16px
+
+.portfolio-card img{
+width:100%;transition:0.4s;
 }
-.testimonial{
-  background:#111221;border:1px solid rgba(255,255,255,.06);
-  border-radius:18px;padding:22px;line-height:1.7
+
+.portfolio-card:hover img{transform:scale(1.1);}
+
+.overlay{
+position:absolute;bottom:0;width:100%;
+background:linear-gradient(transparent,black);
+padding:15px;text-align:center;
 }
-.testimonial strong{display:block;margin-top:10px;opacity:.85}
-.faqs{display:grid;gap:12px;max-width:900px;margin:0 auto}
-.faq{
-  background:#111221;border:1px solid rgba(255,255,255,.06);
-  border-radius:16px;overflow:hidden
+
+/* TESTIMONIAL */
+.testimonial{padding:80px 8%;text-align:center;}
+.testimonial p{opacity:0.8;margin-top:10px}
+
+/* FAQ */
+.faq{padding:80px 8%;}
+.faq-item{margin-bottom:15px;}
+.faq-item h4{cursor:pointer;}
+.faq-item p{display:none;opacity:0.8}
+.faq-item.active p{display:block}
+
+/* ORDER */
+#order{padding:80px 8%;text-align:center;}
+form{
+max-width:500px;margin:auto;
+display:flex;flex-direction:column;gap:15px;
 }
-.faq-q{
-  width:100%;background:transparent;color:#fff;border:none;
-  text-align:left;padding:18px 18px;font-size:1rem;font-weight:700;cursor:pointer
+
+input,select,textarea{
+padding:12px;border:none;border-radius:6px;
 }
-.faq-a{
-  display:none;padding:0 18px 18px 18px;opacity:.82;line-height:1.7
+
+button{
+padding:12px;background:#ff2d75;color:#fff;border:none;border-radius:6px;
 }
-.order-wrap{
-  max-width:1040px;margin:0 auto;
-  display:grid;grid-template-columns:.9fr 1.1fr;gap:22px
+
+/* INSTAGRAM FLOAT */
+.insta{
+position:fixed;
+right:20px;
+bottom:20px;
+background:#ff2d75;
+padding:15px;
+border-radius:50%;
+text-decoration:none;
+color:#fff;
+font-size:18px;
 }
-.order-box,.order-form{
-  background:#111221;border:1px solid rgba(255,255,255,.06);
-  border-radius:20px;padding:24px
-}
-.order-box h3,.order-form h3{margin-bottom:14px}
-.order-box p{opacity:.86;line-height:1.8}
-.order-form input,.order-form textarea,.order-form select{
-  width:100%;background:#0b0c15;color:#fff;border:1px solid rgba(255,255,255,.10);
-  border-radius:12px;padding:13px 14px;margin-bottom:12px;outline:none
-}
-.order-form textarea{min-height:140px;resize:vertical}
-.order-form button{width:100%}
-.footer{
-  padding:28px 20px;border-top:1px solid rgba(255,255,255,.06);
-  text-align:center;color:rgba(255,255,255,.68)
-}
-.footer a{color:#fff}
-.instagram-float{
-  position:fixed;right:20px;bottom:20px;z-index:200;
-  display:inline-flex;align-items:center;gap:10px;
-  padding:14px 18px;border-radius:999px;
-  background:linear-gradient(135deg,#ff2e7a,#7a00ff);
-  color:#fff;text-decoration:none;font-weight:700;
-  box-shadow:0 16px 30px rgba(122,0,255,.28)
-}
-.instagram-float span{font-size:1.1rem}
-@media (max-width: 980px){
-  .split,.order-wrap{grid-template-columns:1fr}
-  .hero h1{font-size:clamp(2.1rem,7vw,3.6rem)}
-}
-@media (max-width: 720px){
-  header{padding:16px 16px}
-  nav a{margin-left:12px;font-size:.95rem}
-  .section{padding:80px 16px}
-  .search{padding:8px 8px 8px 14px}
-  .search button{width:44px;height:44px}
+
+/* FOOTER */
+footer{
+text-align:center;padding:30px;
+border-top:1px solid rgba(255,255,255,0.1);
+margin-top:50px;
 }
 </style>
 </head>
+
 <body>
 
-<header>
-  <div class="logo">DES<span>TECH</span></div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="services.html">Services</a>
-    <a href="about.html">About</a>
-  </nav>
-</header>
+<nav>
+<h3>DESTECH</h3>
+<div>
+<a href="#">Home</a>
+<a href="#services">Services</a>
+<a href="#order">Order</a>
+</div>
+</nav>
 
+<!-- HERO -->
 <section class="hero">
-  <img class="hero-bg" src="notegpt-20260420064827.png" alt="Design hero artwork">
-  <div class="badge">⚡ Futuristic. Clean. High-converting.</div>
-  <h1>Designing With <span class="accent">Clarity</span> for Brands That Want to Stand Out</h1>
-  <p>Premium graphic design, web design, branding, social content, motion, and job-search support — built to make your business look sharp and convert better.</p>
+<img src="images/bg.png">
+<h1>Designs That Attract & Convert</h1>
 
-  <div class="search-wrap">
-    <div class="search">
-      <input id="searchInput" type="text" placeholder="Type any services..." autocomplete="off">
-      <button id="searchBtn" aria-label="Search">🔍</button>
-    </div>
-    <div id="resultsBox" class="results"></div>
-  </div>
-
-  <div class="pills">
-    <span class="pill" data-target="logo">Logo Design</span>
-    <span class="pill" data-target="website">Website Design</span>
-    <span class="pill" data-target="branding">Branding</span>
-    <span class="pill" data-target="flyers">Flyers</span>
-    <span class="pill" data-target="social">Social Media</span>
-    <span class="pill" data-target="animation">Animation</span>
-    <span class="pill" data-target="jobsearch">Job Search</span>
-  </div>
+<div class="search-box">
+<input id="searchInput" placeholder="Type any services...">
+<button>🔍</button>
+</div>
 </section>
 
-<section class="section" id="services-home">
-  <div class="container">
-    <h2>Services</h2>
-    <div class="grid">
-      <article class="card service-card" data-service="logo" data-label="Logo Design">
-        <h3>Logo Design</h3>
-        <p>Wordmarks, monograms, mascots, minimalist systems, 3D styles, luxury marks, and more.</p>
-      </article>
-      <article class="card service-card" data-service="website" data-label="Website Design">
-        <h3>Website Design</h3>
-        <p>Clean wireframes, UI/UX, responsive layouts, landing pages, dashboards, and conversion-led sites.</p>
-      </article>
-      <article class="card service-card" data-service="branding" data-label="Branding">
-        <h3>Branding</h3>
-        <p>Strategy, positioning, identity systems, brand messaging, visual storytelling, and brand consistency.</p>
-      </article>
-      <article class="card service-card" data-service="flyers" data-label="Flyers">
-        <h3>Flyer Design</h3>
-        <p>Promotional flyers, event designs, business flyers, social-ready flyers, and print-ready marketing assets.</p>
-      </article>
-      <article class="card service-card" data-service="social" data-label="Social Media">
-        <h3>Social Media Design</h3>
-        <p>Posts, reels, short-form content, captions, ad creatives, content calendars, and platform visuals.</p>
-      </article>
-      <article class="card service-card" data-service="animation" data-label="Animation">
-        <h3>Video Animation</h3>
-        <p>Motion graphics, logo animation, explainers, social animation, visual storytelling, and edits.</p>
-      </article>
-      <article class="card service-card" data-service="jobsearch" data-label="Job Search">
-        <h3>Job Search</h3>
-        <p>CV writing, LinkedIn optimization, cover letters, interview prep, and job application support.</p>
-      </article>
-    </div>
-  </div>
-</section>
+<!-- SERVICES -->
+<section id="services" class="services">
+<h2>Services</h2>
 
-<section class="section" id="portfolio">
-  <div class="container">
-    <h2>Portfolio</h2>
-    <div class="split">
-      <div>
-        <div class="grid">
-          <article class="card">
-            <h3>Brand Identity Mockups</h3>
-            <p>Premium logo presentation, stationery, and brand boards designed to feel like real client work.</p>
-          </article>
-          <article class="card">
-            <h3>Website UI Mockups</h3>
-            <p>Future-facing web layouts with polished hierarchy, clear action, and strong contrast.</p>
-          </article>
-          <article class="card">
-            <h3>Flyer Campaigns</h3>
-            <p>Marketing flyers and promo assets built for both print and social media use.</p>
-          </article>
-        </div>
-      </div>
-      <div class="mock">
-        <img src="notegpt-20260420064827.png" alt="Featured design mockup">
-      </div>
-    </div>
-  </div>
-</section>
+<div class="grid">
 
-<section class="section" id="pricing">
-  <div class="container">
-    <h2>Packages</h2>
-    <div class="packages">
-      <div class="pkg">
-        <div class="name">Basic</div>
-        <div class="price">Starts from ₦20k</div>
-        <ul>
-          <li>1 concept</li>
-          <li>Standard delivery</li>
-          <li>Good for small needs</li>
-        </ul>
-        <a class="cta-btn" href="services.html#order">Continue</a>
-      </div>
-      <div class="pkg">
-        <div class="name">Standard</div>
-        <div class="price">Starts from ₦45k</div>
-        <ul>
-          <li>Multiple concepts</li>
-          <li>Faster delivery</li>
-          <li>Better presentation</li>
-        </ul>
-        <a class="cta-btn" href="services.html#order">Continue</a>
-      </div>
-      <div class="pkg">
-        <div class="name">Premium</div>
-        <div class="price">Starts from ₦80k</div>
-        <ul>
-          <li>Full brand system</li>
-          <li>Priority delivery</li>
-          <li>Best value package</li>
-        </ul>
-        <a class="cta-btn" href="services.html#order">Continue</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="testimonials">
-  <div class="container">
-    <h2>Testimonials</h2>
-    <div class="slider">
-      <div class="testimonial">“Very clean designs and quick communication. Everything felt professional from start to finish.” <strong>— NovaTech</strong></div>
-      <div class="testimonial">“Our brand finally looks premium. The result improved how clients saw us immediately.” <strong>— UrbanNest Realty</strong></div>
-      <div class="testimonial">“The layout was sharp, modern, and easy to work with. Highly recommended.” <strong>— Veloura Fashion</strong></div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="faq">
-  <div class="container">
-    <h2>FAQ</h2>
-    <div class="faqs">
-      <div class="faq">
-        <button class="faq-q">How long does a project take?</button>
-        <div class="faq-a">Most projects take 2–5 days depending on the service and package.</div>
-      </div>
-      <div class="faq">
-        <button class="faq-q">Do you offer revisions?</button>
-        <div class="faq-a">Yes. Revision count depends on the package selected.</div>
-      </div>
-      <div class="faq">
-        <button class="faq-q">What do I get after payment?</button>
-        <div class="faq-a">You receive the final design files and next-step instructions by email.</div>
-      </div>
-      <div class="faq">
-        <button class="faq-q">Can you work on mobile-friendly websites?</button>
-        <div class="faq-a">Yes. Responsive design is part of the website service.</div>
-      </div>
-      <div class="faq">
-        <button class="faq-q">Can I request a custom package?</button>
-        <div class="faq-a">Yes, custom service bundles are available for larger projects.</div>
-      </div>
-      <div class="faq">
-        <button class="faq-q">Do you work on brand strategy too?</button>
-        <div class="faq-a">Yes. Branding includes strategy, identity, and message direction.</div>
-      </div>
-      <div class="faq">
-        <button class="faq-q">How do I contact you after ordering?</button>
-        <div class="faq-a">You can use the order form or the Instagram floating button.</div>
-      </div>
-      <div class="faq">
-        <button class="faq-q">Will you send print-ready files?</button>
-        <div class="faq-a">Yes, when the project requires print delivery, files are prepared properly.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="order">
-  <div class="container">
-    <h2>Start Your Project</h2>
-    <div class="order-wrap">
-      <div class="order-box">
-        <h3>Payment & Contact</h3>
-        <p><strong>Account Name:</strong> Okunola Comfort</p>
-        <p><strong>Account Number:</strong> 8151980291</p>
-        <p style="margin-top:14px;opacity:.78;line-height:1.7">After payment, send your proof and project details here. You will get a response within 24 hours.</p>
-      </div>
-      <div class="order-form">
-        <h3>Order Form</h3>
-        <form action="https://formsubmit.co/desmondroder93@gmail.com" method="POST" enctype="multipart/form-data">
-          <input type="text" name="name" placeholder="Your Name" required>
-          <input type="email" name="email" placeholder="Your Email" required>
-          <select name="service" required>
-            <option value="">Select Service</option>
-            <option>Logo Design</option>
-            <option>Website Design</option>
-            <option>Branding</option>
-            <option>Flyer Design</option>
-            <option>Social Media Design</option>
-            <option>Animation</option>
-            <option>Job Search</option>
-          </select>
-          <textarea name="message" placeholder="Describe your project..." required></textarea>
-          <input type="file" name="file">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_subject" value="New Order from DesTech">
-          <button class="btn" type="submit">Submit Order</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container" style="text-align:center">
-    <h2>Ready to build something stunning?</h2>
-    <p style="max-width:760px;margin:0 auto 26px;opacity:.82">Need a logo, website, brand system, flyer, social visuals, animation, or job-search help? Start here and I’ll take it from there.</p>
-    <a class="btn" href="services.html">View Services</a>
-  </div>
-</section>
-
-<div class="footer">
-  © 2026 DesTech. All rights reserved. | <a href="#faq">Terms & Conditions</a>
+<div class="card" onclick="toggle(this)">
+<h3>Logo Design</h3>
+<div class="details">
+<p>Modern, luxury, minimalist logos and more.</p>
+<a href="#order" class="btn">Continue</a>
+</div>
 </div>
 
-<a class="instagram-float" href="https://instagram.com/destech2026" target="_blank" rel="noopener">
-  <span>💬</span> Message me on Instagram
-</a>
+<div class="card" onclick="toggle(this)">
+<h3>Website Design</h3>
+<div class="details">
+<p>UI/UX, responsive, landing pages.</p>
+<a href="#order" class="btn">Continue</a>
+</div>
+</div>
+
+<div class="card" onclick="toggle(this)">
+<h3>Branding</h3>
+<div class="details">
+<p>Identity, strategy, brand systems.</p>
+<a href="#order" class="btn">Continue</a>
+</div>
+</div>
+
+<div class="card" onclick="toggle(this)">
+<h3>Flyer Design</h3>
+<div class="details">
+<p>High converting promotional flyers.</p>
+<a href="#order" class="btn">Continue</a>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio">
+<h2>Portfolio</h2>
+
+<div class="portfolio-grid">
+
+<div class="portfolio-card">
+<img src="images/work1.jpg">
+<div class="overlay">Logo Design</div>
+</div>
+
+<div class="portfolio-card">
+<img src="images/work2.jpg">
+<div class="overlay">Website Design</div>
+</div>
+
+<div class="portfolio-card">
+<img src="images/work3.jpg">
+<div class="overlay">Flyer Design</div>
+</div>
+
+</div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial">
+<h2>What Clients Say</h2>
+<p>"Amazing work! My business looks professional now."</p>
+<p>"Fast delivery and top quality design."</p>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+<h2>FAQs</h2>
+
+<div class="faq-item" onclick="faq(this)">
+<h4>How long does delivery take?</h4>
+<p>1–3 days depending on service.</p>
+</div>
+
+<div class="faq-item" onclick="faq(this)">
+<h4>Do you offer revisions?</h4>
+<p>Yes, based on package.</p>
+</div>
+
+<div class="faq-item" onclick="faq(this)">
+<h4>How do I pay?</h4>
+<p>Via Opay.</p>
+</div>
+
+<div class="faq-item" onclick="faq(this)">
+<h4>Can I request custom work?</h4>
+<p>Yes, contact me.</p>
+</div>
+
+<div class="faq-item" onclick="faq(this)">
+<h4>Do you design websites?</h4>
+<p>Yes, responsive modern sites.</p>
+</div>
+
+<div class="faq-item" onclick="faq(this)">
+<h4>What files will I get?</h4>
+<p>High quality formats (PNG, PDF, etc).</p>
+</div>
+
+<div class="faq-item" onclick="faq(this)">
+<h4>Do you offer branding?</h4>
+<p>Yes, full brand packages.</p>
+</div>
+
+<div class="faq-item" onclick="faq(this)">
+<h4>How do I contact you?</h4>
+<p>Use the order section or Instagram.</p>
+</div>
+
+</section>
+
+<!-- ORDER -->
+<section id="order">
+<h2>Place Your Order</h2>
+
+<form action="mailto:desmondroder93@gmail.com" method="POST" enctype="text/plain">
+
+<input type="text" name="name" placeholder="Your Name" required>
+<input type="email" name="email" placeholder="Your Email" required>
+
+<select name="service">
+<option>Logo Design</option>
+<option>Website Design</option>
+<option>Branding</option>
+<option>Flyer Design</option>
+</select>
+
+<textarea name="details" placeholder="Describe your project..." required></textarea>
+
+<p>Send payment to: <b>Opay - 08151980291</b></p>
+
+<input type="file" name="payment_proof">
+
+<button type="submit">Submit Order</button>
+
+</form>
+</section>
+
+<a href="https://instagram.com/destech2026" class="insta">📩</a>
+
+<footer>
+<p>© 2026 Destech | All Rights Reserved</p>
+<p>Simple Terms: Payments are non-refundable after work starts.</p>
+</footer>
 
 <script>
-const serviceMap = [
-  { key: "logo", title: "Logo Design", target: "#services-home" },
-  { key: "wordmark", title: "Logo Design", target: "#services-home" },
-  { key: "lettermark", title: "Logo Design", target: "#services-home" },
-  { key: "monogram", title: "Logo Design", target: "#services-home" },
-  { key: "brandmark", title: "Logo Design", target: "#services-home" },
-  { key: "combination", title: "Logo Design", target: "#services-home" },
-  { key: "emblem", title: "Logo Design", target: "#services-home" },
-  { key: "mascot", title: "Logo Design", target: "#services-home" },
-  { key: "abstract", title: "Logo Design", target: "#services-home" },
-  { key: "geometric", title: "Logo Design", target: "#services-home" },
-  { key: "minimalist", title: "Logo Design", target: "#services-home" },
-  { key: "vintage", title: "Logo Design", target: "#services-home" },
-  { key: "modern", title: "Logo Design", target: "#services-home" },
-  { key: "hand-drawn", title: "Logo Design", target: "#services-home" },
-  { key: "3d", title: "Logo Design", target: "#services-home" },
-  { key: "flat", title: "Logo Design", target: "#services-home" },
-  { key: "gradient", title: "Logo Design", target: "#services-home" },
-  { key: "negative space", title: "Logo Design", target: "#services-home" },
-  { key: "responsive logo", title: "Logo Design", target: "#services-home" },
-  { key: "dynamic logo", title: "Logo Design", target: "#services-home" },
+function toggle(el){el.classList.toggle("active");}
+function faq(el){el.classList.toggle("active");}
 
-  { key: "website", title: "Website Design", target: "#services-home" },
-  { key: "ui", title: "Website Design", target: "#services-home" },
-  { key: "ux", title: "Website Design", target: "#services-home" },
-  { key: "wireframing", title: "Website Design", target: "#services-home" },
-  { key: "prototyping", title: "Website Design", target: "#services-home" },
+// typing effect
+const texts=["Type any services...","Logo Design","Website Design","Branding","Flyer Design"];
+let i=0,j=0,current="",isDeleting=false;
 
-  { key: "branding", title: "Branding", target: "#services-home" },
-  { key: "brand strategy", title: "Branding", target: "#services-home" },
-  { key: "brand identity", title: "Branding", target: "#services-home" },
-  { key: "brand guidelines", title: "Branding", target: "#services-home" },
-
-  { key: "flyer", title: "Flyer Design", target: "#services-home" },
-  { key: "poster", title: "Flyer Design", target: "#services-home" },
-  { key: "brochure", title: "Flyer Design", target: "#services-home" },
-
-  { key: "social", title: "Social Media Design", target: "#services-home" },
-  { key: "instagram", title: "Social Media Design", target: "#services-home" },
-  { key: "caption", title: "Social Media Design", target: "#services-home" },
-
-  { key: "animation", title: "Video Animation", target: "#services-home" },
-  { key: "motion", title: "Video Animation", target: "#services-home" },
-  { key: "logo animation", title: "Video Animation", target: "#services-home" },
-
-  { key: "cv", title: "Job Search", target: "#services-home" },
-  { key: "resume", title: "Job Search", target: "#services-home" },
-  { key: "cover letter", title: "Job Search", target: "#services-home" },
-  { key: "linkedin", title: "Job Search", target: "#services-home" }
-];
-
-const searchInput = document.getElementById('searchInput');
-const resultsBox = document.getElementById('resultsBox');
-const searchBtn = document.getElementById('searchBtn');
-
-const uniqueTitles = [...new Map(serviceMap.map(item => [item.title, item])).values()].map(x => x.title);
-let placeholderIndex = 0;
-const placeholderValues = [
-  "Type any services...",
-  "Search logo design...",
-  "Find website experts...",
-  "Try branding or flyers..."
-];
-
-function showSuggestions(value){
-  const q = value.trim().toLowerCase();
-  resultsBox.innerHTML = '';
-
-  if(!q){
-    resultsBox.style.display = 'none';
-    return;
-  }
-
-  const matches = uniqueTitles.filter(t => t.toLowerCase().includes(q) || serviceMap.some(s => s.key.includes(q) && s.title === t));
-
-  if(!matches.length){
-    resultsBox.style.display = 'none';
-    return;
-  }
-
-  matches.slice(0, 7).forEach(title => {
-    const div = document.createElement('div');
-    div.className = 'result-item';
-    div.innerHTML = `<strong>${title}</strong><small>Click to open service</small>`;
-    div.addEventListener('click', () => {
-      document.getElementById('services-home').scrollIntoView({behavior:'smooth'});
-      searchInput.value = title;
-      resultsBox.style.display = 'none';
-    });
-    resultsBox.appendChild(div);
-  });
-
-  resultsBox.style.display = 'block';
+function type(){
+if(i<texts.length){
+if(!isDeleting && j<=texts[i].length){
+current=texts[i].substring(0,j++);
+}else if(isDeleting && j>=0){
+current=texts[i].substring(0,j--);
 }
 
-searchInput.addEventListener('input', e => showSuggestions(e.target.value));
+document.getElementById("searchInput").placeholder=current;
 
-searchBtn.addEventListener('click', () => {
-  const v = searchInput.value.trim();
-  if(v) showSuggestions(v);
-});
-
-searchInput.addEventListener('keydown', e => {
-  if(e.key === 'Enter'){
-    e.preventDefault();
-    const v = searchInput.value.trim();
-    if(v) showSuggestions(v);
-  }
-});
-
-document.addEventListener('click', (e) => {
-  if(!e.target.closest('.search-wrap')) resultsBox.style.display = 'none';
-});
-
-document.querySelectorAll('.pill').forEach(pill => {
-  pill.addEventListener('click', () => {
-    const target = pill.dataset.target;
-    const label = pill.textContent.trim();
-    searchInput.value = label;
-    document.getElementById('services-home').scrollIntoView({behavior:'smooth'});
-    resultsBox.style.display = 'none';
-  });
-});
-
-document.querySelectorAll('.service-card').forEach(card => {
-  card.addEventListener('click', () => {
-    const label = card.dataset.label;
-    searchInput.value = label;
-    document.getElementById('pricing').scrollIntoView({behavior:'smooth'});
-  });
-});
-
-document.querySelectorAll('.faq-q').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const a = btn.nextElementSibling;
-    const open = a.style.display === 'block';
-    document.querySelectorAll('.faq-a').forEach(x => x.style.display = 'none');
-    a.style.display = open ? 'none' : 'block';
-  });
-});
-
-setInterval(() => {
-  placeholderIndex = (placeholderIndex + 1) % placeholderValues.length;
-  searchInput.setAttribute('placeholder', placeholderValues[placeholderIndex]);
-}, 2200);
+if(j==texts[i].length){isDeleting=true;}
+if(j==0){isDeleting=false;i++;}
+}
+setTimeout(type,100);
+}
+type();
 </script>
+
 </body>
 </html>

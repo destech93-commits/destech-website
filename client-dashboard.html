@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DesTech | Client Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Poppins,sans-serif;background:#07070f;color:#fff;padding:20px}
+.header{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;background:rgba(10,10,20,.72);backdrop-filter:blur(12px);border-radius:18px;margin-bottom:20px}
+.card{background:linear-gradient(145deg,#12131d,#0d0e18);border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:22px;margin-bottom:20px;box-shadow:0 14px 40px rgba(0,0,0,.26)}
+.progress{background:#1f2937;border-radius:999px;height:18px;overflow:hidden}
+.bar{height:100%;width:75%;background:linear-gradient(135deg,#ff2e7a,#7a00ff);border-radius:999px}
+.chat{background:#111221;border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:18px}
+input,button{padding:12px;border-radius:10px;border:none;outline:none}
+input{width:100%;background:#0b0c15;color:#fff;border:1px solid rgba(255,255,255,.10);margin-top:10px}
+button{margin-top:10px;background:linear-gradient(135deg,#ff2e7a,#7a00ff);color:#fff;font-weight:700;cursor:pointer;width:100%}
+small{opacity:.7}
+</style>
+</head>
+<body>
+<div class="header">
+  <div><strong>Client Dashboard</strong><br><small>Track your project status</small></div>
+  <a href="index.html" style="color:#fff;text-decoration:none">Home</a>
+</div>
+
+<div class="card">
+  <h2>Status: In Progress</h2>
+  <div class="progress" style="margin-top:14px">
+    <div class="bar"></div>
+  </div>
+  <p style="margin-top:12px;opacity:.8">✓ Pending → ✓ Paid → ✓ In Progress → Completed</p>
+</div>
+
+<div class="card">
+  <h2>Timeline</h2>
+  <p style="opacity:.85;line-height:1.8">Your project is tracked through a clean workflow so you always know what stage it is in.</p>
+</div>
+
+<div class="card chat">
+  <h2>Chat</h2>
+  <p><strong>Client:</strong> Hello</p>
+  <input placeholder="Message">
+  <button>Send</button>
+</div>
+</body>
+</html>

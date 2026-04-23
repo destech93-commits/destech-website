@@ -16,12 +16,14 @@ body{
   color:white;
 }
 
+/* TITLE */
 h1{
   text-align:center;
   padding:40px;
   font-size:32px;
 }
 
+/* GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -29,31 +31,38 @@ h1{
   padding:40px;
 }
 
+/* CARD */
 .card{
-  background:#0b0f1f;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(10px);
   border-radius:15px;
   overflow:hidden;
-  transition:0.4s;
   position:relative;
+  transform-style:preserve-3d;
+  transition:0.4s;
+  cursor:pointer;
 }
 
 .card:hover{
-  transform:translateY(-10px) scale(1.02);
-  box-shadow:0 20px 40px rgba(124,58,237,0.4);
+  transform:rotateX(5deg) rotateY(5deg) scale(1.03);
+  box-shadow:0 25px 50px rgba(124,58,237,0.4);
 }
 
+/* IMAGE */
 .card img{
   width:100%;
   height:200px;
   object-fit:cover;
+  transition:0.4s;
 }
 
+.card:hover img{
+  transform:scale(1.1);
+}
+
+/* CONTENT */
 .card-content{
   padding:20px;
-}
-
-.card h3{
-  margin:0;
 }
 
 .tag{
@@ -61,7 +70,7 @@ h1{
   opacity:0.7;
 }
 
-/* BEFORE / AFTER LABEL */
+/* BADGE */
 .badge{
   position:absolute;
   top:10px;
@@ -72,19 +81,33 @@ h1{
   border-radius:6px;
 }
 
-/* GLOW EFFECT */
-.card::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:15px;
-  box-shadow:0 0 20px rgba(124,58,237,0.2);
-  opacity:0;
-  transition:0.3s;
+/* MODAL */
+.modal{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.8);
+  display:none;
+  justify-content:center;
+  align-items:center;
 }
 
-.card:hover::after{
-  opacity:1;
+.modal-content{
+  background:#0b0f1f;
+  padding:30px;
+  border-radius:15px;
+  max-width:500px;
+  text-align:center;
+}
+
+.close{
+  position:absolute;
+  top:20px;
+  right:30px;
+  cursor:pointer;
+  font-size:24px;
 }
 
 </style>
@@ -96,8 +119,7 @@ h1{
 
 <div class="grid">
 
-<!-- PROJECT 1 -->
-<div class="card">
+<div class="card" onclick="openModal('NovaTech Branding Project')">
 <div class="badge">Before → After</div>
 <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a">
 <div class="card-content">
@@ -106,8 +128,7 @@ h1{
 </div>
 </div>
 
-<!-- PROJECT 2 -->
-<div class="card">
+<div class="card" onclick="openModal('UrbanNest Website Project')">
 <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
 <div class="card-content">
 <h3>UrbanNest Realty</h3>
@@ -115,45 +136,38 @@ h1{
 </div>
 </div>
 
-<!-- PROJECT 3 -->
-<div class="card">
-<div class="badge">Premium Design</div>
+<div class="card" onclick="openModal('Veloura Fashion Branding')">
+<div class="badge">Premium</div>
 <img src="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb">
 <div class="card-content">
 <h3>Veloura Fashion</h3>
-<p class="tag">Fashion Branding + Ads</p>
-</div>
-</div>
-
-<!-- PROJECT 4 -->
-<div class="card">
-<img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7">
-<div class="card-content">
-<h3>Skyline Logistics</h3>
-<p class="tag">Corporate Website Design</p>
-</div>
-</div>
-
-<!-- PROJECT 5 -->
-<div class="card">
-<div class="badge">Ad Campaign</div>
-<img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2">
-<div class="card-content">
-<h3>Glow Beauty</h3>
-<p class="tag">Instagram Ads Design</p>
-</div>
-</div>
-
-<!-- PROJECT 6 -->
-<div class="card">
-<img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70">
-<div class="card-content">
-<h3>PrimeCars</h3>
-<p class="tag">Automotive Website</p>
+<p class="tag">Branding + Ads</p>
 </div>
 </div>
 
 </div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+<div class="modal-content">
+<span class="close" onclick="closeModal()">✖</span>
+<h2 id="modalText"></h2>
+<p>This project includes high-end branding, premium visuals, and conversion-focused design.</p>
+</div>
+</div>
+
+<script>
+
+function openModal(text){
+  document.getElementById("modal").style.display="flex";
+  document.getElementById("modalText").innerText=text;
+}
+
+function closeModal(){
+  document.getElementById("modal").style.display="none";
+}
+
+</script>
 
 </body>
 </html>

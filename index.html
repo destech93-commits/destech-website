@@ -8,27 +8,24 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
+
 body{
   margin:0;
   font-family:'Poppins',sans-serif;
-  background:#050816;
+  background: radial-gradient(circle at top, #0f172a, #020617);
   color:white;
-}
-
-html{
-  scroll-behavior:smooth;
 }
 
 header{
   display:flex;
   justify-content:space-between;
+  align-items:center;
   padding:20px 40px;
   background:black;
 }
 
-.logo{
-  font-weight:600;
-  letter-spacing:2px;
+.logo img{
+  height:45px;
 }
 
 nav a{
@@ -43,17 +40,30 @@ nav a:hover{
 }
 
 .hero{
-  text-align:center;
-  padding:100px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  padding:80px 60px;
   animation: fadeIn 1.5s ease;
 }
 
+.hero-text{
+  max-width:500px;
+}
+
 .hero h1{
-  font-size:38px;
+  font-size:42px;
 }
 
 .hero p{
   opacity:0.8;
+}
+
+.hero img{
+  width:400px;
+  border-radius:20px;
+  box-shadow:0 0 30px rgba(124,58,237,0.5);
 }
 
 .btn{
@@ -73,8 +83,13 @@ nav a:hover{
 }
 
 section{
-  padding:60px 20px;
+  padding:80px 20px;
   text-align:center;
+}
+
+section p{
+  max-width:700px;
+  margin:auto;
 }
 
 .dark{
@@ -89,13 +104,16 @@ section h2{
   from {opacity:0; transform:translateY(30px);}
   to {opacity:1; transform:translateY(0);}
 }
+
 </style>
 </head>
 
 <body>
 
 <header>
-<div class="logo">DesTech</div>
+<div class="logo">
+  <img src="destech.png" alt="DesTech Logo">
+</div>
 
 <nav>
 <a href="services.html">Services</a>
@@ -106,18 +124,24 @@ section h2{
 
 <!-- HERO -->
 <section class="hero">
+
+<div class="hero-text">
 <h1>I Design High-Converting Logos & Websites That Turn Visitors Into Clients</h1>
 
-<p>I help businesses grow with professional branding, modern websites, and eye-catching designs.</p>
+<p>Professional branding, modern websites, and designs that help your business grow fast.</p>
 
 <a href="services.html" class="btn">Explore Services</a>
 
 <p style="margin-top:15px;font-size:14px;opacity:0.8;">
 ✔ Fast delivery ✔ Professional quality ✔ 100% satisfaction
 </p>
+</div>
+
+<img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
+
 </section>
 
-<!-- WHY CHOOSE ME -->
+<!-- WHY -->
 <section>
 <h2>Why Choose DesTech?</h2>
 
@@ -127,7 +151,7 @@ section h2{
 <p>✔ Designs that help you stand out and get clients</p>
 </section>
 
-<!-- HOW IT WORKS -->
+<!-- HOW -->
 <section class="dark">
 <h2>How It Works</h2>
 
@@ -148,7 +172,7 @@ section h2{
 <p>“Top quality work. I will definitely work with DesTech again.” – Veloura Fashion</p>
 </section>
 
-<!-- FINAL CTA -->
+<!-- CTA -->
 <section class="dark">
 <h2>Ready to Grow Your Business?</h2>
 
@@ -176,27 +200,5 @@ z-index:1000;
 💬 Message me on Instagram
 </a>
 
-<!-- SCROLL ANIMATION -->
-<script>
-const sections = document.querySelectorAll("section");
-
-window.addEventListener("scroll", () => {
-  sections.forEach(sec => {
-    const top = sec.getBoundingClientRect().top;
-    if(top < window.innerHeight - 50){
-      sec.style.opacity = 1;
-      sec.style.transform = "translateY(0)";
-    }
-  });
-});
-
-sections.forEach(sec => {
-  sec.style.opacity = 0;
-  sec.style.transform = "translateY(40px)";
-  sec.style.transition = "all 0.6s ease";
-});
-</script>
-
 </body>
-</html>
 </html>

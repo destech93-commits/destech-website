@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>DesTech | Portfolio</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
   font-family:Poppins,sans-serif;
   background:#07070f;
@@ -18,138 +18,203 @@ body{
 
 /* HEADER */
 header{
-  position:fixed;top:0;left:0;right:0;
-  display:flex;justify-content:space-between;align-items:center;
-  padding:18px 40px;
-  background:rgba(10,10,20,.75);
-  backdrop-filter:blur(12px);
+  position:fixed;
+  top:0;left:0;right:0;
   z-index:100;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 40px;
+  background:rgba(10,10,20,.72);
+  backdrop-filter:blur(12px);
 }
 .logo{font-weight:800}
 .logo span{color:#b56dff}
 nav a{
-  color:#fff;text-decoration:none;margin-left:18px;opacity:.85
+  color:#fff;
+  text-decoration:none;
+  margin-left:18px;
+  opacity:.85;
 }
 nav a:hover{opacity:1}
 
 /* HERO */
 .hero{
+  min-height:60vh;
   padding:130px 20px 80px;
   text-align:center;
   position:relative;
+  overflow:hidden;
 }
 .hero::before{
   content:"";
-  position:absolute;inset:0;
+  position:absolute;
+  inset:0;
   background:radial-gradient(circle at top,#7a00ff 0%,#2f155e 40%,#07070f 80%);
-  z-index:-1;
+  z-index:-2;
 }
 .hero h1{
   font-size:clamp(2.5rem,5vw,4rem);
   font-weight:800;
+  margin-bottom:12px;
 }
 .hero p{
+  max-width:780px;
+  margin:0 auto;
   opacity:.8;
-  margin-top:10px;
+  line-height:1.7;
 }
 
 /* FILTER */
-.filter{
-  margin-top:30px;
+.filter-wrap{
+  max-width:1000px;
+  margin:32px auto 0;
+}
+.filters{
   display:flex;
-  justify-content:center;
   gap:10px;
   flex-wrap:wrap;
+  justify-content:center;
 }
-.filter button{
+.filters button{
   padding:10px 16px;
   border:none;
   border-radius:999px;
   background:#111221;
   color:#fff;
   cursor:pointer;
+  transition:.25s;
+  font-weight:600;
 }
-.filter button.active,
-.filter button:hover{
+.filters button:hover,
+.filters button.active{
   background:linear-gradient(135deg,#ff2e7a,#7a00ff);
+  transform:translateY(-2px);
+}
+
+/* SECTION */
+.section{
+  padding:80px 20px;
+}
+.container{
+  max-width:1200px;
+  margin:0 auto;
+}
+.section h2{
+  font-size:clamp(1.8rem,3vw,2.5rem);
+  text-align:center;
+  margin-bottom:12px;
+  font-weight:800;
+}
+.lead{
+  text-align:center;
+  max-width:760px;
+  margin:0 auto 35px;
+  opacity:.8;
+  line-height:1.7;
 }
 
 /* GRID */
-.portfolio{
-  padding:80px 20px;
-  max-width:1200px;
-  margin:auto;
-}
-.grid{
+.portfolio-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:20px;
+  gap:22px;
 }
 
 /* CARD */
-.card{
+.portfolio-item{
   position:relative;
   border-radius:18px;
   overflow:hidden;
   cursor:pointer;
-  transition:.4s;
+  background:#111221;
+  border:1px solid rgba(255,255,255,.06);
   box-shadow:0 15px 50px rgba(0,0,0,.4);
+  transition:.35s;
+  min-height:330px;
 }
-
-.card img{
+.portfolio-item:hover{
+  transform:translateY(-8px);
+  box-shadow:0 25px 80px rgba(122,0,255,.32);
+}
+.portfolio-item img{
   width:100%;
   height:100%;
   object-fit:cover;
-  transition:.4s;
+  display:block;
+  transition:.45s;
 }
-
-/* HOVER */
-.card:hover img{
+.portfolio-item:hover img{
   transform:scale(1.1);
+  filter:brightness(1.08) saturate(1.05);
 }
 
 /* OVERLAY */
 .overlay{
   position:absolute;
   inset:0;
-  background:linear-gradient(180deg,transparent,rgba(0,0,0,.9));
+  background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.88) 100%);
   display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  padding:20px;
+  align-items:flex-end;
+  padding:22px;
   opacity:0;
-  transition:.4s;
+  transition:.35s;
 }
-.card:hover .overlay{
+.portfolio-item:hover .overlay{
   opacity:1;
 }
-
-.overlay h3{
-  font-size:1.2rem;
-  font-weight:700;
+.overlay .content{
+  width:100%;
 }
-
+.overlay h3{
+  font-size:1.15rem;
+  font-weight:800;
+  margin-bottom:6px;
+}
 .overlay p{
   font-size:.9rem;
-  opacity:.75;
+  opacity:.78;
+  line-height:1.6;
+}
+.tag{
+  display:inline-block;
+  margin-bottom:10px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(8px);
+  font-size:.78rem;
+  font-weight:600;
 }
 
-/* GLOW */
-.card:hover{
-  box-shadow:0 25px 80px rgba(122,0,255,.35);
+/* ABOUT STRIP */
+.about-strip{
+  max-width:1100px;
+  margin:0 auto;
+  padding:22px 24px;
+  border-radius:18px;
+  background:linear-gradient(145deg,#12131d,#0d0e18);
+  border:1px solid rgba(255,255,255,.06);
+  box-shadow:0 14px 40px rgba(0,0,0,.26);
+  line-height:1.8;
+  opacity:.92;
 }
 
 /* FOOTER */
 footer{
   text-align:center;
-  padding:30px;
-  opacity:.6;
+  padding:30px 20px;
   border-top:1px solid rgba(255,255,255,.08);
+  opacity:.65;
+  margin-top:60px;
 }
 
 /* MOBILE */
 @media(max-width:800px){
-  header{padding:16px}
+  header{padding:16px 16px}
+  nav a{margin-left:12px}
+  .section{padding:70px 16px}
+  .portfolio-item{min-height:300px}
 }
 </style>
 </head>
@@ -161,87 +226,136 @@ footer{
   <nav>
     <a href="index.html">Home</a>
     <a href="services.html">Services</a>
+    <a href="portfolio.html">Portfolio</a>
     <a href="about.html">About</a>
   </nav>
 </header>
 
 <section class="hero">
-  <h1>My Portfolio</h1>
-  <p>Real designs built to attract, engage, and convert</p>
+  <h1>Portfolio</h1>
+  <p>Real-looking visual work built to feel premium, futuristic, and trustworthy.</p>
 
-  <div class="filter">
-    <button class="active">All</button>
-    <button>Logo</button>
-    <button>Website</button>
-    <button>Branding</button>
-    <button>Flyer</button>
-    <button>Social</button>
+  <div class="filter-wrap">
+    <div class="filters" id="filterButtons">
+      <button class="active" data-filter="all">All</button>
+      <button data-filter="logo">Logo</button>
+      <button data-filter="website">Website</button>
+      <button data-filter="branding">Branding</button>
+      <button data-filter="flyer">Flyer</button>
+      <button data-filter="social">Social</button>
+      <button data-filter="animation">Animation</button>
+    </div>
   </div>
 </section>
 
-<section class="portfolio">
-  <div class="grid">
+<section class="section">
+  <div class="container">
+    <h2>Selected Works</h2>
+    <p class="lead">Each piece is presented like a real project so clients can quickly understand your value.</p>
 
-    <!-- PROJECT 1 -->
-    <div class="card">
-      <img src="images/work1.jpg">
-      <div class="overlay">
-        <h3>Luxury Brand Identity</h3>
-        <p>Complete branding system with logo, colors, and typography</p>
-      </div>
+    <div class="portfolio-grid" id="portfolioGrid">
+
+      <article class="portfolio-item" data-category="logo">
+        <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=1200&q=80" alt="Logo design mockup">
+        <div class="overlay">
+          <div class="content">
+            <span class="tag">Logo Design</span>
+            <h3>Luxury Brand Identity</h3>
+            <p>Minimal, premium logo presentation with a strong identity system.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-item" data-category="website">
+        <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=80" alt="Website design mockup">
+        <div class="overlay">
+          <div class="content">
+            <span class="tag">Website Design</span>
+            <h3>Modern Business Website</h3>
+            <p>Clean UI/UX layout focused on trust, clarity, and conversion.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-item" data-category="branding">
+        <img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80" alt="Branding mockup">
+        <div class="overlay">
+          <div class="content">
+            <span class="tag">Branding</span>
+            <h3>Full Brand System</h3>
+            <p>Identity direction, typography, palette, and visual consistency.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-item" data-category="flyer">
+        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80" alt="Flyer design mockup">
+        <div class="overlay">
+          <div class="content">
+            <span class="tag">Flyer Design</span>
+            <h3>Event Flyer Campaign</h3>
+            <p>High-impact promotional visual built for attention and action.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-item" data-category="social">
+        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80" alt="Social media design mockup">
+        <div class="overlay">
+          <div class="content">
+            <span class="tag">Social Media</span>
+            <h3>Instagram Content Pack</h3>
+            <p>Clean social graphics designed for visibility and engagement.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-item" data-category="animation">
+        <img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=1200&q=80" alt="Animation mockup">
+        <div class="overlay">
+          <div class="content">
+            <span class="tag">Animation</span>
+            <h3>Motion Brand Reveal</h3>
+            <p>Animated visual concept that brings the brand to life smoothly.</p>
+          </div>
+        </div>
+      </article>
+
     </div>
+  </div>
+</section>
 
-    <!-- PROJECT 2 -->
-    <div class="card">
-      <img src="images/work2.jpg">
-      <div class="overlay">
-        <h3>Modern Business Website</h3>
-        <p>Clean UI/UX design focused on conversion and user flow</p>
-      </div>
+<section class="section">
+  <div class="container">
+    <div class="about-strip">
+      These are styled to feel like finished client projects, not random samples. The goal is simple: make visitors trust the quality of your work fast enough to contact you.
     </div>
-
-    <!-- PROJECT 3 -->
-    <div class="card">
-      <img src="images/work3.jpg">
-      <div class="overlay">
-        <h3>Event Flyer Campaign</h3>
-        <p>High-impact promotional design optimized for engagement</p>
-      </div>
-    </div>
-
-    <!-- PROJECT 4 -->
-    <div class="card">
-      <img src="images/work4.jpg">
-      <div class="overlay">
-        <h3>Instagram Marketing Design</h3>
-        <p>Social media visuals built for reach and engagement</p>
-      </div>
-    </div>
-
-    <!-- PROJECT 5 -->
-    <div class="card">
-      <img src="images/work5.jpg">
-      <div class="overlay">
-        <h3>Corporate Logo Design</h3>
-        <p>Professional logo crafted for trust and brand recognition</p>
-      </div>
-    </div>
-
-    <!-- PROJECT 6 -->
-    <div class="card">
-      <img src="images/work6.jpg">
-      <div class="overlay">
-        <h3>Animated Logo Reveal</h3>
-        <p>Motion graphics bringing brand identity to life</p>
-      </div>
-    </div>
-
   </div>
 </section>
 
 <footer>
   © 2026 DesTech — All rights reserved
 </footer>
+
+<script>
+const buttons = document.querySelectorAll('#filterButtons button');
+const items = document.querySelectorAll('.portfolio-item');
+
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    buttons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const filter = btn.dataset.filter;
+
+    items.forEach(item => {
+      const category = item.dataset.category;
+      const show = filter === 'all' || category === filter;
+      item.style.display = show ? 'block' : 'none';
+    });
+  });
+});
+</script>
 
 </body>
 </html>

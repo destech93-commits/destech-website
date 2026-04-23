@@ -12,7 +12,7 @@
 body{
   margin:0;
   font-family:'Poppins',sans-serif;
-  background:#020617;
+  background:radial-gradient(circle at top, #0b1220, #020617 70%);
   color:white;
 }
 
@@ -22,66 +22,102 @@ header{
   justify-content:space-between;
   align-items:center;
   padding:20px 40px;
-  background:black;
 }
 
 .logo{
   font-weight:700;
-  font-size:20px;
   letter-spacing:2px;
 }
 .logo span{color:#7c3aed;}
 
 nav a{
-  color:white;
+  color:#aaa;
   margin-left:20px;
   text-decoration:none;
-  opacity:0.7;
+}
+
+nav a:hover{
+  color:white;
 }
 
 /* HERO */
 .hero{
   text-align:center;
-  padding:80px 20px;
+  padding:100px 20px 80px;
+  position:relative;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  width:400px;
+  height:400px;
+  background:#7c3aed;
+  filter:blur(120px);
+  opacity:0.25;
+  top:-100px;
+  left:50%;
+  transform:translateX(-50%);
 }
 
 .hero h1{
-  font-size:38px;
-  max-width:700px;
+  font-size:44px;
+  max-width:750px;
   margin:auto;
+  line-height:1.3;
+}
+
+.hero h1 span{
+  color:#7c3aed;
 }
 
 /* SEARCH */
 .search-box{
-  max-width:500px;
-  margin:30px auto;
+  margin:35px auto;
+  max-width:520px;
 }
 
 .search-box input{
   width:100%;
-  padding:15px;
+  padding:18px 20px;
+  border-radius:40px;
   border:none;
-  border-radius:30px;
   outline:none;
+  font-size:15px;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(10px);
+  color:white;
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+  transition:0.3s;
+}
+
+.search-box input:focus{
+  box-shadow:0 0 0 2px #7c3aed;
 }
 
 /* RESULTS */
 #resultsBox{
-  max-width:500px;
+  max-width:520px;
   margin:10px auto;
   background:#0b0f1f;
-  border-radius:10px;
+  border-radius:12px;
   overflow:hidden;
+  box-shadow:0 10px 40px rgba(0,0,0,0.5);
 }
 
 #resultsBox div{
-  padding:12px;
+  padding:14px 16px;
   border-bottom:1px solid #222;
   cursor:pointer;
 }
 
 #resultsBox div:hover{
   background:#111827;
+}
+
+.sub{
+  color:#888;
+  margin-top:10px;
 }
 
 /* SECTIONS */
@@ -91,27 +127,38 @@ section{
 
 h2{
   text-align:center;
-  margin-bottom:30px;
+  margin-bottom:40px;
 }
 
 /* SERVICE CARDS */
 .services{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
-  max-width:900px;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:25px;
+  max-width:1000px;
   margin:auto;
 }
 
 .card{
-  background:#0b0f1f;
-  padding:20px;
-  border-radius:10px;
+  background:linear-gradient(145deg,#0b0f1f,#0a0d18);
+  padding:25px;
+  border-radius:14px;
   transition:0.3s;
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
 
 .card:hover{
-  transform:translateY(-5px);
+  transform:translateY(-8px) scale(1.02);
+  box-shadow:0 20px 50px rgba(0,0,0,0.6);
+}
+
+.card h3{
+  margin-bottom:10px;
+}
+
+.card p{
+  color:#aaa;
+  font-size:14px;
 }
 
 /* CTA */
@@ -121,10 +168,17 @@ h2{
 
 .btn{
   background:#7c3aed;
-  padding:12px 25px;
-  border-radius:6px;
+  padding:14px 30px;
+  border-radius:30px;
   text-decoration:none;
   color:white;
+  display:inline-block;
+  margin-top:20px;
+  transition:0.3s;
+}
+
+.btn:hover{
+  background:#6d28d9;
 }
 
 </style>
@@ -143,7 +197,11 @@ h2{
 
 <!-- HERO -->
 <section class="hero">
-<h1>Premium Design & Web Solutions That Turn Visitors Into Clients</h1>
+
+<h1>
+Premium Design & <span>Web Solutions</span><br>
+That Turn Visitors Into Clients
+</h1>
 
 <div class="search-box">
 <input id="searchInput" placeholder="Search logo, website, store..." onkeyup="showResults()">
@@ -151,67 +209,56 @@ h2{
 
 <div id="resultsBox"></div>
 
-<p style="opacity:0.6;">Popular: Logo, Website, Store, Flyer</p>
+<p class="sub">Popular: Logo, Website, Store, Flyer</p>
+
 </section>
 
 <!-- LOGO -->
 <section id="logo">
-<h2>Logo Design (Starting ₦20,000)</h2>
+<h2>Logo Design</h2>
 
 <div class="services">
-<div class="card">Minimalist Logo</div>
-<div class="card">3D Logo</div>
-<div class="card">Business Logo</div>
-<div class="card">Logo Redesign</div>
+<div class="card"><h3>Minimalist Logo</h3><p>Clean modern brand identity</p></div>
+<div class="card"><h3>3D Logo</h3><p>Premium visual branding</p></div>
+<div class="card"><h3>Business Logo</h3><p>Professional company design</p></div>
+<div class="card"><h3>Logo Redesign</h3><p>Upgrade your old logo</p></div>
 </div>
 </section>
 
 <!-- WEBSITE -->
 <section id="website">
-<h2>Website Design (Starting ₦50,000)</h2>
+<h2>Website Design</h2>
 
 <div class="services">
-<div class="card">Business Website</div>
-<div class="card">Portfolio Website</div>
-<div class="card">Landing Page</div>
+<div class="card"><h3>Business Website</h3><p>Convert visitors into clients</p></div>
+<div class="card"><h3>Portfolio Website</h3><p>Showcase your work professionally</p></div>
+<div class="card"><h3>Landing Page</h3><p>High-converting single pages</p></div>
 </div>
 </section>
 
 <!-- ECOMMERCE -->
 <section id="ecommerce">
-<h2>E-commerce (Starting ₦80,000)</h2>
+<h2>E-commerce</h2>
 
 <div class="services">
-<div class="card">Online Store</div>
-<div class="card">Shopify Design</div>
-<div class="card">Product Page</div>
-</div>
-</section>
-
-<!-- GRAPHICS -->
-<section id="graphics">
-<h2>Graphics Design (Starting ₦10,000)</h2>
-
-<div class="services">
-<div class="card">Flyer Design</div>
-<div class="card">Brochure</div>
-<div class="card">Social Media Ads</div>
+<div class="card"><h3>Online Store</h3><p>Sell products online easily</p></div>
+<div class="card"><h3>Shopify Design</h3><p>Optimized store setup</p></div>
+<div class="card"><h3>Product Page</h3><p>Boost conversions</p></div>
 </div>
 </section>
 
 <!-- CTA -->
 <section class="cta">
-<h2>Ready to Start?</h2>
+<h2>Ready to Start Your Project?</h2>
 <a href="#" class="btn">Message Me</a>
 </section>
 
 <script>
 
 const services = [
-  {name:"Logo Design", link:"#logo", keywords:["logo","branding","identity"]},
-  {name:"Website Design", link:"#website", keywords:["website","web","business"]},
-  {name:"E-commerce Store", link:"#ecommerce", keywords:["shop","store","ecommerce"]},
-  {name:"Graphics Design", link:"#graphics", keywords:["flyer","brochure","ads"]}
+  {name:"Logo Design", link:"#logo", keywords:["logo","branding"]},
+  {name:"Website Design", link:"#website", keywords:["website","web"]},
+  {name:"E-commerce Store", link:"#ecommerce", keywords:["store","shop","ecommerce"]}
 ];
 
 function showResults(){
@@ -237,13 +284,6 @@ function showResults(){
     box.appendChild(div);
   });
 }
-
-// ENTER KEY
-document.getElementById("searchInput").addEventListener("keypress", function(e){
-  if(e.key === "Enter"){
-    showResults();
-  }
-});
 
 </script>
 

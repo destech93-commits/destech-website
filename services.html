@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>DesTech | Services</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
-
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -172,6 +171,7 @@ nav a:hover{opacity:1}
   <nav>
     <a href="index.html">Home</a>
     <a href="services.html">Services</a>
+    <a href="portfolio.html">Portfolio</a>
     <a href="about.html">About</a>
   </nav>
 </header>
@@ -719,7 +719,7 @@ nav a:hover{opacity:1}
     <h2>Order</h2>
     <p class="lead">Choose a package above, then complete your order below.</p>
 
-    <div class="order">
+    <div class="order-wrap">
       <div class="order-box">
         <h3>Payment & Contact</h3>
         <p><strong>Account Name:</strong> Okunola Comfort</p>
@@ -765,15 +765,9 @@ const titles = [
   "Job Search"
 ];
 
-const map = {
-  logo: "logo",
-  website: "website",
-  branding: "branding",
-  flyers: "flyers",
-  socialmedia: "socialmedia",
-  animation: "animation",
-  jobsearch: "jobsearch"
-};
+const searchInput = document.getElementById('searchInput');
+const resultsBox = document.getElementById('resultsBox');
+const searchBtn = document.getElementById('searchBtn');
 
 function fillOrder(service){
   document.getElementById('order').scrollIntoView({behavior:'smooth'});
@@ -784,8 +778,7 @@ function fillOrder(service){
 document.querySelectorAll('.cat').forEach(cat => {
   cat.addEventListener('click', () => {
     const target = cat.dataset.target;
-    const id = map[target];
-    if(id) document.getElementById(id).scrollIntoView({behavior:'smooth'});
+    if(target) document.getElementById(target).scrollIntoView({behavior:'smooth'});
   });
 });
 
@@ -795,10 +788,6 @@ document.querySelectorAll('.service-card').forEach(card => {
     if(target) document.getElementById(target).scrollIntoView({behavior:'smooth'});
   });
 });
-
-const searchInput = document.getElementById('searchInput');
-const resultsBox = document.getElementById('resultsBox');
-const searchBtn = document.getElementById('searchBtn');
 
 function showSuggestions(q){
   const value = q.trim().toLowerCase();
@@ -840,6 +829,31 @@ searchInput.addEventListener('input', e => showSuggestions(e.target.value));
 searchBtn.addEventListener('click', () => showSuggestions(searchInput.value));
 document.addEventListener('click', e => {
   if(!e.target.closest('.search-wrap')) resultsBox.style.display = 'none';
+});
+
+document.querySelectorAll('.pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    const target = pill.dataset.target;
+    const route = {
+      logo: "#logo",
+      website: "#website",
+      branding: "#branding",
+      flyers: "#flyers",
+      socialmedia: "#socialmedia",
+      animation: "#animation",
+      jobsearch: "#jobsearch"
+    }[target];
+    if(route) document.querySelector(route).scrollIntoView({behavior:'smooth'});
+  });
+});
+
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const a = btn.nextElementSibling;
+    const open = a.style.display === 'block';
+    document.querySelectorAll('.faq-a').forEach(x => x.style.display = 'none');
+    a.style.display = open ? 'none' : 'block';
+  });
 });
 </script>
 </body>

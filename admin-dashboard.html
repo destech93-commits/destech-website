@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DesTech | Admin Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Poppins,sans-serif;background:#07070f;color:#fff;padding:20px}
+.header{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;background:rgba(10,10,20,.72);backdrop-filter:blur(12px);border-radius:18px;margin-bottom:20px}
+.card{background:linear-gradient(145deg,#12131d,#0d0e18);border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:22px;margin-bottom:20px;box-shadow:0 14px 40px rgba(0,0,0,.26)}
+button,input,select,textarea{padding:12px;border-radius:10px;border:none;outline:none}
+input,select,textarea{width:100%;background:#0b0c15;color:#fff;border:1px solid rgba(255,255,255,.10);margin-top:10px}
+button{background:linear-gradient(135deg,#ff2e7a,#7a00ff);color:#fff;font-weight:700;cursor:pointer;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="header">
+  <div><strong>Admin Dashboard</strong><br><small>Update client status manually</small></div>
+  <a href="index.html" style="color:#fff;text-decoration:none">Home</a>
+</div>
+
+<div class="card">
+  <h2>Client Status Control</h2>
+  <input placeholder="Client Name">
+  <select>
+    <option>Pending</option>
+    <option>Paid</option>
+    <option>In Progress</option>
+    <option>Completed</option>
+  </select>
+  <button>Save Status</button>
+</div>
+
+<div class="card">
+  <h2>Recent Orders</h2>
+  <p style="opacity:.8;line-height:1.7">Use this section later to connect your actual order tracking system.</p>
+</div>
+</body>
+</html>

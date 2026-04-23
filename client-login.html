@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DesTech | Client Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Poppins,sans-serif;background:#07070f;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.card{width:min(420px,100%);background:linear-gradient(145deg,#12131d,#0d0e18);border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:28px;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+h1{margin-bottom:12px}
+p{opacity:.8;margin-bottom:20px;line-height:1.7}
+input,button{width:100%;padding:13px 14px;border-radius:12px;border:none;outline:none;margin-bottom:12px}
+input{background:#0b0c15;color:#fff;border:1px solid rgba(255,255,255,.10)}
+button{background:linear-gradient(135deg,#ff2e7a,#7a00ff);color:#fff;font-weight:700;cursor:pointer}
+a{color:#b56dff;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>Client Login</h1>
+  <p>Access your project status and communicate with DesTech.</p>
+  <input placeholder="Email">
+  <input type="password" placeholder="Password">
+  <button onclick="location.href='client-dashboard.html'">Login</button>
+  <p style="margin-top:12px">New client? <a href="payment.html">Start a project</a></p>
+</div>
+</body>
+</html>

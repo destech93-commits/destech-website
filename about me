@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DesTech | About</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:Poppins,sans-serif;
+  background:#07070f;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* HEADER */
+header{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:100;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 40px;
+  background:rgba(10,10,20,.72);
+  backdrop-filter:blur(12px);
+}
+
+.logo{font-weight:800}
+.logo span{color:#b56dff}
+
+nav a{
+  color:#fff;
+  text-decoration:none;
+  margin-left:18px;
+  opacity:.85;
+}
+nav a:hover{opacity:1}
+
+/* HERO */
+.hero{
+  min-height:70vh;
+  padding:140px 20px 80px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at top,#7a00ff 0%,#2f155e 40%,#07070f 80%);
+  z-index:-2;
+}
+
+.hero h1{
+  font-size:clamp(2.5rem,6vw,4.5rem);
+  font-weight:800;
+  margin-bottom:15px;
+}
+
+.hero p{
+  max-width:700px;
+  margin:0 auto;
+  opacity:.85;
+  line-height:1.7;
+}
+
+/* SECTION */
+.section{
+  padding:90px 20px;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+}
+
+/* ABOUT CARD */
+.about-card{
+  background:linear-gradient(145deg,#12131d,#0d0e18);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:20px;
+  padding:40px;
+  box-shadow:0 20px 60px rgba(0,0,0,.4);
+  text-align:center;
+}
+
+.about-card h2{
+  font-size:2rem;
+  margin-bottom:15px;
+  font-weight:800;
+}
+
+.about-card p{
+  line-height:1.8;
+  opacity:.9;
+}
+
+/* STATS */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+  margin-top:40px;
+}
+
+.stat{
+  background:#111221;
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:16px;
+  padding:25px;
+}
+
+.stat h3{
+  font-size:2rem;
+  color:#b56dff;
+  margin-bottom:5px;
+}
+
+/* CTA */
+.cta{
+  text-align:center;
+  margin-top:60px;
+}
+
+.btn{
+  display:inline-block;
+  padding:14px 22px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#ff2e7a,#7a00ff);
+  color:#fff;
+  text-decoration:none;
+  font-weight:700;
+  transition:.3s;
+}
+.btn:hover{
+  transform:translateY(-3px);
+}
+
+/* FOOTER */
+.footer{
+  text-align:center;
+  padding:30px;
+  border-top:1px solid rgba(255,255,255,.06);
+  color:rgba(255,255,255,.6);
+  font-size:.9rem;
+}
+
+/* MOBILE */
+@media(max-width:700px){
+  header{padding:16px}
+  .hero{padding-top:120px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">DES<span>TECH</span></div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="about.html">About</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>About Me</h1>
+  <p>I design visuals and websites that don't just look good — they make people trust you and take action.</p>
+</section>
+
+<!-- ABOUT -->
+<section class="section">
+  <div class="container">
+
+    <div class="about-card">
+      <h2>Desmond Roderick</h2>
+      <p>
+        My name is Desmond Roderick, a professional graphic and web designer.
+        I specialize in creating clean, modern visuals and functional websites
+        that help brands communicate clearly and stand out.
+        <br><br>
+        My focus is on quality, creativity, and delivering designs that make real impact.
+      </p>
+
+      <!-- STATS -->
+      <div class="stats">
+        <div class="stat">
+          <h3>100+</h3>
+          <p>Design Projects</p>
+        </div>
+
+        <div class="stat">
+          <h3>50+</h3>
+          <p>Happy Clients</p>
+        </div>
+
+        <div class="stat">
+          <h3>3+</h3>
+          <p>Years Experience</p>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta">
+        <a href="services.html" class="btn">Explore Services</a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+© 2026 DesTech. All rights reserved.
+</div>
+
+</body>
+</html>

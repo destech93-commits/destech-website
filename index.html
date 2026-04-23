@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DesTech</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -16,6 +16,7 @@ body{
   color:white;
 }
 
+/* HEADER */
 header{
   display:flex;
   justify-content:space-between;
@@ -24,10 +25,19 @@ header{
   background:black;
 }
 
-.logo img{
-  height:45px;
+/* LOGO (BOLD PREMIUM) */
+.logo-text{
+  font-size:26px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
 }
 
+.logo-text span{
+  color:#7c3aed;
+}
+
+/* NAV */
 nav a{
   color:white;
   margin-left:20px;
@@ -39,17 +49,17 @@ nav a:hover{
   color:#7c3aed;
 }
 
+/* HERO */
 .hero{
   display:flex;
   justify-content:space-between;
   align-items:center;
   flex-wrap:wrap;
-  padding:80px 60px;
-  animation: fadeIn 1.5s ease;
+  padding:100px 60px;
 }
 
 .hero-text{
-  max-width:500px;
+  max-width:520px;
 }
 
 .hero h1{
@@ -61,11 +71,17 @@ nav a:hover{
 }
 
 .hero img{
-  width:400px;
+  width:420px;
   border-radius:20px;
-  box-shadow:0 0 30px rgba(124,58,237,0.5);
+  box-shadow:0 0 60px rgba(124,58,237,0.6);
+  transition:0.4s;
 }
 
+.hero img:hover{
+  transform:scale(1.03);
+}
+
+/* BUTTON */
 .btn{
   display:inline-block;
   margin-top:20px;
@@ -82,14 +98,32 @@ nav a:hover{
   box-shadow:0 10px 25px rgba(124,58,237,0.6);
 }
 
+/* FEATURES */
+.features{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  flex-wrap:wrap;
+  padding:60px;
+}
+
+.feature-box{
+  background:#0b0f1f;
+  padding:25px;
+  border-radius:15px;
+  width:250px;
+  transition:0.3s;
+}
+
+.feature-box:hover{
+  transform:translateY(-8px);
+  box-shadow:0 15px 30px rgba(124,58,237,0.4);
+}
+
+/* SECTION */
 section{
   padding:80px 20px;
   text-align:center;
-}
-
-section p{
-  max-width:700px;
-  margin:auto;
 }
 
 .dark{
@@ -100,9 +134,24 @@ section h2{
   text-shadow:0 0 10px rgba(124,58,237,0.6);
 }
 
-@keyframes fadeIn {
-  from {opacity:0; transform:translateY(30px);}
-  to {opacity:1; transform:translateY(0);}
+/* MOBILE */
+@media(max-width:768px){
+
+.hero{
+  flex-direction:column;
+  text-align:center;
+}
+
+.hero img{
+  width:90%;
+  margin-top:30px;
+}
+
+header{
+  flex-direction:column;
+  gap:10px;
+}
+
 }
 
 </style>
@@ -111,9 +160,7 @@ section h2{
 <body>
 
 <header>
-<div class="logo">
-  <img src="destech.png" alt="DesTech Logo">
-</div>
+<div class="logo-text">Des<span>Tech</span></div>
 
 <nav>
 <a href="services.html">Services</a>
@@ -138,6 +185,26 @@ section h2{
 </div>
 
 <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
+
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+
+<div class="feature-box">
+<h3>Branding</h3>
+<p>Modern logos that build trust</p>
+</div>
+
+<div class="feature-box">
+<h3>Web Design</h3>
+<p>Websites that convert visitors</p>
+</div>
+
+<div class="feature-box">
+<h3>Ads Design</h3>
+<p>High-performing social media ads</p>
+</div>
 
 </section>
 

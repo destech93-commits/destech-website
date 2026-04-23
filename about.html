@@ -4,9 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>DesTech | About</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
-
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{
@@ -15,8 +13,6 @@ body{
   color:#fff;
   overflow-x:hidden;
 }
-
-/* HEADER */
 header{
   position:fixed;top:0;left:0;right:0;z-index:100;
   display:flex;justify-content:space-between;align-items:center;
@@ -30,8 +26,6 @@ nav a{
   color:#fff;text-decoration:none;margin-left:18px;opacity:.85
 }
 nav a:hover{opacity:1}
-
-/* HERO */
 .hero{
   min-height:70vh;
   padding:140px 20px 80px;
@@ -57,8 +51,6 @@ nav a:hover{opacity:1}
   opacity:.85;
   animation:fadeUp 1.2s ease;
 }
-
-/* IMAGE */
 .profile{
   margin-top:40px;
   display:flex;
@@ -70,8 +62,6 @@ nav a:hover{opacity:1}
   box-shadow:0 20px 60px rgba(122,0,255,.35);
   animation:float 4s ease-in-out infinite;
 }
-
-/* SECTION */
 .section{
   padding:90px 20px;
 }
@@ -84,8 +74,6 @@ nav a:hover{opacity:1}
   font-weight:800;
   margin-bottom:20px;
 }
-
-/* CARD */
 .card{
   background:linear-gradient(145deg,#12131d,#0d0e18);
   border:1px solid rgba(255,255,255,.06);
@@ -94,8 +82,6 @@ nav a:hover{opacity:1}
   line-height:1.7;
   opacity:.9;
 }
-
-/* SKILLS GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
@@ -113,8 +99,6 @@ nav a:hover{opacity:1}
   transform:translateY(-6px);
   box-shadow:0 15px 50px rgba(122,0,255,.25);
 }
-
-/* CTA */
 .cta{
   text-align:center;
 }
@@ -132,8 +116,6 @@ nav a:hover{opacity:1}
 .btn:hover{
   transform:translateY(-3px);
 }
-
-/* ANIMATIONS */
 @keyframes fadeDown{
   from{opacity:0;transform:translateY(-40px)}
   to{opacity:1;transform:translateY(0)}
@@ -146,15 +128,12 @@ nav a:hover{opacity:1}
   0%,100%{transform:translateY(0)}
   50%{transform:translateY(-12px)}
 }
-
-/* MOBILE */
 @media(max-width:700px){
   header{padding:16px}
   nav a{margin-left:12px;font-size:.9rem}
 }
 </style>
 </head>
-
 <body>
 
 <header>
@@ -162,21 +141,19 @@ nav a:hover{opacity:1}
   <nav>
     <a href="index.html">Home</a>
     <a href="services.html">Services</a>
+    <a href="portfolio.html">Portfolio</a>
     <a href="about.html">About</a>
   </nav>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <h1>About Me</h1>
   <p>I create powerful designs and modern websites that help brands stand out, attract attention, and convert visitors into paying clients.</p>
-
   <div class="profile">
-    images/profile.jpg
+    <img src="images/profile.jpg" alt="Desmond">
   </div>
 </section>
 
-<!-- ABOUT TEXT -->
 <section class="section">
 <div class="container">
   <h2>Who I Am</h2>
@@ -188,13 +165,10 @@ nav a:hover{opacity:1}
 </div>
 </section>
 
-<!-- SKILLS -->
 <section class="section">
 <div class="container">
   <h2>What I Do</h2>
-
   <div class="grid">
-
     <div class="skill">Logo Design (Modern, Minimal, Luxury)</div>
     <div class="skill">Website Design (UI/UX, Responsive)</div>
     <div class="skill">Brand Identity & Strategy</div>
@@ -203,26 +177,23 @@ nav a:hover{opacity:1}
     <div class="skill">Video Animation & Motion Graphics</div>
     <div class="skill">Portfolio & Business Websites</div>
     <div class="skill">Conversion-Focused Landing Pages</div>
-
   </div>
 </div>
 </section>
 
-<!-- WHY CHOOSE ME -->
 <section class="section">
 <div class="container">
   <h2>Why Choose Me</h2>
   <div class="card">
-    • Clean and modern designs that build trust  
-    • Fast delivery and professional communication  
-    • Designs focused on results, not just looks  
-    • Experience across multiple industries  
+    • Clean and modern designs that build trust<br>
+    • Fast delivery and professional communication<br>
+    • Designs focused on results, not just looks<br>
+    • Experience across multiple industries<br>
     • I don’t just design — I help you grow
   </div>
 </div>
 </section>
 
-<!-- CTA -->
 <section class="section">
 <div class="container cta">
   <h2>Ready to Work Together?</h2>

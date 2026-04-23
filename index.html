@@ -5,10 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DesTech</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
+
 body{
   margin:0;
-  font-family:Arial;
+  font-family:'Poppins',sans-serif;
   background:#020617;
   color:white;
 }
@@ -17,68 +20,113 @@ body{
 header{
   display:flex;
   justify-content:space-between;
+  align-items:center;
   padding:20px 40px;
   background:black;
 }
 
-.logo{font-weight:bold;letter-spacing:2px;}
+.logo{
+  font-weight:700;
+  font-size:20px;
+  letter-spacing:2px;
+}
 .logo span{color:#7c3aed;}
 
 nav a{
   color:white;
   margin-left:20px;
   text-decoration:none;
+  opacity:0.7;
+}
+
+/* HERO */
+.hero{
+  text-align:center;
+  padding:80px 20px;
+}
+
+.hero h1{
+  font-size:38px;
+  max-width:700px;
+  margin:auto;
 }
 
 /* SEARCH */
 .search-box{
-  display:flex;
   max-width:500px;
   margin:30px auto;
-  background:white;
-  border-radius:30px;
-  overflow:hidden;
 }
 
 .search-box input{
-  flex:1;
+  width:100%;
   padding:15px;
   border:none;
+  border-radius:30px;
+  outline:none;
 }
 
-.search-box button{
-  background:#7c3aed;
-  color:white;
-  border:none;
-  padding:0 20px;
+/* RESULTS */
+#resultsBox{
+  max-width:500px;
+  margin:10px auto;
+  background:#0b0f1f;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+#resultsBox div{
+  padding:12px;
+  border-bottom:1px solid #222;
+  cursor:pointer;
+}
+
+#resultsBox div:hover{
+  background:#111827;
 }
 
 /* SECTIONS */
-section{padding:60px 20px;text-align:center;}
+section{
+  padding:80px 20px;
+}
 
+h2{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+/* SERVICE CARDS */
 .services{
-  display:flex;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:20px;
-  flex-wrap:wrap;
-  justify-content:center;
+  max-width:900px;
+  margin:auto;
 }
 
 .card{
   background:#0b0f1f;
   padding:20px;
   border-radius:10px;
-  width:220px;
+  transition:0.3s;
 }
 
-.card a{
-  display:inline-block;
-  margin-top:10px;
-  background:#7c3aed;
-  padding:8px 15px;
-  color:white;
-  text-decoration:none;
-  border-radius:5px;
+.card:hover{
+  transform:translateY(-5px);
 }
+
+/* CTA */
+.cta{
+  text-align:center;
+}
+
+.btn{
+  background:#7c3aed;
+  padding:12px 25px;
+  border-radius:6px;
+  text-decoration:none;
+  color:white;
+}
+
 </style>
 </head>
 
@@ -87,72 +135,116 @@ section{padding:60px 20px;text-align:center;}
 <header>
 <div class="logo">DES<span>TECH</span></div>
 <nav>
-<a href="services.html">Services</a>
+<a href="#logo">Logo</a>
+<a href="#website">Website</a>
+<a href="#ecommerce">Store</a>
 </nav>
 </header>
 
-<!-- SEARCH -->
+<!-- HERO -->
+<section class="hero">
+<h1>Premium Design & Web Solutions That Turn Visitors Into Clients</h1>
+
 <div class="search-box">
-<input id="searchInput" placeholder="Search logo, website, flyer...">
-<button onclick="goSearch()">Search</button>
+<input id="searchInput" placeholder="Search logo, website, store..." onkeyup="showResults()">
 </div>
 
-<p style="text-align:center;opacity:0.6;">
-Popular: Logo, Website, E-commerce, Flyer
-</p>
+<div id="resultsBox"></div>
 
-<!-- SERVICES -->
-<section>
-<h2>Popular Services</h2>
+<p style="opacity:0.6;">Popular: Logo, Website, Store, Flyer</p>
+</section>
+
+<!-- LOGO -->
+<section id="logo">
+<h2>Logo Design (Starting ₦20,000)</h2>
 
 <div class="services">
-
-<div class="card">
-<h3>Logo Design</h3>
-<p>Professional branding</p>
-<a href="services.html#logo">View</a>
-</div>
-
-<div class="card">
-<h3>Website Design</h3>
-<p>Modern websites</p>
-<a href="services.html#website">View</a>
-</div>
-
-<div class="card">
-<h3>E-commerce</h3>
-<p>Online stores</p>
-<a href="services.html#ecommerce">View</a>
-</div>
-
-<div class="card">
-<h3>Graphics Design</h3>
-<p>Flyers & ads</p>
-<a href="services.html#graphics">View</a>
-</div>
-
+<div class="card">Minimalist Logo</div>
+<div class="card">3D Logo</div>
+<div class="card">Business Logo</div>
+<div class="card">Logo Redesign</div>
 </div>
 </section>
 
-<!-- HOW -->
-<section>
-<h2>How It Works</h2>
-<p>1. Choose service → 2. Make payment → 3. Get delivery</p>
+<!-- WEBSITE -->
+<section id="website">
+<h2>Website Design (Starting ₦50,000)</h2>
+
+<div class="services">
+<div class="card">Business Website</div>
+<div class="card">Portfolio Website</div>
+<div class="card">Landing Page</div>
+</div>
 </section>
 
-<!-- TESTIMONIAL -->
-<section>
-<h2>Clients</h2>
-<p>“Very professional and fast delivery”</p>
+<!-- ECOMMERCE -->
+<section id="ecommerce">
+<h2>E-commerce (Starting ₦80,000)</h2>
+
+<div class="services">
+<div class="card">Online Store</div>
+<div class="card">Shopify Design</div>
+<div class="card">Product Page</div>
+</div>
+</section>
+
+<!-- GRAPHICS -->
+<section id="graphics">
+<h2>Graphics Design (Starting ₦10,000)</h2>
+
+<div class="services">
+<div class="card">Flyer Design</div>
+<div class="card">Brochure</div>
+<div class="card">Social Media Ads</div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+<h2>Ready to Start?</h2>
+<a href="#" class="btn">Message Me</a>
 </section>
 
 <script>
-function goSearch(){
-  let q = document.getElementById("searchInput").value;
-  if(q.trim() !== ""){
-    window.location.href = "search-results.html?q=" + encodeURIComponent(q);
-  }
+
+const services = [
+  {name:"Logo Design", link:"#logo", keywords:["logo","branding","identity"]},
+  {name:"Website Design", link:"#website", keywords:["website","web","business"]},
+  {name:"E-commerce Store", link:"#ecommerce", keywords:["shop","store","ecommerce"]},
+  {name:"Graphics Design", link:"#graphics", keywords:["flyer","brochure","ads"]}
+];
+
+function showResults(){
+  let input = document.getElementById("searchInput").value.toLowerCase();
+  let box = document.getElementById("resultsBox");
+
+  box.innerHTML = "";
+
+  if(input === "") return;
+
+  let filtered = services.filter(item =>
+    item.keywords.some(k => input.includes(k))
+  );
+
+  filtered.forEach(item=>{
+    let div = document.createElement("div");
+    div.innerHTML = `<strong>${item.name}</strong><br><small>Click to view</small>`;
+
+    div.onclick = () => {
+      document.querySelector(item.link).scrollIntoView({behavior:"smooth"});
+    };
+
+    box.appendChild(div);
+  });
 }
+
+// ENTER KEY
+document.getElementById("searchInput").addEventListener("keypress", function(e){
+  if(e.key === "Enter"){
+    showResults();
+  }
+});
+
 </script>
 
 </body>

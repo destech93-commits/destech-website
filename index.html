@@ -37,7 +37,27 @@ nav a{
   text-align:center;
   padding:100px 20px;
 }
+<br><br>
 
+<input type="text" id="search" placeholder="Search services (logo, website, branding...)" 
+style="padding:12px;width:60%;border-radius:8px;border:none;">
+
+<div id="results" style="margin-top:10px;"></div>
+
+<script>
+const services = ["Logo Design","Website Design","Branding","Social Media Design"];
+
+document.getElementById("search").addEventListener("input", function(){
+  let value = this.value.toLowerCase();
+  let output = "";
+  services.forEach(s => {
+    if(s.toLowerCase().includes(value)){
+      output += "<p>"+s+"</p>";
+    }
+  });
+  document.getElementById("results").innerHTML = output;
+});
+</script>
 .hero h1{
   font-size:42px;
 }

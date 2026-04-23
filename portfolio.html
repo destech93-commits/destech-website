@@ -1,69 +1,247 @@
-<section style="padding:80px 20px;">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DesTech | Portfolio</title>
 
-<h2 style="text-align:center;">Featured Work</h2>
-<p style="text-align:center;opacity:0.7;">Realistic project samples designed to solve business problems</p>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-<div style="
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:25px;
-margin-top:40px;
-">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:Poppins,sans-serif;
+  background:#07070f;
+  color:#fff;
+  overflow-x:hidden;
+}
 
-<!-- PROJECT 1 -->
-<div style="background:#0b0f1f;padding:15px;border-radius:15px;">
-<img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c" style="width:100%;border-radius:10px;">
-<h3>Restaurant Promo Flyer</h3>
-<p style="font-size:13px;opacity:0.7;">
-Designed a high-impact flyer to boost weekend customer traffic and increase sales.
-</p>
-</div>
+/* HEADER */
+header{
+  position:fixed;top:0;left:0;right:0;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px 40px;
+  background:rgba(10,10,20,.75);
+  backdrop-filter:blur(12px);
+  z-index:100;
+}
+.logo{font-weight:800}
+.logo span{color:#b56dff}
+nav a{
+  color:#fff;text-decoration:none;margin-left:18px;opacity:.85
+}
+nav a:hover{opacity:1}
 
-<!-- PROJECT 2 -->
-<div style="background:#0b0f1f;padding:15px;border-radius:15px;">
-<img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0" style="width:100%;border-radius:10px;">
-<h3>Product Sell Sheet</h3>
-<p style="font-size:13px;opacity:0.7;">
-Created a conversion-focused product sheet for marketing campaigns and client presentations.
-</p>
-</div>
+/* HERO */
+.hero{
+  padding:130px 20px 80px;
+  text-align:center;
+  position:relative;
+}
+.hero::before{
+  content:"";
+  position:absolute;inset:0;
+  background:radial-gradient(circle at top,#7a00ff 0%,#2f155e 40%,#07070f 80%);
+  z-index:-1;
+}
+.hero h1{
+  font-size:clamp(2.5rem,5vw,4rem);
+  font-weight:800;
+}
+.hero p{
+  opacity:.8;
+  margin-top:10px;
+}
 
-<!-- PROJECT 3 -->
-<div style="background:#0b0f1f;padding:15px;border-radius:15px;">
-<img src="https://images.unsplash.com/photo-1581090700227-1e8a2d4b6f9c" style="width:100%;border-radius:10px;">
-<h3>Corporate Brochure</h3>
-<p style="font-size:13px;opacity:0.7;">
-Professional brochure design to present company services clearly and attract investors.
-</p>
-</div>
+/* FILTER */
+.filter{
+  margin-top:30px;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.filter button{
+  padding:10px 16px;
+  border:none;
+  border-radius:999px;
+  background:#111221;
+  color:#fff;
+  cursor:pointer;
+}
+.filter button.active,
+.filter button:hover{
+  background:linear-gradient(135deg,#ff2e7a,#7a00ff);
+}
 
-<!-- PROJECT 4 -->
-<div style="background:#0b0f1f;padding:15px;border-radius:15px;">
-<img src="https://images.unsplash.com/photo-1559028012-481c04fa702d" style="width:100%;border-radius:10px;">
-<h3>Real Estate Website UI</h3>
-<p style="font-size:13px;opacity:0.7;">
-Designed a clean website layout to improve property listings visibility and user experience.
-</p>
-</div>
+/* GRID */
+.portfolio{
+  padding:80px 20px;
+  max-width:1200px;
+  margin:auto;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;
+}
 
-<!-- PROJECT 5 -->
-<div style="background:#0b0f1f;padding:15px;border-radius:15px;">
-<img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4" style="width:100%;border-radius:10px;">
-<h3>Instagram Ads Design</h3>
-<p style="font-size:13px;opacity:0.7;">
-Created engaging ad creatives to increase clicks and social media conversions.
-</p>
-</div>
+/* CARD */
+.card{
+  position:relative;
+  border-radius:18px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:.4s;
+  box-shadow:0 15px 50px rgba(0,0,0,.4);
+}
 
-<!-- PROJECT 6 -->
-<div style="background:#0b0f1f;padding:15px;border-radius:15px;">
-<img src="https://images.unsplash.com/photo-1581091012184-5c4f2d1d3c6f" style="width:100%;border-radius:10px;">
-<h3>Business Card Design</h3>
-<p style="font-size:13px;opacity:0.7;">
-Designed a clean and memorable business card for professional brand identity.
-</p>
-</div>
+.card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:.4s;
+}
 
-</div>
+/* HOVER */
+.card:hover img{
+  transform:scale(1.1);
+}
 
+/* OVERLAY */
+.overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,transparent,rgba(0,0,0,.9));
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:20px;
+  opacity:0;
+  transition:.4s;
+}
+.card:hover .overlay{
+  opacity:1;
+}
+
+.overlay h3{
+  font-size:1.2rem;
+  font-weight:700;
+}
+
+.overlay p{
+  font-size:.9rem;
+  opacity:.75;
+}
+
+/* GLOW */
+.card:hover{
+  box-shadow:0 25px 80px rgba(122,0,255,.35);
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:30px;
+  opacity:.6;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+
+/* MOBILE */
+@media(max-width:800px){
+  header{padding:16px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">DES<span>TECH</span></div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="about.html">About</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>My Portfolio</h1>
+  <p>Real designs built to attract, engage, and convert</p>
+
+  <div class="filter">
+    <button class="active">All</button>
+    <button>Logo</button>
+    <button>Website</button>
+    <button>Branding</button>
+    <button>Flyer</button>
+    <button>Social</button>
+  </div>
 </section>
+
+<section class="portfolio">
+  <div class="grid">
+
+    <!-- PROJECT 1 -->
+    <div class="card">
+      <img src="images/work1.jpg">
+      <div class="overlay">
+        <h3>Luxury Brand Identity</h3>
+        <p>Complete branding system with logo, colors, and typography</p>
+      </div>
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="card">
+      <img src="images/work2.jpg">
+      <div class="overlay">
+        <h3>Modern Business Website</h3>
+        <p>Clean UI/UX design focused on conversion and user flow</p>
+      </div>
+    </div>
+
+    <!-- PROJECT 3 -->
+    <div class="card">
+      <img src="images/work3.jpg">
+      <div class="overlay">
+        <h3>Event Flyer Campaign</h3>
+        <p>High-impact promotional design optimized for engagement</p>
+      </div>
+    </div>
+
+    <!-- PROJECT 4 -->
+    <div class="card">
+      <img src="images/work4.jpg">
+      <div class="overlay">
+        <h3>Instagram Marketing Design</h3>
+        <p>Social media visuals built for reach and engagement</p>
+      </div>
+    </div>
+
+    <!-- PROJECT 5 -->
+    <div class="card">
+      <img src="images/work5.jpg">
+      <div class="overlay">
+        <h3>Corporate Logo Design</h3>
+        <p>Professional logo crafted for trust and brand recognition</p>
+      </div>
+    </div>
+
+    <!-- PROJECT 6 -->
+    <div class="card">
+      <img src="images/work6.jpg">
+      <div class="overlay">
+        <h3>Animated Logo Reveal</h3>
+        <p>Motion graphics bringing brand identity to life</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  © 2026 DesTech — All rights reserved
+</footer>
+
+</body>
+</html>

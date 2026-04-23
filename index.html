@@ -20,14 +20,10 @@ body{
 header{
   display:flex;
   justify-content:space-between;
-  align-items:center;
   padding:20px 40px;
 }
 
-.logo{
-  font-weight:700;
-  letter-spacing:2px;
-}
+.logo{font-weight:700;}
 .logo span{color:#7c3aed;}
 
 nav a{
@@ -35,15 +31,12 @@ nav a{
   margin-left:20px;
   text-decoration:none;
 }
-
-nav a:hover{
-  color:white;
-}
+nav a:hover{color:white;}
 
 /* HERO */
 .hero{
   text-align:center;
-  padding:100px 20px 80px;
+  padding:100px 20px;
   position:relative;
 }
 
@@ -61,38 +54,27 @@ nav a:hover{
 }
 
 .hero h1{
-  font-size:44px;
-  max-width:750px;
+  font-size:42px;
+  max-width:700px;
   margin:auto;
-  line-height:1.3;
 }
-
-.hero h1 span{
-  color:#7c3aed;
-}
+.hero span{color:#7c3aed;}
 
 /* SEARCH */
 .search-box{
-  margin:35px auto;
   max-width:520px;
+  margin:30px auto;
 }
 
 .search-box input{
   width:100%;
-  padding:18px 20px;
+  padding:18px;
   border-radius:40px;
   border:none;
   outline:none;
-  font-size:15px;
   background:rgba(255,255,255,0.08);
-  backdrop-filter:blur(10px);
   color:white;
   box-shadow:0 10px 30px rgba(0,0,0,0.4);
-  transition:0.3s;
-}
-
-.search-box input:focus{
-  box-shadow:0 0 0 2px #7c3aed;
 }
 
 /* RESULTS */
@@ -102,35 +84,22 @@ nav a:hover{
   background:#0b0f1f;
   border-radius:12px;
   overflow:hidden;
-  box-shadow:0 10px 40px rgba(0,0,0,0.5);
 }
 
 #resultsBox div{
-  padding:14px 16px;
+  padding:14px;
   border-bottom:1px solid #222;
   cursor:pointer;
 }
+#resultsBox div:hover{background:#111827;}
 
-#resultsBox div:hover{
-  background:#111827;
-}
-
-.sub{
-  color:#888;
-  margin-top:10px;
-}
+.sub{color:#888;}
 
 /* SECTIONS */
-section{
-  padding:80px 20px;
-}
+section{padding:80px 20px;}
+h2{text-align:center;margin-bottom:30px;}
 
-h2{
-  text-align:center;
-  margin-bottom:40px;
-}
-
-/* SERVICE CARDS */
+/* SERVICES */
 .services{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
@@ -140,45 +109,60 @@ h2{
 }
 
 .card{
-  background:linear-gradient(145deg,#0b0f1f,#0a0d18);
-  padding:25px;
-  border-radius:14px;
+  background:#0b0f1f;
+  padding:20px;
+  border-radius:12px;
   transition:0.3s;
-  box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
-
 .card:hover{
-  transform:translateY(-8px) scale(1.02);
-  box-shadow:0 20px 50px rgba(0,0,0,0.6);
+  transform:translateY(-6px);
 }
 
-.card h3{
-  margin-bottom:10px;
+/* PORTFOLIO */
+.portfolio-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+  max-width:1000px;
+  margin:auto;
 }
 
-.card p{
+.portfolio-card{
+  background:#0b0f1f;
+  border-radius:14px;
+  overflow:hidden;
+  transition:0.3s;
+}
+
+.portfolio-card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+
+.portfolio-card h3{
+  padding:15px 15px 5px;
+}
+
+.portfolio-card p{
+  padding:0 15px 15px;
   color:#aaa;
   font-size:14px;
 }
 
-/* CTA */
-.cta{
-  text-align:center;
+.portfolio-card:hover{
+  transform:translateY(-8px);
 }
+
+/* CTA */
+.cta{text-align:center;}
 
 .btn{
   background:#7c3aed;
-  padding:14px 30px;
+  padding:12px 25px;
   border-radius:30px;
-  text-decoration:none;
   color:white;
-  display:inline-block;
-  margin-top:20px;
-  transition:0.3s;
-}
-
-.btn:hover{
-  background:#6d28d9;
+  text-decoration:none;
 }
 
 </style>
@@ -191,17 +175,13 @@ h2{
 <nav>
 <a href="#logo">Logo</a>
 <a href="#website">Website</a>
-<a href="#ecommerce">Store</a>
+<a href="#portfolio">Portfolio</a>
 </nav>
 </header>
 
 <!-- HERO -->
 <section class="hero">
-
-<h1>
-Premium Design & <span>Web Solutions</span><br>
-That Turn Visitors Into Clients
-</h1>
+<h1>Premium Design & <span>Web Solutions</span></h1>
 
 <div class="search-box">
 <input id="searchInput" placeholder="Search logo, website, store..." onkeyup="showResults()">
@@ -210,81 +190,89 @@ That Turn Visitors Into Clients
 <div id="resultsBox"></div>
 
 <p class="sub">Popular: Logo, Website, Store, Flyer</p>
-
 </section>
 
-<!-- LOGO -->
+<!-- SERVICES -->
 <section id="logo">
 <h2>Logo Design</h2>
-
 <div class="services">
-<div class="card"><h3>Minimalist Logo</h3><p>Clean modern brand identity</p></div>
-<div class="card"><h3>3D Logo</h3><p>Premium visual branding</p></div>
-<div class="card"><h3>Business Logo</h3><p>Professional company design</p></div>
-<div class="card"><h3>Logo Redesign</h3><p>Upgrade your old logo</p></div>
+<div class="card">Minimalist Logo</div>
+<div class="card">3D Logo</div>
+<div class="card">Business Logo</div>
 </div>
 </section>
 
-<!-- WEBSITE -->
 <section id="website">
 <h2>Website Design</h2>
-
 <div class="services">
-<div class="card"><h3>Business Website</h3><p>Convert visitors into clients</p></div>
-<div class="card"><h3>Portfolio Website</h3><p>Showcase your work professionally</p></div>
-<div class="card"><h3>Landing Page</h3><p>High-converting single pages</p></div>
+<div class="card">Business Website</div>
+<div class="card">Portfolio Website</div>
+<div class="card">Landing Page</div>
 </div>
 </section>
 
-<!-- ECOMMERCE -->
-<section id="ecommerce">
-<h2>E-commerce</h2>
+<!-- PORTFOLIO -->
+<section id="portfolio">
+<h2>Featured Work</h2>
 
-<div class="services">
-<div class="card"><h3>Online Store</h3><p>Sell products online easily</p></div>
-<div class="card"><h3>Shopify Design</h3><p>Optimized store setup</p></div>
-<div class="card"><h3>Product Page</h3><p>Boost conversions</p></div>
+<div class="portfolio-grid">
+
+<div class="portfolio-card">
+<img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a">
+<h3>NovaTech</h3>
+<p>Modern tech branding</p>
+</div>
+
+<div class="portfolio-card">
+<img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43">
+<h3>UrbanNest</h3>
+<p>Real estate website</p>
+</div>
+
+<div class="portfolio-card">
+<img src="https://images.unsplash.com/photo-1521336575822-6da63fb45455">
+<h3>Veloura</h3>
+<p>Fashion branding</p>
+</div>
+
 </div>
 </section>
 
 <!-- CTA -->
 <section class="cta">
-<h2>Ready to Start Your Project?</h2>
+<h2>Ready to Work?</h2>
 <a href="#" class="btn">Message Me</a>
 </section>
 
 <script>
-
 const services = [
-  {name:"Logo Design", link:"#logo", keywords:["logo","branding"]},
-  {name:"Website Design", link:"#website", keywords:["website","web"]},
-  {name:"E-commerce Store", link:"#ecommerce", keywords:["store","shop","ecommerce"]}
+{name:"Logo Design", link:"#logo", keywords:["logo","branding"]},
+{name:"Website Design", link:"#website", keywords:["website","web"]}
 ];
 
 function showResults(){
-  let input = document.getElementById("searchInput").value.toLowerCase();
-  let box = document.getElementById("resultsBox");
+let input = document.getElementById("searchInput").value.toLowerCase();
+let box = document.getElementById("resultsBox");
 
-  box.innerHTML = "";
+box.innerHTML = "";
 
-  if(input === "") return;
+if(input==="") return;
 
-  let filtered = services.filter(item =>
-    item.keywords.some(k => input.includes(k))
-  );
+let filtered = services.filter(item =>
+item.keywords.some(k => input.includes(k))
+);
 
-  filtered.forEach(item=>{
-    let div = document.createElement("div");
-    div.innerHTML = `<strong>${item.name}</strong><br><small>Click to view</small>`;
+filtered.forEach(item=>{
+let div = document.createElement("div");
+div.innerHTML = item.name;
 
-    div.onclick = () => {
-      document.querySelector(item.link).scrollIntoView({behavior:"smooth"});
-    };
+div.onclick = () => {
+document.querySelector(item.link).scrollIntoView({behavior:"smooth"});
+};
 
-    box.appendChild(div);
-  });
+box.appendChild(div);
+});
 }
-
 </script>
 
 </body>

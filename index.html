@@ -9,11 +9,16 @@
 
 <style>
 
+/* GLOBAL */
 body{
   margin:0;
   font-family:'Poppins',sans-serif;
-  background: radial-gradient(circle at top, #0f172a, #020617);
   color:white;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(124,58,237,0.25), transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(168,85,247,0.15), transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(124,58,237,0.15), transparent 50%),
+    #020617;
 }
 
 /* HEADER */
@@ -25,28 +30,54 @@ header{
   background:black;
 }
 
-/* LOGO (BOLD PREMIUM) */
+/* LOGO */
 .logo-text{
-  font-size:26px;
   font-weight:700;
-  letter-spacing:2px;
-  text-transform:uppercase;
+  font-size:22px;
 }
 
 .logo-text span{
   color:#7c3aed;
+  letter-spacing:3px;
 }
 
 /* NAV */
 nav a{
   color:white;
-  margin-left:20px;
+  margin-left:25px;
   text-decoration:none;
-  transition:0.3s;
+  opacity:0.8;
 }
 
 nav a:hover{
   color:#7c3aed;
+}
+
+/* SEARCH BAR (FIVERR STYLE) */
+.search-box{
+  position:sticky;
+  top:10px;
+  z-index:999;
+  display:flex;
+  max-width:500px;
+  margin:20px auto;
+  background:white;
+  border-radius:40px;
+  overflow:hidden;
+}
+
+.search-box input{
+  flex:1;
+  padding:15px;
+  border:none;
+  outline:none;
+}
+
+.search-box button{
+  background:#7c3aed;
+  color:white;
+  border:none;
+  padding:0 20px;
 }
 
 /* HERO */
@@ -55,7 +86,7 @@ nav a:hover{
   justify-content:space-between;
   align-items:center;
   flex-wrap:wrap;
-  padding:100px 60px;
+  padding:80px 40px;
 }
 
 .hero-text{
@@ -66,92 +97,46 @@ nav a:hover{
   font-size:42px;
 }
 
-.hero p{
-  opacity:0.8;
-}
-
 .hero img{
   width:420px;
   border-radius:20px;
-  box-shadow:0 0 60px rgba(124,58,237,0.6);
-  transition:0.4s;
-}
-
-.hero img:hover{
-  transform:scale(1.03);
+  box-shadow:0 0 80px rgba(124,58,237,0.5);
 }
 
 /* BUTTON */
 .btn{
   display:inline-block;
-  margin-top:20px;
   background:#7c3aed;
   padding:12px 25px;
   border-radius:8px;
   text-decoration:none;
   color:white;
-  transition:0.3s;
+  margin-top:15px;
 }
 
-.btn:hover{
-  transform:translateY(-3px);
-  box-shadow:0 10px 25px rgba(124,58,237,0.6);
-}
-
-/* FEATURES */
-.features{
-  display:flex;
-  gap:20px;
-  justify-content:center;
-  flex-wrap:wrap;
-  padding:60px;
-}
-
-.feature-box{
-  background:#0b0f1f;
-  padding:25px;
-  border-radius:15px;
-  width:250px;
-  transition:0.3s;
-}
-
-.feature-box:hover{
-  transform:translateY(-8px);
-  box-shadow:0 15px 30px rgba(124,58,237,0.4);
-}
-
-/* SECTION */
-section{
-  padding:80px 20px;
-  text-align:center;
-}
-
-.dark{
-  background:#0b0f1f;
-}
-
-section h2{
-  text-shadow:0 0 10px rgba(124,58,237,0.6);
+/* INSTAGRAM */
+.instagram-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:linear-gradient(45deg,#E1306C,#FD1D1D,#FCAF45);
+  padding:12px 18px;
+  border-radius:30px;
+  color:white;
+  text-decoration:none;
+  z-index:1000;
 }
 
 /* MOBILE */
 @media(max-width:768px){
-
 .hero{
   flex-direction:column;
   text-align:center;
 }
-
 .hero img{
   width:90%;
-  margin-top:30px;
+  margin-top:20px;
 }
-
-header{
-  flex-direction:column;
-  gap:10px;
-}
-
 }
 
 </style>
@@ -160,110 +145,51 @@ header{
 <body>
 
 <header>
-<div class="logo-text">Des<span>Tech</span></div>
+<div class="logo-text">DES<span>TECH</span></div>
 
 <nav>
-<a href="services.html">Services</a>
-<a href="portfolio.html">Portfolio</a>
-<a href="client-login.html">Client</a>
+<a href="#">Services</a>
+<a href="#">Portfolio</a>
+<a href="#">Client</a>
 </nav>
 </header>
+
+<!-- SEARCH -->
+<div class="search-box">
+<input type="text" placeholder="Search logo design, website design, branding...">
+<button>Search</button>
+</div>
 
 <!-- HERO -->
 <section class="hero">
 
 <div class="hero-text">
+
+<p style="
+display:inline-block;
+background:rgba(124,58,237,0.15);
+padding:6px 12px;
+border-radius:20px;
+font-size:12px;
+margin-bottom:15px;
+">
+🚀 Premium Designs. Real Results.
+</p>
+
 <h1>I Design High-Converting Logos & Websites That Turn Visitors Into Clients</h1>
 
 <p>Professional branding, modern websites, and designs that help your business grow fast.</p>
 
-<a href="services.html" class="btn">Explore Services</a>
+<a href="#" class="btn">Explore Services</a>
 
-<p style="margin-top:15px;font-size:14px;opacity:0.8;">
-✔ Fast delivery ✔ Professional quality ✔ 100% satisfaction
-</p>
 </div>
 
-<img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
+<img src="https://images.unsplash.com/photo-1559028012-481c04fa702d">
 
 </section>
 
-<!-- FEATURES -->
-<section class="features">
-
-<div class="feature-box">
-<h3>Branding</h3>
-<p>Modern logos that build trust</p>
-</div>
-
-<div class="feature-box">
-<h3>Web Design</h3>
-<p>Websites that convert visitors</p>
-</div>
-
-<div class="feature-box">
-<h3>Ads Design</h3>
-<p>High-performing social media ads</p>
-</div>
-
-</section>
-
-<!-- WHY -->
-<section>
-<h2>Why Choose DesTech?</h2>
-
-<p>✔ Unique and professional designs tailored to your brand</p>
-<p>✔ Fast turnaround time</p>
-<p>✔ Clear communication and support</p>
-<p>✔ Designs that help you stand out and get clients</p>
-</section>
-
-<!-- HOW -->
-<section class="dark">
-<h2>How It Works</h2>
-
-<p>1. Choose a service</p>
-<p>2. Make payment</p>
-<p>3. Track your project</p>
-<p>4. Receive your design</p>
-</section>
-
-<!-- TESTIMONIALS -->
-<section>
-<h2>What Clients Say</h2>
-
-<p>“DesTech gave my brand a completely new look. I started getting more clients immediately.” – NovaTech CEO</p>
-
-<p>“Very fast and professional. The website design was exactly what I needed.” – UrbanNest Realty</p>
-
-<p>“Top quality work. I will definitely work with DesTech again.” – Veloura Fashion</p>
-</section>
-
-<!-- CTA -->
-<section class="dark">
-<h2>Ready to Grow Your Business?</h2>
-
-<a href="services.html" class="btn">Start Your Project Now</a>
-</section>
-
-<!-- INSTAGRAM BUTTON -->
-<a href="https://www.instagram.com/destech2026/" target="_blank"
-style="
-position:fixed;
-bottom:20px;
-right:20px;
-background:linear-gradient(45deg,#E1306C,#FD1D1D,#FCAF45);
-padding:12px 18px;
-border-radius:30px;
-color:white;
-text-decoration:none;
-font-weight:600;
-box-shadow:0 0 15px rgba(225,48,108,0.7);
-display:flex;
-align-items:center;
-gap:8px;
-z-index:1000;
-">
+<!-- INSTAGRAM -->
+<a href="https://www.instagram.com/destech2026/" target="_blank" class="instagram-btn">
 💬 Message me on Instagram
 </a>
 

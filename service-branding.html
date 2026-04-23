@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DesTech | Branding</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Poppins,sans-serif;background:#07070f;color:#fff}
+header{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 40px;background:rgba(10,10,20,.72);backdrop-filter:blur(12px)}
+.logo{font-weight:800}.logo span{color:#b56dff}
+nav a{color:#fff;text-decoration:none;margin-left:18px;opacity:.85}
+.hero{padding:140px 20px 60px;text-align:center;background:radial-gradient(circle at top,#7a00ff 0%,#2f155e 40%,#07070f 80%)}
+.hero h1{font-size:clamp(2.4rem,5vw,4rem);font-weight:800}
+.hero p{max-width:760px;margin:12px auto 0;opacity:.82;line-height:1.7}
+.section{padding:80px 20px}
+.container{max-width:1100px;margin:auto}
+.split{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:start}
+.subgroup,.pkg{background:#111221;border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:22px;box-shadow:0 14px 40px rgba(0,0,0,.26)}
+.subgroup{margin-bottom:18px}
+.subgroup h3{margin-bottom:10px}
+.subgroup ul{list-style:none}
+.subgroup li{padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);opacity:.86}
+.subgroup li:last-child{border-bottom:none}
+.packages{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.pkg .name{font-weight:700}
+.pkg .price{font-size:1.8rem;font-weight:800;margin:8px 0 12px}
+.pkg ul{list-style:none}
+.pkg li{padding:7px 0;border-bottom:1px solid rgba(255,255,255,.06);opacity:.88}
+.pkg li:last-child{border-bottom:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#ff2e7a,#7a00ff);color:#fff;text-decoration:none;padding:13px 18px;border-radius:999px;font-weight:700;margin-top:14px}
+@media(max-width:980px){.split{grid-template-columns:1fr}}
+@media(max-width:720px){header{padding:16px 16px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">DES<span>TECH</span></div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="about.html">About</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Branding</h1>
+  <p>Strategy and identity systems for businesses that want to communicate clearly and stand out.</p>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="split">
+      <div>
+        <div class="subgroup">
+          <h3>Branding Skills</h3>
+          <ul>
+            <li>Brand strategy development</li>
+            <li>Brand positioning</li>
+            <li>Brand identity design</li>
+            <li>Brand architecture</li>
+            <li>Rebranding strategy</li>
+            <li>Brand messaging</li>
+            <li>Brand communication strategy</li>
+            <li>Creative direction</li>
+            <li>Art direction</li>
+            <li>Market research</li>
+            <li>Competitor analysis</li>
+            <li>Target audience profiling</li>
+            <li>Brand guidelines creation</li>
+            <li>Visual identity systems</li>
+            <li>Brand consistency management</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:12px">Packages</h3>
+        <div class="packages">
+          <div class="pkg">
+            <div class="name">Basic</div><div class="price">₦35k</div>
+            <ul><li>Logo + palette</li><li>Basic direction</li><li>1 revision</li></ul>
+            <a class="btn" href="payment.html">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Standard</div><div class="price">₦70k</div>
+            <ul><li>Identity system</li><li>Messaging direction</li><li>3 revisions</li></ul>
+            <a class="btn" href="payment.html">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Premium</div><div class="price">₦140k</div>
+            <ul><li>Brand strategy</li><li>Guidelines</li><li>Unlimited revisions</li></ul>
+            <a class="btn" href="payment.html">Continue</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

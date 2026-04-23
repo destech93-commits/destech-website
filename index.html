@@ -3,360 +3,274 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Destech | Design That Converts</title>
+<title>Destech</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-body{background:#0a0a0f;color:#fff;scroll-behavior:smooth;}
-
-h1,h2,h3{font-weight:700}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Poppins,sans-serif;background:#050510;color:#fff}
 
 /* NAV */
-nav{
-display:flex;justify-content:space-between;padding:20px 8%;
-background:rgba(0,0,0,0.6);backdrop-filter:blur(10px);
-position:sticky;top:0;z-index:1000;
+header{
+position:fixed;width:100%;z-index:100;
+display:flex;justify-content:space-between;
+padding:20px 8%;
+background:rgba(0,0,0,.6);
+backdrop-filter:blur(12px)
 }
-nav a{color:#fff;text-decoration:none;margin-left:20px}
+.logo{font-weight:800}
+.logo span{color:#b56dff}
+nav a{color:#fff;margin-left:20px;text-decoration:none}
 
 /* HERO */
 .hero{
-height:90vh;
-display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
-background:linear-gradient(135deg,#5f0fff,#c400ff);
+height:100vh;
+display:flex;flex-direction:column;justify-content:center;align-items:center;
+text-align:center;
+background:radial-gradient(circle at top,#7a00ff,#050510);
 position:relative;
 overflow:hidden;
 }
 
-.hero img{
+.hero::before{
+content:"";
 position:absolute;
-top:-50px;
-width:120%;
-opacity:0.15;
-animation:float 6s infinite ease-in-out;
+width:600px;height:600px;
+background:radial-gradient(circle,#c400ff,transparent);
+filter:blur(150px);
+animation:move 10s infinite alternate;
 }
 
-@keyframes float{
-0%{transform:translateY(0)}
-50%{transform:translateY(20px)}
-100%{transform:translateY(0)}
+@keyframes move{
+0%{transform:translate(-100px,-100px)}
+100%{transform:translate(100px,100px)}
 }
 
-.hero h1{font-size:42px;margin-bottom:20px}
+.hero h1{
+font-size:clamp(2.5rem,5vw,4rem);
+font-weight:800;
+margin-bottom:20px;
+}
 
 /* SEARCH */
-.search-box{
-display:flex;background:#fff;border-radius:50px;overflow:hidden;width:90%;max-width:500px;
+.search{
+margin-top:20px;
+display:flex;
+background:#fff;
+border-radius:50px;
+overflow:hidden;
+width:90%;
+max-width:500px;
 }
 
-.search-box input{
-flex:1;padding:15px;border:none;outline:none;
+.search input{
+flex:1;padding:14px;border:none;outline:none;
+}
+.search button{
+background:#ff2e7a;color:#fff;border:none;padding:0 20px;
 }
 
-.search-box button{
-background:#ff2d75;color:#fff;border:none;padding:0 20px;cursor:pointer;
+/* CATEGORY QUICK NAV */
+.quick{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+justify-content:center;
+padding:30px 20px;
 }
 
-/* SERVICES */
-.services{padding:80px 8%;}
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:20px;
+.quick button{
+background:#111;
+border:none;
+padding:10px 15px;
+border-radius:20px;
+color:#fff;
+cursor:pointer;
 }
+
+/* SECTION */
+.section{padding:80px 20px}
+.container{max-width:1100px;margin:auto}
+
+/* SERVICES SAME AS YOUR STRUCTURE */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
 
 .card{
-background:rgba(255,255,255,0.05);
-padding:25px;border-radius:15px;cursor:pointer;
-transition:0.3s;
+background:#111;
+padding:20px;
+border-radius:15px;
+transition:.3s;
 }
-
-.card:hover{
-transform:translateY(-8px);
-background:linear-gradient(135deg,#5f0fff,#c400ff);
-}
-
-.details{
-max-height:0;overflow:hidden;transition:0.4s ease;
-}
-
-.card.active .details{
-max-height:400px;margin-top:15px;
-}
-
-.btn{
-display:block;margin-top:10px;padding:10px;
-background:#ff2d75;text-align:center;color:#fff;border-radius:6px;text-decoration:none;
-}
+.card:hover{transform:translateY(-5px);background:#7a00ff}
 
 /* PORTFOLIO */
-.portfolio{padding:80px 8%;}
-.portfolio-grid{
+.portfolio{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:20px;
 }
+.portfolio img{
+width:100%;
+border-radius:15px;
+transition:.4s;
+}
+.portfolio img:hover{transform:scale(1.05)}
 
-.portfolio-card{
-position:relative;overflow:hidden;border-radius:15px;
+/* ORDER FIXED */
+.order{
+max-width:500px;
+margin:auto;
+display:flex;
+flex-direction:column;
+gap:12px;
 }
 
-.portfolio-card img{
-width:100%;transition:0.4s;
-}
-
-.portfolio-card:hover img{transform:scale(1.1);}
-
-.overlay{
-position:absolute;bottom:0;width:100%;
-background:linear-gradient(transparent,black);
-padding:15px;text-align:center;
-}
-
-/* TESTIMONIAL */
-.testimonial{padding:80px 8%;text-align:center;}
-.testimonial p{opacity:0.8;margin-top:10px}
-
-/* FAQ */
-.faq{padding:80px 8%;}
-.faq-item{margin-bottom:15px;}
-.faq-item h4{cursor:pointer;}
-.faq-item p{display:none;opacity:0.8}
-.faq-item.active p{display:block}
-
-/* ORDER */
-#order{padding:80px 8%;text-align:center;}
-form{
-max-width:500px;margin:auto;
-display:flex;flex-direction:column;gap:15px;
-}
-
-input,select,textarea{
-padding:12px;border:none;border-radius:6px;
+.order input,.order textarea{
+padding:12px;
+border:none;
+border-radius:8px;
+background:#111;
+color:#fff;
 }
 
 button{
-padding:12px;background:#ff2d75;color:#fff;border:none;border-radius:6px;
+padding:12px;
+background:linear-gradient(135deg,#ff2e7a,#7a00ff);
+border:none;
+color:#fff;
+border-radius:8px;
+cursor:pointer;
 }
 
-/* INSTAGRAM FLOAT */
+/* FLOAT BUTTON */
 .insta{
 position:fixed;
 right:20px;
 bottom:20px;
-background:#ff2d75;
+background:linear-gradient(135deg,#ff2e7a,#7a00ff);
 padding:15px;
 border-radius:50%;
-text-decoration:none;
 color:#fff;
-font-size:18px;
+text-decoration:none;
 }
 
 /* FOOTER */
 footer{
-text-align:center;padding:30px;
-border-top:1px solid rgba(255,255,255,0.1);
-margin-top:50px;
+text-align:center;
+padding:30px;
+opacity:.6;
 }
 </style>
 </head>
 
 <body>
 
+<header>
+<div class="logo">DES<span>TECH</span></div>
 <nav>
-<h3>DESTECH</h3>
-<div>
 <a href="#">Home</a>
 <a href="#services">Services</a>
-<a href="#order">Order</a>
-</div>
+<a href="about.html">About</a>
 </nav>
+</header>
 
 <!-- HERO -->
 <section class="hero">
-<img src="images/bg.png">
-<h1>Designs That Attract & Convert</h1>
+<h1>Premium Designs That Convert</h1>
 
-<div class="search-box">
+<div class="search">
 <input id="searchInput" placeholder="Type any services...">
 <button>🔍</button>
 </div>
 </section>
 
+<!-- QUICK NAV -->
+<div class="quick">
+<button onclick="scrollToSection('logo')">Logo</button>
+<button onclick="scrollToSection('website')">Website</button>
+<button onclick="scrollToSection('branding')">Branding</button>
+<button onclick="scrollToSection('flyers')">Flyer</button>
+</div>
+
 <!-- SERVICES -->
-<section id="services" class="services">
-<h2>Services</h2>
+<section id="services" class="section">
+<div class="container">
 
 <div class="grid">
-
-<div class="card" onclick="toggle(this)">
-<h3>Logo Design</h3>
-<div class="details">
-<p>Modern, luxury, minimalist logos and more.</p>
-<a href="#order" class="btn">Continue</a>
-</div>
-</div>
-
-<div class="card" onclick="toggle(this)">
-<h3>Website Design</h3>
-<div class="details">
-<p>UI/UX, responsive, landing pages.</p>
-<a href="#order" class="btn">Continue</a>
-</div>
-</div>
-
-<div class="card" onclick="toggle(this)">
-<h3>Branding</h3>
-<div class="details">
-<p>Identity, strategy, brand systems.</p>
-<a href="#order" class="btn">Continue</a>
-</div>
-</div>
-
-<div class="card" onclick="toggle(this)">
-<h3>Flyer Design</h3>
-<div class="details">
-<p>High converting promotional flyers.</p>
-<a href="#order" class="btn">Continue</a>
-</div>
+<div class="card" onclick="scrollToSection('logo')">Logo Design</div>
+<div class="card" onclick="scrollToSection('website')">Website Design</div>
+<div class="card" onclick="scrollToSection('branding')">Branding</div>
+<div class="card" onclick="scrollToSection('flyers')">Flyer Design</div>
 </div>
 
 </div>
 </section>
 
 <!-- PORTFOLIO -->
-<section class="portfolio">
+<section class="section">
+<div class="container">
 <h2>Portfolio</h2>
-
-<div class="portfolio-grid">
-
-<div class="portfolio-card">
+<div class="portfolio">
 <img src="images/work1.jpg">
-<div class="overlay">Logo Design</div>
-</div>
-
-<div class="portfolio-card">
 <img src="images/work2.jpg">
-<div class="overlay">Website Design</div>
-</div>
-
-<div class="portfolio-card">
 <img src="images/work3.jpg">
-<div class="overlay">Flyer Design</div>
 </div>
-
 </div>
-</section>
-
-<!-- TESTIMONIAL -->
-<section class="testimonial">
-<h2>What Clients Say</h2>
-<p>"Amazing work! My business looks professional now."</p>
-<p>"Fast delivery and top quality design."</p>
-</section>
-
-<!-- FAQ -->
-<section class="faq">
-<h2>FAQs</h2>
-
-<div class="faq-item" onclick="faq(this)">
-<h4>How long does delivery take?</h4>
-<p>1–3 days depending on service.</p>
-</div>
-
-<div class="faq-item" onclick="faq(this)">
-<h4>Do you offer revisions?</h4>
-<p>Yes, based on package.</p>
-</div>
-
-<div class="faq-item" onclick="faq(this)">
-<h4>How do I pay?</h4>
-<p>Via Opay.</p>
-</div>
-
-<div class="faq-item" onclick="faq(this)">
-<h4>Can I request custom work?</h4>
-<p>Yes, contact me.</p>
-</div>
-
-<div class="faq-item" onclick="faq(this)">
-<h4>Do you design websites?</h4>
-<p>Yes, responsive modern sites.</p>
-</div>
-
-<div class="faq-item" onclick="faq(this)">
-<h4>What files will I get?</h4>
-<p>High quality formats (PNG, PDF, etc).</p>
-</div>
-
-<div class="faq-item" onclick="faq(this)">
-<h4>Do you offer branding?</h4>
-<p>Yes, full brand packages.</p>
-</div>
-
-<div class="faq-item" onclick="faq(this)">
-<h4>How do I contact you?</h4>
-<p>Use the order section or Instagram.</p>
-</div>
-
 </section>
 
 <!-- ORDER -->
-<section id="order">
-<h2>Place Your Order</h2>
+<section class="section" id="order">
+<div class="container">
+<h2>Order</h2>
 
-<form action="mailto:desmondroder93@gmail.com" method="POST" enctype="text/plain">
+<div class="order">
+<input id="selectedService" placeholder="Selected service">
+<input id="clientEmail" placeholder="Your email">
+<textarea id="projectDetails" placeholder="Project details"></textarea>
 
-<input type="text" name="name" placeholder="Your Name" required>
-<input type="email" name="email" placeholder="Your Email" required>
+<p>Pay via Opay: <b>08151980291</b></p>
 
-<select name="service">
-<option>Logo Design</option>
-<option>Website Design</option>
-<option>Branding</option>
-<option>Flyer Design</option>
-</select>
+<button onclick="sendMail()">Submit</button>
+</div>
 
-<textarea name="details" placeholder="Describe your project..." required></textarea>
-
-<p>Send payment to: <b>Opay - 08151980291</b></p>
-
-<input type="file" name="payment_proof">
-
-<button type="submit">Submit Order</button>
-
-</form>
+</div>
 </section>
 
 <a href="https://instagram.com/destech2026" class="insta">📩</a>
 
 <footer>
-<p>© 2026 Destech | All Rights Reserved</p>
-<p>Simple Terms: Payments are non-refundable after work starts.</p>
+<p>© 2026 Destech</p>
 </footer>
 
 <script>
-function toggle(el){el.classList.toggle("active");}
-function faq(el){el.classList.toggle("active");}
+function scrollToSection(id){
+document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
+}
 
-// typing effect
+function sendMail(){
+const s=document.getElementById('selectedService').value;
+const e=document.getElementById('clientEmail').value;
+const d=document.getElementById('projectDetails').value;
+
+window.location.href=`mailto:desmondroder93@gmail.com?subject=Order-${s}&body=Email:${e}%0AService:${s}%0ADetails:${d}`;
+}
+
+/* typing animation */
 const texts=["Type any services...","Logo Design","Website Design","Branding","Flyer Design"];
-let i=0,j=0,current="",isDeleting=false;
+let i=0,j=0,current="",del=false;
 
 function type(){
 if(i<texts.length){
-if(!isDeleting && j<=texts[i].length){
+if(!del && j<=texts[i].length){
 current=texts[i].substring(0,j++);
-}else if(isDeleting && j>=0){
+}else if(del && j>=0){
 current=texts[i].substring(0,j--);
 }
-
 document.getElementById("searchInput").placeholder=current;
 
-if(j==texts[i].length){isDeleting=true;}
-if(j==0){isDeleting=false;i++;}
+if(j==texts[i].length){del=true;}
+if(j==0){del=false;i++;}
 }
 setTimeout(type,100);
 }

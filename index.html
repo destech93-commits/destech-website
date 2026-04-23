@@ -15,6 +15,10 @@ body{
   color:white;
 }
 
+html{
+  scroll-behavior:smooth;
+}
+
 header{
   display:flex;
   justify-content:space-between;
@@ -31,6 +35,11 @@ nav a{
   color:white;
   margin-left:20px;
   text-decoration:none;
+  transition:0.3s;
+}
+
+nav a:hover{
+  color:#7c3aed;
 }
 
 .hero{
@@ -55,6 +64,12 @@ nav a{
   border-radius:8px;
   text-decoration:none;
   color:white;
+  transition:0.3s;
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 25px rgba(124,58,237,0.6);
 }
 
 section{
@@ -66,15 +81,8 @@ section{
   background:#0b0f1f;
 }
 
-.floating-ig{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#E1306C;
-  padding:15px;
-  border-radius:50%;
-  color:white;
-  text-decoration:none;
+section h2{
+  text-shadow:0 0 10px rgba(124,58,237,0.6);
 }
 
 @keyframes fadeIn {
@@ -147,7 +155,48 @@ section{
 <a href="services.html" class="btn">Start Your Project Now</a>
 </section>
 
-<a href="https://www.instagram.com/destech2026/" class="floating-ig">IG</a>
+<!-- INSTAGRAM BUTTON -->
+<a href="https://www.instagram.com/destech2026/" target="_blank"
+style="
+position:fixed;
+bottom:20px;
+right:20px;
+background:linear-gradient(45deg,#E1306C,#FD1D1D,#FCAF45);
+padding:12px 18px;
+border-radius:30px;
+color:white;
+text-decoration:none;
+font-weight:600;
+box-shadow:0 0 15px rgba(225,48,108,0.7);
+display:flex;
+align-items:center;
+gap:8px;
+z-index:1000;
+">
+💬 Message me on Instagram
+</a>
+
+<!-- SCROLL ANIMATION -->
+<script>
+const sections = document.querySelectorAll("section");
+
+window.addEventListener("scroll", () => {
+  sections.forEach(sec => {
+    const top = sec.getBoundingClientRect().top;
+    if(top < window.innerHeight - 50){
+      sec.style.opacity = 1;
+      sec.style.transform = "translateY(0)";
+    }
+  });
+});
+
+sections.forEach(sec => {
+  sec.style.opacity = 0;
+  sec.style.transform = "translateY(40px)";
+  sec.style.transition = "all 0.6s ease";
+});
+</script>
 
 </body>
+</html>
 </html>

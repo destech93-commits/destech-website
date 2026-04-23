@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DesTech | Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
-
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -15,41 +14,21 @@ body{
   color:#fff;
   overflow-x:hidden;
 }
-
-/* HEADER */
 header{
-  position:fixed;
-  top:0;left:0;right:0;
+  position:fixed;top:0;left:0;right:0;
   z-index:100;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:18px 40px;
-  background:rgba(10,10,20,.72);
-  backdrop-filter:blur(12px);
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px 40px;background:rgba(10,10,20,.72);backdrop-filter:blur(12px);
 }
 .logo{font-weight:800}
 .logo span{color:#b56dff}
-nav a{
-  color:#fff;
-  text-decoration:none;
-  margin-left:18px;
-  opacity:.85;
-}
+nav a{color:#fff;text-decoration:none;margin-left:18px;opacity:.85}
 nav a:hover{opacity:1}
-
-/* HERO */
 .hero{
-  min-height:60vh;
-  padding:130px 20px 80px;
-  text-align:center;
-  position:relative;
-  overflow:hidden;
+  min-height:60vh;padding:130px 20px 80px;text-align:center;position:relative;overflow:hidden
 }
 .hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
+  content:"";position:absolute;inset:0;
   background:radial-gradient(circle at top,#7a00ff 0%,#2f155e 40%,#07070f 80%);
   z-index:-2;
 }
@@ -64,8 +43,6 @@ nav a:hover{opacity:1}
   opacity:.8;
   line-height:1.7;
 }
-
-/* FILTER */
 .filter-wrap{
   max-width:1000px;
   margin:32px auto 0;
@@ -91,15 +68,8 @@ nav a:hover{opacity:1}
   background:linear-gradient(135deg,#ff2e7a,#7a00ff);
   transform:translateY(-2px);
 }
-
-/* SECTION */
-.section{
-  padding:80px 20px;
-}
-.container{
-  max-width:1200px;
-  margin:0 auto;
-}
+.section{padding:80px 20px}
+.container{max-width:1200px;margin:0 auto}
 .section h2{
   font-size:clamp(1.8rem,3vw,2.5rem);
   text-align:center;
@@ -113,15 +83,11 @@ nav a:hover{opacity:1}
   opacity:.8;
   line-height:1.7;
 }
-
-/* GRID */
 .portfolio-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
   gap:22px;
 }
-
-/* CARD */
 .portfolio-item{
   position:relative;
   border-radius:18px;
@@ -148,8 +114,6 @@ nav a:hover{opacity:1}
   transform:scale(1.1);
   filter:brightness(1.08) saturate(1.05);
 }
-
-/* OVERLAY */
 .overlay{
   position:absolute;
   inset:0;
@@ -160,12 +124,8 @@ nav a:hover{opacity:1}
   opacity:0;
   transition:.35s;
 }
-.portfolio-item:hover .overlay{
-  opacity:1;
-}
-.overlay .content{
-  width:100%;
-}
+.portfolio-item:hover .overlay{opacity:1}
+.overlay .content{width:100%}
 .overlay h3{
   font-size:1.15rem;
   font-weight:800;
@@ -186,8 +146,6 @@ nav a:hover{opacity:1}
   font-size:.78rem;
   font-weight:600;
 }
-
-/* ABOUT STRIP */
 .about-strip{
   max-width:1100px;
   margin:0 auto;
@@ -199,8 +157,6 @@ nav a:hover{opacity:1}
   line-height:1.8;
   opacity:.92;
 }
-
-/* FOOTER */
 footer{
   text-align:center;
   padding:30px 20px;
@@ -208,8 +164,6 @@ footer{
   opacity:.65;
   margin-top:60px;
 }
-
-/* MOBILE */
 @media(max-width:800px){
   header{padding:16px 16px}
   nav a{margin-left:12px}
@@ -218,7 +172,6 @@ footer{
 }
 </style>
 </head>
-
 <body>
 
 <header>
@@ -254,73 +207,30 @@ footer{
     <p class="lead">Each piece is presented like a real project so clients can quickly understand your value.</p>
 
     <div class="portfolio-grid" id="portfolioGrid">
-
       <article class="portfolio-item" data-category="logo">
         <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=1200&q=80" alt="Logo design mockup">
-        <div class="overlay">
-          <div class="content">
-            <span class="tag">Logo Design</span>
-            <h3>Luxury Brand Identity</h3>
-            <p>Minimal, premium logo presentation with a strong identity system.</p>
-          </div>
-        </div>
+        <div class="overlay"><div class="content"><span class="tag">Logo Design</span><h3>Luxury Brand Identity</h3><p>Minimal, premium logo presentation with a strong identity system.</p></div></div>
       </article>
-
       <article class="portfolio-item" data-category="website">
         <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=80" alt="Website design mockup">
-        <div class="overlay">
-          <div class="content">
-            <span class="tag">Website Design</span>
-            <h3>Modern Business Website</h3>
-            <p>Clean UI/UX layout focused on trust, clarity, and conversion.</p>
-          </div>
-        </div>
+        <div class="overlay"><div class="content"><span class="tag">Website Design</span><h3>Modern Business Website</h3><p>Clean UI/UX layout focused on trust, clarity, and conversion.</p></div></div>
       </article>
-
       <article class="portfolio-item" data-category="branding">
         <img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80" alt="Branding mockup">
-        <div class="overlay">
-          <div class="content">
-            <span class="tag">Branding</span>
-            <h3>Full Brand System</h3>
-            <p>Identity direction, typography, palette, and visual consistency.</p>
-          </div>
-        </div>
+        <div class="overlay"><div class="content"><span class="tag">Branding</span><h3>Full Brand System</h3><p>Identity direction, typography, palette, and visual consistency.</p></div></div>
       </article>
-
       <article class="portfolio-item" data-category="flyer">
         <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80" alt="Flyer design mockup">
-        <div class="overlay">
-          <div class="content">
-            <span class="tag">Flyer Design</span>
-            <h3>Event Flyer Campaign</h3>
-            <p>High-impact promotional visual built for attention and action.</p>
-          </div>
-        </div>
+        <div class="overlay"><div class="content"><span class="tag">Flyer Design</span><h3>Event Flyer Campaign</h3><p>High-impact promotional visual built for attention and action.</p></div></div>
       </article>
-
       <article class="portfolio-item" data-category="social">
         <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80" alt="Social media design mockup">
-        <div class="overlay">
-          <div class="content">
-            <span class="tag">Social Media</span>
-            <h3>Instagram Content Pack</h3>
-            <p>Clean social graphics designed for visibility and engagement.</p>
-          </div>
-        </div>
+        <div class="overlay"><div class="content"><span class="tag">Social Media</span><h3>Instagram Content Pack</h3><p>Clean social graphics designed for visibility and engagement.</p></div></div>
       </article>
-
       <article class="portfolio-item" data-category="animation">
         <img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=1200&q=80" alt="Animation mockup">
-        <div class="overlay">
-          <div class="content">
-            <span class="tag">Animation</span>
-            <h3>Motion Brand Reveal</h3>
-            <p>Animated visual concept that brings the brand to life smoothly.</p>
-          </div>
-        </div>
+        <div class="overlay"><div class="content"><span class="tag">Animation</span><h3>Motion Brand Reveal</h3><p>Animated visual concept that brings the brand to life smoothly.</p></div></div>
       </article>
-
     </div>
   </div>
 </section>
@@ -345,9 +255,7 @@ buttons.forEach(btn => {
   btn.addEventListener('click', () => {
     buttons.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-
     const filter = btn.dataset.filter;
-
     items.forEach(item => {
       const category = item.dataset.category;
       const show = filter === 'all' || category === filter;
@@ -356,6 +264,5 @@ buttons.forEach(btn => {
   });
 });
 </script>
-
 </body>
 </html>

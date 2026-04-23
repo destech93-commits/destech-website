@@ -1,207 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio - DesTech</title>
+<section style="padding:80px 20px;">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<h2 style="text-align:center;">Featured Work</h2>
+<p style="text-align:center;opacity:0.7;">Realistic project samples designed to solve business problems</p>
 
-<style>
+<div style="
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+margin-top:40px;
+">
 
-/* BACKGROUND ANIMATION */
-body{
-  margin:0;
-  font-family:'Poppins',sans-serif;
-  color:white;
-  background: linear-gradient(270deg,#020617,#0f172a,#020617);
-  background-size:400% 400%;
-  animation:bgMove 12s ease infinite;
-}
-
-@keyframes bgMove{
-  0%{background-position:0%}
-  50%{background-position:100%}
-  100%{background-position:0%}
-}
-
-/* CURSOR GLOW */
-.cursor{
-  position:fixed;
-  width:20px;
-  height:20px;
-  border-radius:50%;
-  background:rgba(124,58,237,0.6);
-  pointer-events:none;
-  transform:translate(-50%,-50%);
-  mix-blend-mode:screen;
-  z-index:9999;
-}
-
-/* TITLE */
-h1{
-  text-align:center;
-  padding:40px;
-  font-size:34px;
-  letter-spacing:2px;
-}
-
-/* GRID */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:30px;
-  padding:40px;
-}
-
-/* CARD */
-.card{
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(15px);
-  border-radius:20px;
-  overflow:hidden;
-  transition:0.4s;
-  transform-style:preserve-3d;
-  cursor:pointer;
-  position:relative;
-}
-
-.card:hover{
-  transform:rotateX(6deg) rotateY(6deg) scale(1.05);
-  box-shadow:0 30px 60px rgba(124,58,237,0.5);
-}
-
-/* IMAGE */
-.card img{
-  width:100%;
-  height:200px;
-  object-fit:cover;
-  transition:0.5s;
-}
-
-.card:hover img{
-  transform:scale(1.15);
-}
-
-/* CONTENT */
-.card-content{
-  padding:20px;
-}
-
-.tag{
-  font-size:12px;
-  opacity:0.7;
-}
-
-/* BADGE */
-.badge{
-  position:absolute;
-  top:10px;
-  left:10px;
-  background:#7c3aed;
-  padding:5px 10px;
-  font-size:12px;
-  border-radius:6px;
-}
-
-/* MODAL */
-.modal{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.85);
-  display:none;
-  justify-content:center;
-  align-items:center;
-}
-
-.modal-content{
-  background:#0b0f1f;
-  padding:40px;
-  border-radius:20px;
-  max-width:500px;
-  text-align:center;
-  box-shadow:0 0 30px rgba(124,58,237,0.4);
-}
-
-.close{
-  position:absolute;
-  top:20px;
-  right:30px;
-  font-size:26px;
-  cursor:pointer;
-}
-
-</style>
-</head>
-
-<body>
-
-<div class="cursor" id="cursor"></div>
-
-<h1>My Portfolio</h1>
-
-<div class="grid">
-
-<div class="card" onclick="openModal('NovaTech Branding Project')">
-<div class="badge">Before → After</div>
-<img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a">
-<div class="card-content">
-<h3>NovaTech Solutions</h3>
-<p class="tag">Tech Branding & Logo Design</p>
-</div>
+<!-- PROJECT 1 -->
+<div style="background:#0b0f1f;padding:15px;border-radius:15px;">
+<img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c" style="width:100%;border-radius:10px;">
+<h3>Restaurant Promo Flyer</h3>
+<p style="font-size:13px;opacity:0.7;">
+Designed a high-impact flyer to boost weekend customer traffic and increase sales.
+</p>
 </div>
 
-<div class="card" onclick="openModal('UrbanNest Website Project')">
-<img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
-<div class="card-content">
-<h3>UrbanNest Realty</h3>
-<p class="tag">Real Estate Website</p>
-</div>
+<!-- PROJECT 2 -->
+<div style="background:#0b0f1f;padding:15px;border-radius:15px;">
+<img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0" style="width:100%;border-radius:10px;">
+<h3>Product Sell Sheet</h3>
+<p style="font-size:13px;opacity:0.7;">
+Created a conversion-focused product sheet for marketing campaigns and client presentations.
+</p>
 </div>
 
-<div class="card" onclick="openModal('Veloura Fashion Branding')">
-<div class="badge">Premium</div>
-<img src="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb">
-<div class="card-content">
-<h3>Veloura Fashion</h3>
-<p class="tag">Branding + Ads</p>
+<!-- PROJECT 3 -->
+<div style="background:#0b0f1f;padding:15px;border-radius:15px;">
+<img src="https://images.unsplash.com/photo-1581090700227-1e8a2d4b6f9c" style="width:100%;border-radius:10px;">
+<h3>Corporate Brochure</h3>
+<p style="font-size:13px;opacity:0.7;">
+Professional brochure design to present company services clearly and attract investors.
+</p>
 </div>
+
+<!-- PROJECT 4 -->
+<div style="background:#0b0f1f;padding:15px;border-radius:15px;">
+<img src="https://images.unsplash.com/photo-1559028012-481c04fa702d" style="width:100%;border-radius:10px;">
+<h3>Real Estate Website UI</h3>
+<p style="font-size:13px;opacity:0.7;">
+Designed a clean website layout to improve property listings visibility and user experience.
+</p>
+</div>
+
+<!-- PROJECT 5 -->
+<div style="background:#0b0f1f;padding:15px;border-radius:15px;">
+<img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4" style="width:100%;border-radius:10px;">
+<h3>Instagram Ads Design</h3>
+<p style="font-size:13px;opacity:0.7;">
+Created engaging ad creatives to increase clicks and social media conversions.
+</p>
+</div>
+
+<!-- PROJECT 6 -->
+<div style="background:#0b0f1f;padding:15px;border-radius:15px;">
+<img src="https://images.unsplash.com/photo-1581091012184-5c4f2d1d3c6f" style="width:100%;border-radius:10px;">
+<h3>Business Card Design</h3>
+<p style="font-size:13px;opacity:0.7;">
+Designed a clean and memorable business card for professional brand identity.
+</p>
 </div>
 
 </div>
 
-<!-- MODAL -->
-<div class="modal" id="modal">
-<div class="modal-content">
-<span class="close" onclick="closeModal()">✖</span>
-<h2 id="modalText"></h2>
-<p>This project includes premium branding, modern UI design, and high-converting visuals.</p>
-</div>
-</div>
-
-<script>
-
-/* CURSOR EFFECT */
-const cursor = document.getElementById("cursor");
-document.addEventListener("mousemove", e=>{
-  cursor.style.top = e.clientY + "px";
-  cursor.style.left = e.clientX + "px";
-});
-
-/* MODAL */
-function openModal(text){
-  document.getElementById("modal").style.display="flex";
-  document.getElementById("modalText").innerText=text;
-}
-
-function closeModal(){
-  document.getElementById("modal").style.display="none";
-}
-
-</script>
-
-</body>
-</html>
+</section>

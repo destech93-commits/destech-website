@@ -99,7 +99,22 @@ nav a{
 </section>
 
 <a href="https://www.instagram.com/destech2026/" class="floating-ig">IG</a>
+<div id="chatBox" style="position:fixed;bottom:80px;right:20px;width:250px;background:#0b0f1f;border-radius:10px;padding:15px;display:none;">
+  <h4>Live Chat</h4>
+  <p style="font-size:12px;opacity:0.7;">We usually reply fast</p>
+  <input placeholder="Type message..." style="width:100%;padding:8px;margin-top:10px;">
+</div>
 
+<button onclick="toggleChat()" style="position:fixed;bottom:20px;left:20px;background:#7c3aed;color:white;padding:12px;border:none;border-radius:50%;">
+💬
+</button>
+
+<script>
+function toggleChat(){
+  var box = document.getElementById("chatBox");
+  box.style.display = box.style.display === "none" ? "block" : "none";
+}
+</script>
 </body>
 </html>
 <section style="padding:60px;text-align:center;background:#0b0f1f;">

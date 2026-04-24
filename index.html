@@ -1,6 +1,6 @@
-<!-- KEEP EVERYTHING ABOVE EXACTLY THE SAME UNTIL ORDER FORM -->
+<!-- KEEP ALL YOUR ORIGINAL HTML ABOVE EXACTLY THE SAME -->
 
-<!-- 🔥 ONLY THIS PART WAS FIXED (FORM + FIREBASE) -->
+<!-- ONLY REPLACING ORDER SECTION + ADDING SYSTEMS BELOW -->
 
 <section class="section" id="order">
   <div class="container">
@@ -12,7 +12,7 @@
         <h3>Payment & Contact</h3>
         <p><strong>Account Name:</strong> Okunola Comfort</p>
         <p><strong>Account Number:</strong> 08151980291</p>
-        <p style="margin-top:14px;opacity:.78;line-height:1.7">
+        <p style="margin-top:14px;opacity:.78;">
           After payment, send your proof and project details here.
         </p>
       </div>
@@ -20,8 +20,6 @@
       <div class="order-form">
         <h3>Order Form</h3>
 
-        <!-- ❌ REMOVED mailto -->
-        <!-- ✅ NOW CONNECTED TO FIREBASE -->
         <form onsubmit="event.preventDefault(); saveOrder();">
           <input type="text" name="name" placeholder="Your Name" required>
           <input type="email" name="email" placeholder="Your Email" required>
@@ -43,22 +41,46 @@
         </form>
       </div>
     </div>
+
+    <!-- 💬 CHAT -->
+    <div id="chatBox" style="max-height:200px;overflow:auto;margin-top:30px;"></div>
+    <input id="chatInput" placeholder="Type message..." />
+    <button onclick="sendMessage()">Send</button>
+
+    <!-- 📁 FILE UPLOAD -->
+    <div style="margin-top:20px;">
+      <input type="file" id="fileUpload">
+      <button onclick="uploadFile()">Upload File</button>
+    </div>
+
+    <!-- 🛍️ GIG DISPLAY -->
+    <div id="gigsContainer" style="margin-top:30px;"></div>
+
+    <!-- 👑 ADMIN GIG CREATION -->
+    <div style="margin-top:30px;">
+      <input id="gigTitle" placeholder="Gig Title">
+      <input id="gigPrice" placeholder="Price">
+      <textarea id="gigDesc"></textarea>
+      <button onclick="createGig()">Create Gig</button>
+    </div>
+
   </div>
 </section>
-<div id="chatBox" style="max-height:200px;overflow:auto;margin-top:20px;"></div>
-<input id="chatInput" placeholder="Type message..." />
-<button onclick="sendMessage()">Send</button>
+
 <!-- 🔥 FIREBASE SYSTEM -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import {
-  getFirestore, collection, addDoc, serverTimestamp
+  getFirestore, collection, addDoc, serverTimestamp,
+  query, orderBy, onSnapshot, getDocs,
+  doc, updateDoc, increment
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import {
-  initializeAppCheck, ReCaptchaV3Provider
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app-check.js";
+  getStorage, ref, uploadBytes, getDownloadURL
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
+/* 🔐 CONFIG */
 const firebaseConfig = {
   apiKey: "YOUR_API_KEY",
   authDomain: "YOUR_DOMAIN",
@@ -67,117 +89,49 @@ const firebaseConfig = {
   messagingSenderId: "YOUR_ID",
   appId: "YOUR_APP_ID"
 };
-<div id="gigsContainer"></div>
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+const storage = getStorage(app);
 
-/* 🔐 APP CHECK (SAFE VERSION) */
-initializeAppCheck(app, {
-  provider: new ReCaptchaV3Provider("YOUR_RECAPTCHA_SITE_KEY"),
-  isTokenAutoRefreshEnabled: true
-});
-
-/* 🔥 SAVE ORDER */
+/* =========================
+   📦 SAVE ORDER
+========================= */
 window.saveOrder = async function () {
   const user = auth.currentUser;
 
   if (!user) {
-    alert("Please login first.");
-    window.location.href = "login.html";
+    alert("Login first");
     return;
   }
 
-  const name = document.querySelector('input[name="name"]').value.trim();
-  const email = document.querySelector('input[name="email"]').value.trim();
-  const service = document.querySelector('select[name="service"]').value;
-  const message = document.querySelector('textarea[name="message"]').value.trim();
+  const name = document.querySelector('[name="name"]').value;
+  const email = document.querySelector('[name="email"]').value;
+  const service = document.querySelector('[name="service"]').value;
+  const message = document.querySelector('[name="message"]').value;
 
-  if (!name || !email || !service || !message) {
-    alert("Fill all fields.");
-    return;
-  }
-<input id="gigTitle" placeholder="Gig Title">
-<input id="gigPrice" placeholder="Price">
-<textarea id="gigDesc"></textarea>
-<button onclick="createGig()">Create Gig</button>
-  try {
-    const docRef = await addDoc(collection(db, "orders"), {
-      uid: user.uid,
-      name,
-      email,
-      service,
-      message,
-      status: "pending",
-      createdAt: serverTimestamp()
-    });
+  await addDoc(collection(db, "orders"), {
+    uid: user.uid,
+    name,
+    email,
+    service,
+    message,
+    status: "pending",
+    createdAt: serverTimestamp()
+  });
 
-    /* 🚀 REDIRECT TO DASHBOARD */
-    window.location.href = "dashboard.html?order=" + docRef.id;
-
-  } catch (err) {
-    console.error(err);
-    alert("Error saving order.");
-  }
+  alert("Order submitted!");
 };
 
-/* 🔐 AUTO CHECK LOGIN */
-onAuthStateChanged(auth, (user) => {
-  if (!user) {
-    console.log("User not logged in");
-  }
-});
-</// =========================
-// FIREBASE EXTRA MODULES
-// =========================
-import {
-  collection, addDoc, query, orderBy, onSnapshot,
-  serverTimestamp, getDocs, doc, updateDoc, increment
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-
-    match /orders/{id} {
-      allow read, write: if request.auth != null;
-    }
-
-    match /messages/{id} {
-      allow read, write: if request.auth != null;
-    }
-
-    match /deliveries/{id} {
-      allow read, write: if request.auth != null;
-    }
-
-    match /gigs/{id} {
-      allow read: if true;
-      allow write: if request.auth != null;
-    }
-
-    match /users/{id} {
-      allow read, write: if request.auth != null;
-    }
-
-    match /transactions/{id} {
-      allow read, write: if request.auth != null;
-    }
-  }
-}
-import {
-  getStorage, ref, uploadBytes, getDownloadURL
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
-
-const storage = getStorage(app);
-
-// =========================
-// 💬 REAL-TIME MESSAGING
-// =========================
+/* =========================
+   💬 CHAT SYSTEM
+========================= */
 const chatRef = collection(db, "messages");
 
 window.sendMessage = async function () {
   const input = document.getElementById("chatInput");
-  if (!input || !input.value.trim()) return;
+  if (!input.value) return;
 
   await addDoc(chatRef, {
     text: input.value,
@@ -188,31 +142,25 @@ window.sendMessage = async function () {
   input.value = "";
 };
 
-// LIVE CHAT LISTENER
-onSnapshot(query(chatRef, orderBy("createdAt")), (snapshot) => {
-  const chatBox = document.getElementById("chatBox");
-  if (!chatBox) return;
-
-  chatBox.innerHTML = "";
+onSnapshot(query(chatRef, orderBy("createdAt")), snapshot => {
+  const box = document.getElementById("chatBox");
+  box.innerHTML = "";
 
   snapshot.forEach(doc => {
-    const msg = doc.data();
     const div = document.createElement("div");
-    div.style.marginBottom = "10px";
-    div.textContent = msg.text;
-    chatBox.appendChild(div);
+    div.textContent = doc.data().text;
+    box.appendChild(div);
   });
 });
 
-// =========================
-// 📁 FILE UPLOAD (DELIVERY)
-// =========================
+/* =========================
+   📁 FILE UPLOAD
+========================= */
 window.uploadFile = async function () {
-  const fileInput = document.getElementById("fileUpload");
-  if (!fileInput || !fileInput.files[0]) return alert("Select file");
+  const file = document.getElementById("fileUpload").files[0];
+  if (!file) return alert("Select file");
 
-  const file = fileInput.files[0];
-  const storageRef = ref(storage, "deliveries/" + Date.now() + "_" + file.name);
+  const storageRef = ref(storage, "deliveries/" + file.name);
 
   await uploadBytes(storageRef, file);
   const url = await getDownloadURL(storageRef);
@@ -223,12 +171,49 @@ window.uploadFile = async function () {
     createdAt: serverTimestamp()
   });
 
-  alert("File uploaded successfully!");
+  alert("Uploaded!");
 };
 
-// =========================
-// 💰 WALLET / EARNINGS
-// =========================
+/* =========================
+   🛍️ CREATE GIG
+========================= */
+window.createGig = async function () {
+  const title = document.getElementById("gigTitle").value;
+  const price = document.getElementById("gigPrice").value;
+  const desc = document.getElementById("gigDesc").value;
+
+  await addDoc(collection(db, "gigs"), {
+    title, price, desc,
+    createdAt: serverTimestamp()
+  });
+
+  alert("Gig Created!");
+};
+
+/* =========================
+   📦 DISPLAY GIGS
+========================= */
+onSnapshot(collection(db, "gigs"), snapshot => {
+  const container = document.getElementById("gigsContainer");
+  container.innerHTML = "";
+
+  snapshot.forEach(doc => {
+    const g = doc.data();
+
+    const div = document.createElement("div");
+    div.innerHTML = `
+      <h3>${g.title}</h3>
+      <p>${g.desc}</p>
+      <strong>₦${g.price}</strong>
+    `;
+
+    container.appendChild(div);
+  });
+});
+
+/* =========================
+   💰 WALLET SYSTEM
+========================= */
 window.addEarning = async function (amount, uid) {
   const userRef = doc(db, "users", uid);
 
@@ -245,60 +230,19 @@ window.addEarning = async function (amount, uid) {
   });
 };
 
-// =========================
-// 🛍️ CREATE GIG (ADMIN)
-// =========================
-window.createGig = async function () {
-  const title = document.getElementById("gigTitle")?.value;
-  const price = document.getElementById("gigPrice")?.value;
-  const desc = document.getElementById("gigDesc")?.value;
+/* =========================
+   👑 ADMIN DATA
+========================= */
+window.loadAdminData = async function () {
+  const orders = await getDocs(collection(db, "orders"));
+  const users = await getDocs(collection(db, "users"));
 
-  if (!title || !price || !desc) return alert("Fill all gig fields");
-
-  await addDoc(collection(db, "gigs"), {
-    title,
-    price,
-    desc,
-    createdAt: serverTimestamp()
-  });
-
-  alert("Gig Created!");
+  console.log("Orders:", orders.size);
+  console.log("Users:", users.size);
 };
 
-// =========================
-// 🧾 DISPLAY GIGS (FRONTEND)
-// =========================
-onSnapshot(collection(db, "gigs"), snapshot => {
-  const container = document.getElementById("gigsContainer");
-  if (!container) return;
-
-  container.innerHTML = "";
-
-  snapshot.forEach(doc => {
-    const gig = doc.data();
-
-    const div = document.createElement("div");
-    div.style.marginBottom = "20px";
-    div.innerHTML = `
-      <h3>${gig.title}</h3>
-      <p>${gig.desc}</p>
-      <strong>₦${gig.price}</strong>
-    `;
-
-    container.appendChild(div);
-  });
+/* 🔐 AUTH CHECK */
+onAuthStateChanged(auth, user => {
+  if (!user) console.log("Not logged in");
 });
-
-// =========================
-// 👑 ADMIN DASHBOARD DATA
-// =========================
-window.loadAdminData = async function () {
-  const ordersSnap = await getDocs(collection(db, "orders"));
-  const usersSnap = await getDocs(collection(db, "users"));
-
-  const ordersBox = document.getElementById("ordersList");
-  const usersBox = document.getElementById("usersList");
-
-  if (ordersBox) ordersBox.innerHTML = "Orders: " + ordersSnap.size;
-  if (usersBox) usersBox.innerHTML = "Users: " + usersSnap.size;
-};script>
+</script>

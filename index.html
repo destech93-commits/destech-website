@@ -198,23 +198,29 @@ nav a:hover{opacity:1}
   display:none;padding:0 18px 18px 18px;opacity:.82;line-height:1.7
 }
 
-.order-wrap{
-  max-width:1040px;margin:0 auto;
-  display:grid;grid-template-columns:.9fr 1.1fr;gap:22px
-}
-.order-box,.order-form{
-  background:#111221;border:1px solid rgba(255,255,255,.06);
-  border-radius:20px;padding:24px
-}
-.order-box h3,.order-form h3{margin-bottom:14px}
-.order-box p{opacity:.86;line-height:1.8}
-<form onsubmit="event.preventDefault(); saveOrder();">
-  width:100%;background:#0b0c15;color:#fff;border:1px solid rgba(255,255,255,.10);
-  border-radius:12px;padding:13px 14px;margin-bottom:12px;outline:none
-}
-.order-form textarea{min-height:140px;resize:vertical}
-.order-form button{width:100%}
+<div class="order-form">
+  <h3>Order Form</h3>
 
+  <form onsubmit="event.preventDefault(); saveOrder();">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+
+    <select name="service" required>
+      <option value="">Select Service</option>
+      <option>Logo Design</option>
+      <option>Website Design</option>
+      <option>Branding</option>
+      <option>Flyer Design</option>
+      <option>Social Media Design</option>
+      <option>Animation</option>
+      <option>Job Search</option>
+    </select>
+
+    <textarea name="message" placeholder="Describe your project..." required></textarea>
+
+    <button class="btn" type="submit">Proceed to Payment →</button>
+  </form>
+</div>
 .footer{
   padding:28px 20px;border-top:1px solid rgba(255,255,255,.06);
   text-align:center;color:rgba(255,255,255,.68)

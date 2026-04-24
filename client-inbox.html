@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DesTech Inbox</title>
+
+<style>
+body{margin:0;background:#07070f;color:#fff;font-family:Poppins}
+.container{display:flex;height:100vh}
+
+.sidebar{
+  width:30%;background:#0f1020;border-right:1px solid #222;
+  overflow-y:auto
+}
+.chat{
+  width:70%;display:flex;flex-direction:column
+}
+
+.order{
+  padding:15px;border-bottom:1px solid #1a1a2e;cursor:pointer
+}
+.order:hover{background:#15162a}
+
+.messages{
+  flex:1;padding:20px;overflow-y:auto
+}
+.msg{
+  margin-bottom:10px;padding:10px;border-radius:10px;max-width:70%
+}
+.client{background:#1f2937}
+.admin{background:#7a00ff;align-self:flex-end}
+
+.input{
+  display:flex;padding:10px;border-top:1px solid #222
+}
+.input input{
+  flex:1;padding:10px;background:#0b0c15;border:none;color:#fff
+}
+.input button{
+  background:#7a00ff;border:none;color:#fff;padding:10px 15px
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="sidebar" id="orders"></div>
+
+  <div class="chat">
+    <div class="messages" id="messages"></div>
+
+    <div class="input">
+      <input id="msgInput" placeholder="Type message...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getFirestore, collection, getDocs,
+  addDoc, query, orderBy, onSnapshot
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+// 🔁 PASTE SAME CONFIG HERE
+const firebaseConfig = {
+  apiKey: "PASTE",
+  authDomain: "PASTE",
+  projectId: "PASTE",
+  storageBucket: "PASTE",
+  messagingSenderId: "PASTE",
+  appId: "PASTE"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+let currentOrder = null;
+
+// LOAD ORDERS
+async function loadOrders(){
+  const snap = await getDocs(collection(db,"orders"));
+  const container = document.getElementById("orders");
+  container.innerHTML = "";
+
+  snap.forEach(doc=>{
+    const data = doc.data();
+
+    const div = document.createElement("div");
+    div.className="order";
+    div.innerHTML = `<strong>${data.service}</strong><br><small>${data.name}</small>`;
+
+    div.onclick = ()=>openChat(doc.id);
+    container.appendChild(div);
+  });
+}
+
+loadOrders();
+
+// OPEN CHAT
+function openChat(orderId){
+  currentOrder = orderId;
+
+  const messagesRef = collection(db,"orders",orderId,"messages");
+
+  onSnapshot(query(messagesRef, orderBy("time")), snap=>{
+    const box = document.getElementById("messages");
+    box.innerHTML = "";
+
+    snap.forEach(doc=>{
+      const msg = doc.data();
+
+      const div = document.createElement("div");
+      div.className = "msg " + msg.sender;
+      div.textContent = msg.text;
+
+      box.appendChild(div);
+    });
+
+    box.scrollTop = box.scrollHeight;
+  });
+}
+
+// SEND MESSAGE
+window.sendMessage = async function(){
+  const input = document.getElementById("msgInput");
+  const text = input.value;
+
+  if(!text || !currentOrder) return;
+
+  await addDoc(collection(db,"orders",currentOrder,"messages"),{
+    text,
+    sender:"client",
+    time:new Date()
+  });
+
+  input.value="";
+};
+</script>
+
+</body>
+</html>

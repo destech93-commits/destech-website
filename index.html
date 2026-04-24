@@ -1,117 +1,144 @@
-<section class="section" id="order">
-  <div class="container">
-    <h2>Start Your Project</h2>
-    <p class="lead">Select a service, send your details, and complete payment securely.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DesTech Inbox</title>
 
-    <div class="order-wrap">
-      <div class="order-box">
-        <h3>Payment & Contact</h3>
-        <p><strong>Account Name:</strong> Okunola Comfort</p>
-        <p><strong>Account Number:</strong> 08151980291</p>
-        <p style="margin-top:14px;opacity:.78;line-height:1.7">
-          After payment, your order will be saved to Firebase and sent to your inbox flow.
-        </p>
-      </div>
+<style>
+body{margin:0;background:#07070f;color:#fff;font-family:Poppins}
+.container{display:flex;height:100vh}
 
-      <div class="order-form">
-        <h3>Secure Order Form</h3>
+.sidebar{
+  width:30%;background:#0f1020;border-right:1px solid #222;
+  overflow-y:auto
+}
+.chat{
+  width:70%;display:flex;flex-direction:column
+}
 
-        <form onsubmit="event.preventDefault(); saveOrder();">
-          <input type="text" name="name" placeholder="Your Name" required autocomplete="off" spellcheck="false" autocapitalize="off">
-          <input type="email" name="email" placeholder="Your Email" required autocomplete="off" spellcheck="false" autocapitalize="off">
+.order{
+  padding:15px;border-bottom:1px solid #1a1a2e;cursor:pointer
+}
+.order:hover{background:#15162a}
 
-          <select name="service" required>
-            <option value="">Select Service</option>
-            <option>Logo Design</option>
-            <option>Website Design</option>
-            <option>Branding</option>
-            <option>Flyer Design</option>
-            <option>Social Media Design</option>
-            <option>Animation</option>
-            <option>Job Search</option>
-          </select>
+.messages{
+  flex:1;padding:20px;overflow-y:auto
+}
+.msg{
+  margin-bottom:10px;padding:10px;border-radius:10px;max-width:70%
+}
+.client{background:#1f2937}
+.admin{background:#7a00ff;align-self:flex-end}
 
-          <textarea name="message" placeholder="Describe your project..." required autocomplete="off" spellcheck="false"></textarea>
+.input{
+  display:flex;padding:10px;border-top:1px solid #222
+}
+.input input{
+  flex:1;padding:10px;background:#0b0c15;border:none;color:#fff
+}
+.input button{
+  background:#7a00ff;border:none;color:#fff;padding:10px 15px
+}
+</style>
+</head>
 
-          <button class="btn" type="submit">Proceed to Payment →</button>
-        </form>
-      </div>
+<body>
+
+<div class="container">
+
+  <div class="sidebar" id="orders"></div>
+
+  <div class="chat">
+    <div class="messages" id="messages"></div>
+
+    <div class="input">
+      <input id="msgInput" placeholder="Type message...">
+      <button onclick="sendMessage()">Send</button>
     </div>
   </div>
-</section>
 
-<div class="footer">
-  © 2026 DesTech. All rights reserved. | <a href="#faq">Terms & Conditions</a>
 </div>
-
-<a class="instagram-float" href="https://instagram.com/destech2026" target="_blank" rel="noopener">
-  <span>💬</span> Message me on Instagram
-</a>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import {
-  getFirestore, collection, addDoc, serverTimestamp
+  getFirestore, collection, getDocs,
+  addDoc, query, orderBy, onSnapshot
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-import {
-  initializeAppCheck, ReCaptchaEnterpriseProvider
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app-check.js";
 
+// 🔁 PASTE SAME CONFIG HERE
 const firebaseConfig = {
-  apiKey: "AIzaSyC8ccH4jZYZoL7ZYlG-VmAjUx3d8EXzjPI",
-  authDomain: "destech-f570c.firebaseapp.com",
-  projectId: "destech-f570c",
-  storageBucket: "destech-f570c.firebasestorage.app",
-  messagingSenderId: "1037212124740",
-  appId: "1:1037212124740:web:f89a8336de6851947d5e11"
+  apiKey: "PASTE",
+  authDomain: "PASTE",
+  projectId: "PASTE",
+  storageBucket: "PASTE",
+  messagingSenderId: "PASTE",
+  appId: "PASTE"
 };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
 const db = getFirestore(app);
 
-// App Check
-initializeAppCheck(app, {
-  provider: new ReCaptchaEnterpriseProvider("YOUR_RECAPTCHA_ENTERPRISE_SITE_KEY"),
-  isTokenAutoRefreshEnabled: true
-});
+let currentOrder = null;
 
-// Save order to Firestore
-window.saveOrder = async function () {
-  const user = auth.currentUser;
-  if (!user) {
-    alert("Please sign in first.");
-    window.location.href = "client-login.html";
-    return;
-  }
+// LOAD ORDERS
+async function loadOrders(){
+  const snap = await getDocs(collection(db,"orders"));
+  const container = document.getElementById("orders");
+  container.innerHTML = "";
 
-  const name = document.querySelector('input[name="name"]').value.trim();
-  const email = document.querySelector('input[name="email"]').value.trim();
-  const service = document.querySelector('select[name="service"]').value;
-  const message = document.querySelector('textarea[name="message"]').value.trim();
+  snap.forEach(doc=>{
+    const data = doc.data();
 
-  if (!name || !email || !service || !message) {
-    alert("Please fill all fields.");
-    return;
-  }
+    const div = document.createElement("div");
+    div.className="order";
+    div.innerHTML = `<strong>${data.service}</strong><br><small>${data.name}</small>`;
 
-  try {
-    const docRef = await addDoc(collection(db, "orders"), {
-      ownerUid: user.uid,
-      name,
-      email,
-      service,
-      message,
-      status: "pending",
-      createdAt: serverTimestamp()
+    div.onclick = ()=>openChat(doc.id);
+    container.appendChild(div);
+  });
+}
+
+loadOrders();
+
+// OPEN CHAT
+function openChat(orderId){
+  currentOrder = orderId;
+
+  const messagesRef = collection(db,"orders",orderId,"messages");
+
+  onSnapshot(query(messagesRef, orderBy("time")), snap=>{
+    const box = document.getElementById("messages");
+    box.innerHTML = "";
+
+    snap.forEach(doc=>{
+      const msg = doc.data();
+
+      const div = document.createElement("div");
+      div.className = "msg " + msg.sender;
+      div.textContent = msg.text;
+
+      box.appendChild(div);
     });
 
-    window.location.href = "client-inbox.html?order=" + docRef.id;
-  } catch (err) {
-    console.error(err);
-    alert("Could not save order.");
-  }
+    box.scrollTop = box.scrollHeight;
+  });
+}
+
+// SEND MESSAGE
+window.sendMessage = async function(){
+  const input = document.getElementById("msgInput");
+  const text = input.value;
+
+  if(!text || !currentOrder) return;
+
+  await addDoc(collection(db,"orders",currentOrder,"messages"),{
+    text,
+    sender:"client",
+    time:new Date()
+  });
+
+  input.value="";
 };
 </script>
 

@@ -1,236 +1,117 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>DesTech - Premium Design & Web Solutions</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
-
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:Poppins,sans-serif;background:#07070f;color:#fff;overflow-x:hidden}
-
-/* HEADER */
-header{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  display:flex;justify-content:space-between;align-items:center;
-  padding:18px 40px;background:rgba(10,10,20,.72);backdrop-filter:blur(12px)
-}
-
-/* LOGO */
-.logo{display:flex;align-items:center;gap:10px}
-.logo-icon{
-  width:40px;height:40px;border-radius:10px;
-  background:linear-gradient(135deg,#ff2e7a,#7a00ff);
-  display:flex;align-items:center;justify-content:center;
-}
-.logo-icon img{width:70%;height:70%;object-fit:contain}
-.logo-text{font-weight:800}
-
-nav a{color:#fff;text-decoration:none;margin-left:18px;opacity:.85}
-nav a:hover{opacity:1}
-
-/* HERO */
-.hero{
-  min-height:100vh;padding:130px 20px 70px;text-align:center;
-  display:flex;flex-direction:column;justify-content:center;align-items:center
-}
-.hero::before{
-  content:"";position:absolute;inset:0;
-  background:radial-gradient(circle at top,#7a00ff 0%,#2f155e 38%,#07070f 75%);
-  z-index:-1
-}
-
-.badge{
-  padding:8px 14px;border-radius:999px;margin-bottom:18px;
-  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
-}
-
-.hero h1{font-size:clamp(2.2rem,5vw,4.5rem);font-weight:800;margin-bottom:14px}
-.hero p{max-width:800px;opacity:.85;margin-bottom:28px}
-
-/* SECTIONS */
-.section{padding:96px 20px}
-.container{max-width:1180px;margin:0 auto;text-align:center}
-
-/* CARDS */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:22px
-}
-.card{
-  background:#111221;
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:18px;
-  padding:22px;
-  transition:.3s;
-}
-.card:hover{transform:translateY(-8px)}
-
-/* PORTFOLIO */
-.portfolio-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px
-}
-.portfolio-card{
-  border-radius:18px;
-  overflow:hidden;
-  background:#111221;
-}
-.portfolio-card img{width:100%;height:200px;object-fit:cover}
-
-/* ORDER */
-.order-wrap{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-}
-.order-form input,
-.order-form select,
-.order-form textarea{
-  width:100%;
-  margin:10px 0;
-  padding:12px;
-  border:none;
-  border-radius:10px;
-}
-
-.btn{
-  background:linear-gradient(135deg,#ff2e7a,#7a00ff);
-  border:none;
-  padding:14px;
-  border-radius:999px;
-  color:#fff;
-  cursor:pointer;
-}
-
-/* FOOTER */
-.footer{text-align:center;padding:30px}
-
-/* MOBILE */
-@media(max-width:768px){
-  .order-wrap{grid-template-columns:1fr}
-}
-</style>
-</head>
-
-<body>
-
-<header>
-  <div class="logo">
-    <div class="logo-icon">
-      <img src="images/logo.png" alt="logo">
-    </div>
-    <span class="logo-text">DesTech</span>
-  </div>
-
-  <nav>
-    <a href="#">Home</a>
-    <a href="#">Services</a>
-    <a href="#">Portfolio</a>
-  </nav>
-</header>
-
-<section class="hero">
-  <div class="badge">⚡ Futuristic. Premium.</div>
-  <h1>Designing With Clarity</h1>
-  <p>Premium graphic & web design services.</p>
-</section>
-
-<section class="section">
-  <div class="container">
-    <h2>Services</h2>
-
-    <div class="grid">
-      <div class="card">Logo Design</div>
-      <div class="card">Website Design</div>
-      <div class="card">Branding</div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <h2>Portfolio</h2>
-
-    <div class="portfolio-grid">
-      <div class="portfolio-card">
-        <img src="images/work1.jpg">
-      </div>
-      <div class="portfolio-card">
-        <img src="images/work2.jpg">
-      </div>
-      <div class="portfolio-card">
-        <img src="images/work3.jpg">
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="section" id="order">
   <div class="container">
     <h2>Start Your Project</h2>
+    <p class="lead">Select a service, send your details, and complete payment securely.</p>
 
     <div class="order-wrap">
-
-      <div>
-        <h3>Payment</h3>
-        <p>Send payment and fill form</p>
+      <div class="order-box">
+        <h3>Payment & Contact</h3>
+        <p><strong>Account Name:</strong> Okunola Comfort</p>
+        <p><strong>Account Number:</strong> 08151980291</p>
+        <p style="margin-top:14px;opacity:.78;line-height:1.7">
+          After payment, your order will be saved to Firebase and sent to your inbox flow.
+        </p>
       </div>
 
       <div class="order-form">
-        <form onsubmit="event.preventDefault(); saveOrder();">
+        <h3>Secure Order Form</h3>
 
-          <input type="text" name="name" placeholder="Name" required>
-          <input type="email" name="email" placeholder="Email" required>
+        <form onsubmit="event.preventDefault(); saveOrder();">
+          <input type="text" name="name" placeholder="Your Name" required autocomplete="off" spellcheck="false" autocapitalize="off">
+          <input type="email" name="email" placeholder="Your Email" required autocomplete="off" spellcheck="false" autocapitalize="off">
 
           <select name="service" required>
-            <option value="">Select</option>
-            <option>Logo</option>
-            <option>Website</option>
+            <option value="">Select Service</option>
+            <option>Logo Design</option>
+            <option>Website Design</option>
+            <option>Branding</option>
+            <option>Flyer Design</option>
+            <option>Social Media Design</option>
+            <option>Animation</option>
+            <option>Job Search</option>
           </select>
 
-          <textarea name="message" placeholder="Project details" required></textarea>
+          <textarea name="message" placeholder="Describe your project..." required autocomplete="off" spellcheck="false"></textarea>
 
-          <button class="btn">Submit</button>
+          <button class="btn" type="submit">Proceed to Payment →</button>
         </form>
       </div>
-
     </div>
   </div>
 </section>
 
-<div class="footer">© DesTech 2026</div>
+<div class="footer">
+  © 2026 DesTech. All rights reserved. | <a href="#faq">Terms & Conditions</a>
+</div>
 
-<!-- FIREBASE -->
+<a class="instagram-float" href="https://instagram.com/destech2026" target="_blank" rel="noopener">
+  <span>💬</span> Message me on Instagram
+</a>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {
+  getFirestore, collection, addDoc, serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {
+  initializeAppCheck, ReCaptchaEnterpriseProvider
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app-check.js";
 
-const app = initializeApp({
-  apiKey: "YOUR_KEY",
-  authDomain: "YOUR_DOMAIN",
-  projectId: "YOUR_ID"
-});
+const firebaseConfig = {
+  apiKey: "AIzaSyC8ccH4jZYZoL7ZYlG-VmAjUx3d8EXzjPI",
+  authDomain: "destech-f570c.firebaseapp.com",
+  projectId: "destech-f570c",
+  storageBucket: "destech-f570c.firebasestorage.app",
+  messagingSenderId: "1037212124740",
+  appId: "1:1037212124740:web:f89a8336de6851947d5e11"
+};
 
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 const db = getFirestore(app);
 
-window.saveOrder = async function(){
-  const name = document.querySelector('[name="name"]').value;
-  const email = document.querySelector('[name="email"]').value;
-  const service = document.querySelector('[name="service"]').value;
-  const message = document.querySelector('[name="message"]').value;
+// App Check
+initializeAppCheck(app, {
+  provider: new ReCaptchaEnterpriseProvider("YOUR_RECAPTCHA_ENTERPRISE_SITE_KEY"),
+  isTokenAutoRefreshEnabled: true
+});
 
-  await addDoc(collection(db,"orders"),{
-    name,email,service,message,
-    createdAt: serverTimestamp()
-  });
+// Save order to Firestore
+window.saveOrder = async function () {
+  const user = auth.currentUser;
+  if (!user) {
+    alert("Please sign in first.");
+    window.location.href = "client-login.html";
+    return;
+  }
 
-  alert("Order sent!");
+  const name = document.querySelector('input[name="name"]').value.trim();
+  const email = document.querySelector('input[name="email"]').value.trim();
+  const service = document.querySelector('select[name="service"]').value;
+  const message = document.querySelector('textarea[name="message"]').value.trim();
+
+  if (!name || !email || !service || !message) {
+    alert("Please fill all fields.");
+    return;
+  }
+
+  try {
+    const docRef = await addDoc(collection(db, "orders"), {
+      ownerUid: user.uid,
+      name,
+      email,
+      service,
+      message,
+      status: "pending",
+      createdAt: serverTimestamp()
+    });
+
+    window.location.href = "client-inbox.html?order=" + docRef.id;
+  } catch (err) {
+    console.error(err);
+    alert("Could not save order.");
+  }
 };
 </script>
 

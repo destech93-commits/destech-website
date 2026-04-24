@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DesTech Admin</title>
+
+<style>
+body{margin:0;background:#07070f;color:#fff;font-family:Poppins}
+.container{display:flex;height:100vh}
+
+.sidebar{
+  width:30%;background:#0f1020;border-right:1px solid #222;
+  overflow-y:auto
+}
+
+.chat{
+  width:70%;display:flex;flex-direction:column
+}
+
+.order{
+  padding:15px;border-bottom:1px solid #1a1a2e;cursor:pointer
+}
+.order:hover{background:#15162a}
+
+.messages{
+  flex:1;padding:20px;overflow-y:auto
+}
+
+.msg{
+  margin-bottom:10px;padding:10px;border-radius:10px;max-width:70%
+}
+
+.client{background:#1f2937}
+.admin{background:#ff2e7a;align-self:flex-end}
+
+.topbar{
+  padding:10px;background:#0b0c15;border-bottom:1px solid #222;
+  display:flex;justify-content:space-between;align-items:center
+}
+
+.input{
+  display:flex;padding:10px;border-top:1px solid #222
+}
+
+.input input{
+  flex:1;padding:10px;background:#0b0c15;border:none;color:#fff
+}
+
+.input button{
+  background:#ff2e7a;border:none;color:#fff;padding:10px 15px
+}
+
+select{
+  background:#0b0c15;color:#fff;border:none;padding:5px
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- ORDERS -->
+  <div class="sidebar" id="orders"></div>
+
+  <!-- CHAT -->
+  <div class="chat">
+
+    <div class="topbar">
+      <div id="orderTitle">Select an order</div>
+
+      <select id="statusSelect" onchange="updateStatus()">
+        <option value="pending">Pending</option>
+        <option value="in progress">In Progress</option>
+        <option value="delivered">Delivered</option>
+      </select>
+    </div>
+
+    <div class="messages" id="messages"></div>
+
+    <div class="input">
+      <input id="msgInput" placeholder="Reply to client...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+
+  </div>
+
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getFirestore, collection, getDocs,
+  doc, updateDoc,
+  addDoc, query, orderBy, onSnapshot
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+// 🔁 SAME CONFIG
+const firebaseConfig = {
+  apiKey: "PASTE",
+  authDomain: "PASTE",
+  projectId: "PASTE",
+  storageBucket: "PASTE",
+  messagingSenderId: "PASTE",
+  appId: "PASTE"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+let currentOrder = null;
+
+// LOAD ORDERS
+async function loadOrders(){
+  const snap = await getDocs(collection(db,"orders"));
+  const container = document.getElementById("orders");
+  container.innerHTML = "";
+
+  snap.forEach(docSnap=>{
+    const data = docSnap.data();
+
+    const div = document.createElement("div");
+    div.className="order";
+    div.innerHTML = `
+      <strong>${data.service}</strong><br>
+      <small>${data.name}</small><br>
+      <small>Status: ${data.status}</small>
+    `;
+
+    div.onclick = ()=>openChat(docSnap.id, data);
+    container.appendChild(div);
+  });
+}
+
+loadOrders();
+
+// OPEN CHAT
+function openChat(orderId, data){
+  currentOrder = orderId;
+
+  document.getElementById("orderTitle").innerText =
+    data.name + " (" + data.service + ")";
+
+  document.getElementById("statusSelect").value = data.status;
+
+  const messagesRef = collection(db,"orders",orderId,"messages");
+
+  onSnapshot(query(messagesRef, orderBy("time")), snap=>{
+    const box = document.getElementById("messages");
+    box.innerHTML = "";
+
+    snap.forEach(doc=>{
+      const msg = doc.data();
+
+      const div = document.createElement("div");
+      div.className = "msg " + msg.sender;
+      div.textContent = msg.text;
+
+      box.appendChild(div);
+    });
+
+    box.scrollTop = box.scrollHeight;
+  });
+}
+
+// SEND MESSAGE (ADMIN)
+window.sendMessage = async function(){
+  const input = document.getElementById("msgInput");
+  const text = input.value;
+
+  if(!text || !currentOrder) return;
+
+  await addDoc(collection(db,"orders",currentOrder,"messages"),{
+    text,
+    sender:"admin",
+    time:new Date()
+  });
+
+  input.value="";
+};
+
+// UPDATE STATUS
+window.updateStatus = async function(){
+  if(!currentOrder) return;
+
+  const status = document.getElementById("statusSelect").value;
+
+  await updateDoc(doc(db,"orders",currentOrder),{
+    status
+  });
+
+  loadOrders();
+};const password = prompt("Enter admin password");
+
+if(password !== "destechadmin"){
+  alert("Access denied");
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

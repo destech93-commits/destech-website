@@ -208,7 +208,7 @@ nav a:hover{opacity:1}
 }
 .order-box h3,.order-form h3{margin-bottom:14px}
 .order-box p{opacity:.86;line-height:1.8}
-.order-form input,.order-form textarea,.order-form select{
+<form onsubmit="event.preventDefault(); saveOrder();">
   width:100%;background:#0b0c15;color:#fff;border:1px solid rgba(255,255,255,.10);
   border-radius:12px;padding:13px 14px;margin-bottom:12px;outline:none
 }
@@ -641,6 +641,77 @@ document.getElementById("orderForm").addEventListener("submit", function(e){
   // Redirect to payment page
   window.location.href = "payment.html";
 });
-</script>>
+</script<script>
+function saveOrder(){
+  const name = document.querySelector('input[name="name"]').value;
+  const email = document.querySelector('input[name="email"]').value;
+  const service = document.querySelector('select[name="service"]').value;
+  const message = document.querySelector('textarea[name="message"]').value;
+
+  if(!name || !email || !service || !message){
+    alert("Please fill all fields");
+    return;
+  }
+
+  let orders = JSON.parse(localStorage.getItem("destech_orders")) || [];
+
+  const orderData = {
+    id: "ORD-" + Date.now(),
+    name,
+    email,
+    service,
+    message,
+    status: "pending",
+    date: new Date().toLocaleString()
+  };
+
+  orders.push(orderData);
+
+  // create message thread
+  let messages = JSON.parse(localStorage.getItem("destech_messages")) || {};
+  messages[orderData.id] = [];
+
+  localStorage.setItem("destech_messages", JSON.stringify(messages));
+  localStorage.setItem("destech_orders", JSON.stringify(orders));
+
+  alert("Order saved successfully!");
+
+  window.location.href = "client-inbox.html";
+}
+</script<script>
+function saveOrder(){
+  const name = document.querySelector('input[name="name"]').value;
+  const email = document.querySelector('input[name="email"]').value;
+  const service = document.querySelector('select[name="service"]').value;
+  const message = document.querySelector('textarea[name="message"]').value;
+
+  if(!name || !email || !service || !message){
+    alert("Please fill all fields");
+    return;
+  }
+
+  let orders = JSON.parse(localStorage.getItem("destech_orders")) || [];
+
+  const orderData = {
+    id: "ORD-" + Date.now(),
+    name,
+    email,
+    service,
+    message,
+    status: "pending",
+    date: new Date().toLocaleString()
+  };
+
+  orders.push(orderData);
+
+  let messages = JSON.parse(localStorage.getItem("destech_messages")) || {};
+  messages[orderData.id] = [];
+
+  localStorage.setItem("destech_messages", JSON.stringify(messages));
+  localStorage.setItem("destech_orders", JSON.stringify(orders));
+
+  window.location.href = "payment.html";
+}
+</script>>>>
 </body>
 </html>

@@ -3,39 +3,184 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DesTech | Admin Dashboard</title>
+<title>DesTech Admin Dashboard</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Poppins,sans-serif;background:#07070f;color:#fff;padding:20px}
-.header{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;background:rgba(10,10,20,.72);backdrop-filter:blur(12px);border-radius:18px;margin-bottom:20px}
-.card{background:linear-gradient(145deg,#12131d,#0d0e18);border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:22px;margin-bottom:20px;box-shadow:0 14px 40px rgba(0,0,0,.26)}
-button,input,select,textarea{padding:12px;border-radius:10px;border:none;outline:none}
-input,select,textarea{width:100%;background:#0b0c15;color:#fff;border:1px solid rgba(255,255,255,.10);margin-top:10px}
-button{background:linear-gradient(135deg,#ff2e7a,#7a00ff);color:#fff;font-weight:700;cursor:pointer;margin-top:10px}
+body{
+  font-family:Poppins,sans-serif;
+  background:#07070f;
+  color:#fff;
+}
+
+/* HEADER */
+header{
+  padding:20px 40px;
+  background:#0d0e18;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.logo{font-weight:800}
+.logo span{color:#b56dff}
+
+/* DASHBOARD */
+.container{
+  padding:30px;
+  max-width:1200px;
+  margin:auto;
+}
+
+h1{
+  margin-bottom:20px;
+}
+
+/* CARD */
+.order-card{
+  background:#111221;
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:20px;
+  box-shadow:0 10px 40px rgba(0,0,0,.4);
+}
+
+.order-card h3{
+  margin-bottom:8px;
+}
+
+.order-card p{
+  opacity:.8;
+  margin-bottom:6px;
+}
+
+/* STATUS */
+.status{
+  padding:6px 12px;
+  border-radius:999px;
+  font-size:.8rem;
+  display:inline-block;
+  margin-bottom:10px;
+}
+
+.pending{background:#444}
+.paid{background:#0ea5e9}
+.progress{background:#7a00ff}
+.done{background:#22c55e}
+
+/* BUTTONS */
+.actions{
+  margin-top:10px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  border:none;
+  padding:8px 14px;
+  border-radius:999px;
+  cursor:pointer;
+  font-size:.85rem;
+}
+
+.btn-update{background:#7a00ff;color:#fff}
+.btn-delete{background:#ff2e7a;color:#fff}
+
+/* EMPTY */
+.empty{
+  text-align:center;
+  opacity:.6;
+  margin-top:50px;
+}
 </style>
 </head>
+
 <body>
-<div class="header">
-  <div><strong>Admin Dashboard</strong><br><small>Update client status manually</small></div>
-  <a href="index.html" style="color:#fff;text-decoration:none">Home</a>
+
+<header>
+  <div class="logo">DES<span>TECH</span> ADMIN</div>
+</header>
+
+<div class="container">
+  <h1>Client Orders</h1>
+
+  <div id="orders"></div>
+
+  <div id="empty" class="empty">No orders yet</div>
 </div>
 
-<div class="card">
-  <h2>Client Status Control</h2>
-  <input placeholder="Client Name">
-  <select>
-    <option>Pending</option>
-    <option>Paid</option>
-    <option>In Progress</option>
-    <option>Completed</option>
-  </select>
-  <button>Save Status</button>
-</div>
+<script>
 
-<div class="card">
-  <h2>Recent Orders</h2>
-  <p style="opacity:.8;line-height:1.7">Use this section later to connect your actual order tracking system.</p>
-</div>
+// LOAD ORDERS
+function loadOrders(){
+  const container = document.getElementById("orders");
+  const empty = document.getElementById("empty");
+
+  container.innerHTML = "";
+
+  let orders = JSON.parse(localStorage.getItem("destech_orders")) || [];
+
+  if(orders.length === 0){
+    empty.style.display = "block";
+    return;
+  }
+
+  empty.style.display = "none";
+
+  orders.forEach((order, index) => {
+
+    const div = document.createElement("div");
+    div.className = "order-card";
+
+    div.innerHTML = `
+      <span class="status ${order.status}">${order.status}</span>
+
+      <h3>${order.service}</h3>
+      <p><b>Name:</b> ${order.name}</p>
+      <p><b>Email:</b> ${order.email}</p>
+      <p><b>Details:</b> ${order.message}</p>
+
+      <div class="actions">
+        <button class="btn btn-update" onclick="updateStatus(${index})">Update Status</button>
+        <button class="btn btn-delete" onclick="deleteOrder(${index})">Delete</button>
+      </div>
+    `;
+
+    container.appendChild(div);
+  });
+}
+
+// UPDATE STATUS
+function updateStatus(i){
+  let orders = JSON.parse(localStorage.getItem("destech_orders")) || [];
+
+  const statuses = ["pending","paid","progress","done"];
+  let current = statuses.indexOf(orders[i].status);
+
+  orders[i].status = statuses[(current + 1) % statuses.length];
+
+  localStorage.setItem("destech_orders", JSON.stringify(orders));
+  loadOrders();
+}
+
+// DELETE
+function deleteOrder(i){
+  let orders = JSON.parse(localStorage.getItem("destech_orders")) || [];
+
+  if(confirm("Delete this order?")){
+    orders.splice(i,1);
+    localStorage.setItem("destech_orders", JSON.stringify(orders));
+    loadOrders();
+  }
+}
+
+// INIT
+loadOrders();
+
+</script>
+
 </body>
 </html>

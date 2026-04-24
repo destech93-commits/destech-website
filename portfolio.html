@@ -170,7 +170,30 @@ footer{
   .section{padding:70px 16px}
   .portfolio-item{min-height:300px}
 }
-</style>
+</style<style>
+
+/* your existing CSS here */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:#111221;
+  padding:20px;
+  border-radius:16px;
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-8px);
+}
+
+/* more CSS below if you have */
+
+</style>>
 </head>
 <body>
 

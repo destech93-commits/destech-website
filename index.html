@@ -1,146 +1,846 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>DesTech Inbox</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DesTech | Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
-body{margin:0;background:#07070f;color:#fff;font-family:Poppins}
-.container{display:flex;height:100vh}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Poppins,sans-serif;background:#07070f;color:#fff;overflow-x:hidden}
 
-.sidebar{
-  width:30%;background:#0f1020;border-right:1px solid #222;
-  overflow-y:auto
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px 40px;background:rgba(10,10,20,.72);backdrop-filter:blur(12px)
 }
-.chat{
-  width:70%;display:flex;flex-direction:column
+.logo{font-weight:800}
+.logo span{color:#b56dff}
+nav a{color:#fff;text-decoration:none;margin-left:18px;opacity:.85}
+nav a:hover{opacity:1}
+
+.hero{
+  min-height:60vh;padding:130px 20px 80px;text-align:center;position:relative;overflow:hidden
 }
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at top,#7a00ff 0%,#2f155e 40%,#07070f 80%);
+  z-index:-2
+}
+.hero h1{
+  font-size:clamp(2.3rem,5vw,4rem);
+  font-weight:800;margin-bottom:12px
+}
+.hero p{
+  opacity:.8;max-width:760px;margin:0 auto;line-height:1.7
+}
+
+.search-wrap{max-width:700px;margin:30px auto 0;position:relative}
+.search{
+  display:flex;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:999px;padding:10px 14px;backdrop-filter:blur(12px)
+}
+.search input{
+  flex:1;background:transparent;border:none;outline:none;color:#fff;
+  font-size:1rem
+}
+.search button{
+  border:none;background:linear-gradient(135deg,#ff2e7a,#7a00ff);
+  color:#fff;border-radius:50%;width:42px;height:42px;cursor:pointer
+}
+.results{
+  position:absolute;top:60px;left:0;right:0;background:#111221;
+  border:1px solid rgba(255,255,255,.08);border-radius:16px;display:none;
+  overflow:hidden;z-index:20;box-shadow:0 20px 60px rgba(0,0,0,.35)
+}
+.result-item{
+  padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.06);
+  cursor:pointer;text-align:left
+}
+.result-item:hover{background:#17182c}
+.result-item small{display:block;opacity:.7;margin-top:4px}
+
+.section{padding:90px 20px}
+.container{max-width:1180px;margin:0 auto}
+.section h2{
+  font-size:2rem;margin-bottom:16px;font-weight:800;text-align:center
+}
+.section .lead{
+  text-align:center;max-width:820px;margin:0 auto 30px;opacity:.8;line-height:1.7
+}
+
+.categories{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:16px;
+  margin-top:28px
+}
+.cat{
+  background:linear-gradient(145deg,#12131d,#0d0e18);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:18px;padding:18px;cursor:pointer;
+  box-shadow:0 14px 40px rgba(0,0,0,.26);
+  transition:.3s;
+}
+.cat:hover{
+  transform:translateY(-8px);
+  box-shadow:0 20px 50px rgba(122,0,255,.18)
+}
+.cat strong{display:block;font-size:1.02rem;margin-bottom:8px}
+.cat span{opacity:.76;font-size:.92rem;line-height:1.5}
+
+.split{
+  display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:start
+}
+.subgroup{
+  background:#111221;border:1px solid rgba(255,255,255,.06);
+  border-radius:18px;padding:22px;margin-bottom:18px
+}
+.subgroup h3{margin-bottom:10px;font-size:1.08rem}
+.subgroup ul{list-style:none}
+.subgroup li{
+  padding:9px 0;border-bottom:1px solid rgba(255,255,255,.06);opacity:.86
+}
+.subgroup li:last-child{border-bottom:none}
+
+.packages{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:24px
+}
+.pkg{
+  background:linear-gradient(145deg,#12131d,#0d0e18);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;padding:20px;
+  transition:.3s;box-shadow:0 10px 40px rgba(0,0,0,.4)
+}
+.pkg:hover{
+  transform:translateY(-8px);
+  box-shadow:0 20px 60px rgba(122,0,255,.25)
+}
+.pkg .name{font-weight:700;font-size:1rem;margin-bottom:6px}
+.pkg .price{font-size:1.7rem;font-weight:800;margin-bottom:12px}
+.pkg ul{list-style:none;margin:0 0 16px 0;padding:0}
+.pkg li{padding:7px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:.92rem;opacity:.88}
+.pkg li:last-child{border-bottom:none}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#ff2e7a,#7a00ff);
+  color:#fff;text-decoration:none;border:none;cursor:pointer;
+  padding:13px 18px;border-radius:999px;font-weight:700;transition:.25s
+}
+.btn:hover{transform:translateY(-2px)}
 
 .order{
-  padding:15px;border-bottom:1px solid #1a1a2e;cursor:pointer
+  max-width:1040px;margin:0 auto;
+  display:grid;grid-template-columns:.9fr 1.1fr;gap:22px
 }
-.order:hover{background:#15162a}
+.order-box,.order-form{
+  background:#111221;border:1px solid rgba(255,255,255,.06);
+  border-radius:20px;padding:24px
+}
+.order-box h3,.order-form h3{margin-bottom:14px}
+.order-box p{opacity:.86;line-height:1.8}
+.order-form input,.order-form textarea,.order-form select{
+  width:100%;background:#0b0c15;color:#fff;border:1px solid rgba(255,255,255,.10);
+  border-radius:12px;padding:13px 14px;margin-bottom:12px;outline:none
+}
+.order-form textarea{min-height:140px;resize:vertical}
+.order-form button{width:100%}
 
-.messages{
-  flex:1;padding:20px;overflow-y:auto
+.footer{
+  padding:28px 20px;border-top:1px solid rgba(255,255,255,.06);
+  text-align:center;color:rgba(255,255,255,.68)
 }
-.msg{
-  margin-bottom:10px;padding:10px;border-radius:10px;max-width:70%
-}
-.client{background:#1f2937}
-.admin{background:#7a00ff;align-self:flex-end}
 
-.input{
-  display:flex;padding:10px;border-top:1px solid #222
+@media (max-width: 980px){
+  .split,.order{grid-template-columns:1fr}
 }
-.input input{
-  flex:1;padding:10px;background:#0b0c15;border:none;color:#fff
-}
-.input button{
-  background:#7a00ff;border:none;color:#fff;padding:10px 15px
+@media (max-width: 720px){
+  header{padding:16px 16px}
+  nav a{margin-left:12px;font-size:.95rem}
+  .section{padding:68px 16px}
 }
 </style>
 </head>
-
 <body>
 
-<div class="container">
+<header>
+  <div class="logo">DES<span>TECH</span></div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="about.html">About</a>
+  </nav>
+</header>
 
-  <div class="sidebar" id="orders"></div>
+<section class="hero">
+  <h1>Services Built for Brands That Want to Stand Out</h1>
+  <p>Search a service, explore the categories, review the packages, and continue straight to order when you are ready.</p>
 
-  <div class="chat">
-    <div class="messages" id="messages"></div>
+  <div class="search-wrap">
+    <div class="search">
+      <input id="searchInput" placeholder="Type any services..." autocomplete="off">
+      <button id="searchBtn">🔍</button>
+    </div>
+    <div id="resultsBox" class="results"></div>
+  </div>
+</section>
 
-    <div class="input">
-      <input id="msgInput" placeholder="Type message...">
-      <button onclick="sendMessage()">Send</button>
+<section class="section" id="categories">
+  <div class="container">
+    <h2>Categories</h2>
+    <p class="lead">These are the main services I offer. Click any category to jump to its section.</p>
+
+    <div class="categories">
+      <div class="cat" data-target="logo"><strong>Logo Design</strong><span>Wordmarks, brandmarks, mascots, luxury logos, and more.</span></div>
+      <div class="cat" data-target="website"><strong>Website Design</strong><span>UI/UX, responsive layouts, landing pages, dashboards.</span></div>
+      <div class="cat" data-target="branding"><strong>Branding</strong><span>Strategy, identity systems, messaging, and guidelines.</span></div>
+      <div class="cat" data-target="flyers"><strong>Flyer Design</strong><span>Promo flyers, business flyers, event flyers, print-ready work.</span></div>
+      <div class="cat" data-target="socialmedia"><strong>Social Media</strong><span>Posts, reels, captions, ad creatives, content planning.</span></div>
+      <div class="cat" data-target="animation"><strong>Video Animation</strong><span>Motion graphics, explainer videos, logo animation, edits.</span></div>
+      <div class="cat" data-target="jobsearch"><strong>Job Search</strong><span>CV writing, LinkedIn, cover letters, interview prep.</span></div>
     </div>
   </div>
+</section>
 
+<section class="section" id="logo">
+  <div class="container">
+    <h2>Logo Design</h2>
+    <p class="lead">A full logo service covering styles, formats, and industries.</p>
+
+    <div class="split">
+      <div>
+        <div class="subgroup">
+          <h3>Logo Types</h3>
+          <ul>
+            <li>Wordmark logo</li>
+            <li>Lettermark logo</li>
+            <li>Monogram logo</li>
+            <li>Brandmark (symbol/icon logo)</li>
+            <li>Combination mark logo</li>
+            <li>Emblem logo</li>
+            <li>Mascot logo</li>
+            <li>Abstract logo</li>
+            <li>Geometric logo</li>
+            <li>Minimalist logo</li>
+            <li>Vintage / retro logo</li>
+            <li>Modern logo</li>
+          </ul>
+        </div>
+        <div class="subgroup">
+          <h3>Industries</h3>
+          <ul>
+            <li>Luxury logo</li>
+            <li>Tech logo</li>
+            <li>Corporate logo</li>
+            <li>Fashion logo</li>
+            <li>Real estate logo</li>
+            <li>Restaurant logo</li>
+            <li>Fitness logo</li>
+            <li>Medical logo</li>
+            <li>Educational logo</li>
+            <li>Personal brand logo</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="margin-bottom:12px">Packages</h3>
+        <div class="packages">
+          <div class="pkg">
+            <div class="name">Basic</div>
+            <div class="price">₦20k</div>
+            <ul>
+              <li>1 concept</li>
+              <li>PNG / JPG</li>
+              <li>1 revision</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Logo Design - Basic')">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Standard</div>
+            <div class="price">₦45k</div>
+            <ul>
+              <li>3 concepts</li>
+              <li>Vector files</li>
+              <li>3 revisions</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Logo Design - Standard')">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Premium</div>
+            <div class="price">₦80k</div>
+            <ul>
+              <li>Full brand identity</li>
+              <li>Source files</li>
+              <li>Unlimited revisions</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Logo Design - Premium')">Continue</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="website">
+  <div class="container">
+    <h2>Website Design</h2>
+    <p class="lead">UI/UX and web design services for business sites, portfolios, landing pages, and e-commerce.</p>
+
+    <div class="split">
+      <div>
+        <div class="subgroup">
+          <h3>Core Skills</h3>
+          <ul>
+            <li>Wireframing</li>
+            <li>Prototyping</li>
+            <li>UI (User Interface) design</li>
+            <li>UX (User Experience) design</li>
+            <li>Layout design</li>
+            <li>Grid systems</li>
+            <li>Typography for web</li>
+            <li>Color theory for web</li>
+            <li>Visual hierarchy</li>
+            <li>Responsive design</li>
+            <li>Mobile-first design</li>
+            <li>Interaction design</li>
+            <li>Usability testing</li>
+            <li>User research</li>
+            <li>Information architecture</li>
+            <li>Navigation design</li>
+            <li>Accessibility basics</li>
+            <li>Design systems creation</li>
+            <li>Style guide development</li>
+            <li>Branding integration</li>
+            <li>Landing page design</li>
+            <li>E-commerce design</li>
+            <li>Dashboard design</li>
+            <li>Form design</li>
+            <li>Conversion rate optimization</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="margin-bottom:12px">Packages</h3>
+        <div class="packages">
+          <div class="pkg">
+            <div class="name">Basic</div>
+            <div class="price">₦50k</div>
+            <ul>
+              <li>Single landing page</li>
+              <li>Responsive layout</li>
+              <li>Basic sections</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Website Design - Basic')">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Standard</div>
+            <div class="price">₦95k</div>
+            <ul>
+              <li>Multi-page website</li>
+              <li>SEO basics</li>
+              <li>Custom sections</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Website Design - Standard')">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Premium</div>
+            <div class="price">₦180k</div>
+            <ul>
+              <li>Advanced UI/UX</li>
+              <li>Motion-ready design</li>
+              <li>Full brand system</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Website Design - Premium')">Continue</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="branding">
+  <div class="container">
+    <h2>Branding</h2>
+    <p class="lead">Brand strategy and identity systems for businesses that want to communicate clearly and stand out.</p>
+
+    <div class="split">
+      <div>
+        <div class="subgroup">
+          <h3>Branding Skills</h3>
+          <ul>
+            <li>Brand strategy development</li>
+            <li>Brand positioning</li>
+            <li>Brand identity design</li>
+            <li>Brand architecture</li>
+            <li>Rebranding strategy</li>
+            <li>Brand messaging</li>
+            <li>Brand communication strategy</li>
+            <li>Creative direction</li>
+            <li>Art direction</li>
+            <li>Market research</li>
+            <li>Competitor analysis</li>
+            <li>Target audience profiling</li>
+            <li>Brand guidelines creation</li>
+            <li>Visual identity systems</li>
+            <li>Brand consistency management</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="margin-bottom:12px">Packages</h3>
+        <div class="packages">
+          <div class="pkg">
+            <div class="name">Basic</div>
+            <div class="price">₦35k</div>
+            <ul>
+              <li>Logo + palette</li>
+              <li>Basic direction</li>
+              <li>1 revision</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Branding - Basic')">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Standard</div>
+            <div class="price">₦70k</div>
+            <ul>
+              <li>Identity system</li>
+              <li>Messaging direction</li>
+              <li>3 revisions</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Branding - Standard')">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Premium</div>
+            <div class="price">₦140k</div>
+            <ul>
+              <li>Brand strategy</li>
+              <li>Guidelines</li>
+              <li>Unlimited revisions</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Branding - Premium')">Continue</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="flyers">
+  <div class="container">
+    <h2>Flyer Design</h2>
+    <p class="lead">Print-ready and social-ready flyer design for business, promo, and events.</p>
+
+    <div class="split">
+      <div>
+        <div class="subgroup">
+          <h3>Flyer Skills</h3>
+          <ul>
+            <li>Layout design</li>
+            <li>Typography selection</li>
+            <li>Font pairing</li>
+            <li>Text hierarchy</li>
+            <li>Color theory</li>
+            <li>Image selection</li>
+            <li>Photo editing</li>
+            <li>Composition principles</li>
+            <li>Alignment and spacing</li>
+            <li>Visual hierarchy</li>
+            <li>Logo placement</li>
+            <li>Call-to-action design</li>
+            <li>Print design setup</li>
+            <li>Bleed and margin setup</li>
+            <li>Resolution management</li>
+            <li>File export preparation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="margin-bottom:12px">Packages</h3>
+        <div class="packages">
+          <div class="pkg">
+            <div class="name">Basic</div>
+            <div class="price">₦10k</div>
+            <ul>
+              <li>1 flyer</li>
+              <li>JPG / PNG</li>
+              <li>1 revision</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Flyer Design - Basic')">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Standard</div>
+            <div class="price">₦20k</div>
+            <ul>
+              <li>2 concepts</li>
+              <li>Print-ready</li>
+              <li>3 revisions</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Flyer Design - Standard')">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Premium</div>
+            <div class="price">₦40k</div>
+            <ul>
+              <li>Campaign set</li>
+              <li>Multiple sizes</li>
+              <li>Unlimited revisions</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Flyer Design - Premium')">Continue</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="socialmedia">
+  <div class="container">
+    <h2>Social Media Design</h2>
+    <p class="lead">Social posts, ad creatives, captions, and content support that help brands stay visible.</p>
+
+    <div class="split">
+      <div>
+        <div class="subgroup">
+          <h3>Social Media Skills</h3>
+          <ul>
+            <li>Social media strategy development</li>
+            <li>Content planning</li>
+            <li>Content creation</li>
+            <li>Copywriting</li>
+            <li>Caption writing</li>
+            <li>Hashtag research</li>
+            <li>Audience research</li>
+            <li>Brand voice development</li>
+            <li>Visual content design</li>
+            <li>Video content creation</li>
+            <li>Short-form video editing</li>
+            <li>Graphic design for social posts</li>
+            <li>Content calendar management</li>
+            <li>Scheduling posts</li>
+            <li>Community management</li>
+            <li>Analytics tracking</li>
+            <li>Performance reporting</li>
+            <li>KPI tracking</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="margin-bottom:12px">Packages</h3>
+        <div class="packages">
+          <div class="pkg">
+            <div class="name">Basic</div>
+            <div class="price">₦15k</div>
+            <ul>
+              <li>3 posts</li>
+              <li>Static designs</li>
+              <li>1 revision</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Social Media Design - Basic')">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Standard</div>
+            <div class="price">₦30k</div>
+            <ul>
+              <li>6 posts</li>
+              <li>Brand kit</li>
+              <li>3 revisions</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Social Media Design - Standard')">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Premium</div>
+            <div class="price">₦60k</div>
+            <ul>
+              <li>Monthly content</li>
+              <li>Ads creatives</li>
+              <li>Unlimited revisions</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Social Media Design - Premium')">Continue</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="animation">
+  <div class="container">
+    <h2>Video Animation</h2>
+    <p class="lead">Animated content, motion graphics, explainers, and social video edits with a premium finish.</p>
+
+    <div class="split">
+      <div>
+        <div class="subgroup">
+          <h3>Animation Skills</h3>
+          <ul>
+            <li>Storyboarding</li>
+            <li>Scriptwriting for animation</li>
+            <li>Concept development</li>
+            <li>Character design</li>
+            <li>Background design</li>
+            <li>2D animation basics</li>
+            <li>Motion graphics design</li>
+            <li>Keyframing</li>
+            <li>Timing and spacing</li>
+            <li>Logo animation</li>
+            <li>Explainer video creation</li>
+            <li>Whiteboard animation</li>
+            <li>Social media video animation</li>
+            <li>Video editing basics</li>
+            <li>Sound design</li>
+            <li>Rendering and exporting</li>
+            <li>Adobe After Effects proficiency</li>
+            <li>Adobe Premiere Pro proficiency</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="margin-bottom:12px">Packages</h3>
+        <div class="packages">
+          <div class="pkg">
+            <div class="name">Basic</div>
+            <div class="price">₦25k</div>
+            <ul>
+              <li>Short motion clip</li>
+              <li>1 style</li>
+              <li>1 revision</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Animation - Basic')">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Standard</div>
+            <div class="price">₦55k</div>
+            <ul>
+              <li>Explainer edit</li>
+              <li>Sound sync</li>
+              <li>3 revisions</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Animation - Standard')">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Premium</div>
+            <div class="price">₦120k</div>
+            <ul>
+              <li>Full motion package</li>
+              <li>Logo animation</li>
+              <li>Unlimited revisions</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Animation - Premium')">Continue</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="jobsearch">
+  <div class="container">
+    <h2>Job Search</h2>
+    <p class="lead">Career support services for people who want to apply smarter and present themselves better.</p>
+
+    <div class="split">
+      <div>
+        <div class="subgroup">
+          <h3>Job Search Skills</h3>
+          <ul>
+            <li>Resume/CV writing</li>
+            <li>Cover letter writing</li>
+            <li>Personal branding</li>
+            <li>LinkedIn profile optimization</li>
+            <li>Job market research</li>
+            <li>Interview preparation</li>
+            <li>Behavioral interview techniques</li>
+            <li>Salary negotiation</li>
+            <li>Job application tracking</li>
+            <li>Cold emailing</li>
+            <li>Follow-up communication</li>
+            <li>Researching companies</li>
+            <li>Understanding job descriptions</li>
+            <li>Career planning</li>
+            <li>Goal setting</li>
+            <li>Document formatting</li>
+            <li>Online application skills</li>
+            <li>Job portal usage</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="margin-bottom:12px">Packages</h3>
+        <div class="packages">
+          <div class="pkg">
+            <div class="name">Basic</div>
+            <div class="price">₦12k</div>
+            <ul>
+              <li>CV review</li>
+              <li>Basic improvements</li>
+              <li>1 revision</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Job Search - Basic')">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Standard</div>
+            <div class="price">₦25k</div>
+            <ul>
+              <li>CV + cover letter</li>
+              <li>LinkedIn optimization</li>
+              <li>3 revisions</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Job Search - Standard')">Continue</a>
+          </div>
+          <div class="pkg">
+            <div class="name">Premium</div>
+            <div class="price">₦50k</div>
+            <ul>
+              <li>Full job search package</li>
+              <li>Interview prep</li>
+              <li>Unlimited revisions</li>
+            </ul>
+            <a class="btn" href="#order" onclick="fillOrder('Job Search - Premium')">Continue</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="order">
+  <div class="container">
+    <h2>Order</h2>
+    <p class="lead">Choose a package above, then complete your order below.</p>
+
+    <div class="order">
+      <div class="order-box">
+        <h3>Payment & Contact</h3>
+        <p><strong>Account Name:</strong> Okunola Comfort</p>
+        <p><strong>Account Number:</strong> 08151980291</p>
+        <p style="margin-top:14px;opacity:.78;line-height:1.7">After payment, send your proof and project details here. You will get a response within 24 hours.</p>
+      </div>
+
+      <div class="order-form">
+        <h3>Order Form</h3>
+        <form action="mailto:desmondroder93@gmail.com" method="POST" enctype="text/plain">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <select name="service" required>
+            <option value="">Select Service</option>
+            <option>Logo Design</option>
+            <option>Website Design</option>
+            <option>Branding</option>
+            <option>Flyer Design</option>
+            <option>Social Media Design</option>
+            <option>Animation</option>
+            <option>Job Search</option>
+          </select>
+          <textarea name="message" placeholder="Describe your project..." required></textarea>
+          <button class="btn" type="submit">Submit Order</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="footer">
+  © 2026 DesTech. All rights reserved. | <a href="#categories">Terms & Conditions</a>
 </div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {
-  getFirestore, collection, getDocs,
-  addDoc, query, orderBy, onSnapshot
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+<script>
+const titles = [
+  "Logo Design",
+  "Website Design",
+  "Branding",
+  "Flyer Design",
+  "Social Media Design",
+  "Video Animation",
+  "Job Search"
+];
 
-// 🔁 PASTE SAME CONFIG HERE
-const firebaseConfig = {
-  apiKey: "PASTE",
-  authDomain: "PASTE",
-  projectId: "PASTE",
-  storageBucket: "PASTE",
-  messagingSenderId: "PASTE",
-  appId: "PASTE"
+const map = {
+  logo: "logo",
+  website: "website",
+  branding: "branding",
+  flyers: "flyers",
+  socialmedia: "socialmedia",
+  animation: "animation",
+  jobsearch: "jobsearch"
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-let currentOrder = null;
-
-// LOAD ORDERS
-async function loadOrders(){
-  const snap = await getDocs(collection(db,"orders"));
-  const container = document.getElementById("orders");
-  container.innerHTML = "";
-
-  snap.forEach(doc=>{
-    const data = doc.data();
-
-    const div = document.createElement("div");
-    div.className="order";
-    div.innerHTML = `<strong>${data.service}</strong><br><small>${data.name}</small>`;
-
-    div.onclick = ()=>openChat(doc.id);
-    container.appendChild(div);
-  });
+function fillOrder(service){
+  document.getElementById('order').scrollIntoView({behavior:'smooth'});
+  const select = document.querySelector('select[name="service"]');
+  if(select) select.value = service.split(' - ')[0];
 }
 
-loadOrders();
-
-// OPEN CHAT
-function openChat(orderId){
-  currentOrder = orderId;
-
-  const messagesRef = collection(db,"orders",orderId,"messages");
-
-  onSnapshot(query(messagesRef, orderBy("time")), snap=>{
-    const box = document.getElementById("messages");
-    box.innerHTML = "";
-
-    snap.forEach(doc=>{
-      const msg = doc.data();
-
-      const div = document.createElement("div");
-      div.className = "msg " + msg.sender;
-      div.textContent = msg.text;
-
-      box.appendChild(div);
-    });
-
-    box.scrollTop = box.scrollHeight;
+document.querySelectorAll('.cat').forEach(cat => {
+  cat.addEventListener('click', () => {
+    const target = cat.dataset.target;
+    const id = map[target];
+    if(id) document.getElementById(id).scrollIntoView({behavior:'smooth'});
   });
+});
+
+document.querySelectorAll('.service-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const target = card.dataset.service;
+    if(target) document.getElementById(target).scrollIntoView({behavior:'smooth'});
+  });
+});
+
+const searchInput = document.getElementById('searchInput');
+const resultsBox = document.getElementById('resultsBox');
+const searchBtn = document.getElementById('searchBtn');
+
+function showSuggestions(q){
+  const value = q.trim().toLowerCase();
+  resultsBox.innerHTML = '';
+  if(!value){
+    resultsBox.style.display = 'none';
+    return;
+  }
+
+  const matches = titles.filter(t => t.toLowerCase().includes(value));
+  if(!matches.length){
+    resultsBox.style.display = 'none';
+    return;
+  }
+
+  matches.forEach(title => {
+    const div = document.createElement('div');
+    div.className = 'result-item';
+    div.innerHTML = `<strong>${title}</strong><small>Click to open section</small>`;
+    div.onclick = () => {
+      const id = title === "Logo Design" ? "logo"
+      : title === "Website Design" ? "website"
+      : title === "Branding" ? "branding"
+      : title === "Flyer Design" ? "flyers"
+      : title === "Social Media Design" ? "socialmedia"
+      : title === "Video Animation" ? "animation"
+      : "jobsearch";
+      document.getElementById(id).scrollIntoView({behavior:'smooth'});
+      resultsBox.style.display = 'none';
+      searchInput.value = title;
+    };
+    resultsBox.appendChild(div);
+  });
+
+  resultsBox.style.display = 'block';
 }
 
-// SEND MESSAGE
-window.sendMessage = async function(){
-  const input = document.getElementById("msgInput");
-  const text = input.value;
-
-  if(!text || !currentOrder) return;
-
-  await addDoc(collection(db,"orders",currentOrder,"messages"),{
-    text,
-    sender:"client",
-    time:new Date()
-  });
-
-  input.value="";
-};
+searchInput.addEventListener('input', e => showSuggestions(e.target.value));
+searchBtn.addEventListener('click', () => showSuggestions(searchInput.value));
+document.addEventListener('click', e => {
+  if(!e.target.closest('.search-wrap')) resultsBox.style.display = 'none';
+});
 </script>
-
 </body>
 </html>

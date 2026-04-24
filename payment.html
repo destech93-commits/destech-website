@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DesTech Payment</title>
+
+<style>
+body{
+  background:#07070f;
+  color:#fff;
+  font-family:Poppins,sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+.box{
+  background:#111221;
+  padding:30px;
+  border-radius:20px;
+  max-width:420px;
+  width:100%;
+  text-align:center;
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.btn{
+  background:linear-gradient(135deg,#ff2e7a,#7a00ff);
+  padding:12px 18px;
+  border:none;
+  border-radius:999px;
+  color:#fff;
+  cursor:pointer;
+  margin-top:15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <h2>Complete Payment</h2>
+
+  <p id="summary"></p>
+
+  <p><strong>Bank:</strong> OPay</p>
+  <p><strong>Name:</strong> Okunola Comfort</p>
+  <p><strong>Number:</strong> 08151980291</p>
+
+  <button class="btn" onclick="confirmOrder()">I Have Paid</button>
+</div>
+
+<script>
+const data = JSON.parse(localStorage.getItem("destech_order"));
+
+if(data){
+  document.getElementById("summary").innerHTML =
+    `<b>${data.service}</b><br>${data.name}<br>${data.email}`;
+}
+
+function confirmOrder(){
+  const text = `
+New Order:
+
+Name: ${data.name}
+Email: ${data.email}
+Service: ${data.service}
+Details: ${data.message}
+  `;
+
+  window.location.href =
+    "https://wa.me/234XXXXXXXXXX?text=" + encodeURIComponent(text);
+}
+</script>
+
+</body>
+</html>

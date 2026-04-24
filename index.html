@@ -15,7 +15,7 @@ body{font-family:Poppins,sans-serif;background:#07070f;color:#fff}
 header{
   position:fixed;top:0;left:0;right:0;z-index:100;
   display:flex;justify-content:space-between;align-items:center;
-  padding:18px 40px;background:rgba(10,10,20,.72);
+  padding:18px 40px;background:rgba(10,10,20,.72);backdrop-filter:blur(12px)
 }
 
 /* LOGO */
@@ -24,26 +24,35 @@ header{
   width:40px;height:40px;border-radius:10px;
   background:linear-gradient(135deg,#ff2e7a,#7c3aed);
   display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 20px rgba(124,58,237,.4)
 }
 .logo-icon img{width:70%}
-.logo-text{font-weight:800}
+.logo-text{font-weight:800;font-size:1.2rem}
 .logo-text span{color:#b56dff}
 
 /* HERO */
-.hero{padding:140px 20px;text-align:center}
+.hero{
+  min-height:100vh;padding:130px 20px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center
+}
 .hero h1{font-size:3rem;margin-bottom:10px}
 .hero p{opacity:.8}
 
-/* SECTIONS */
-.section{padding:80px 20px}
-.container{max-width:1100px;margin:auto}
+/* GRID */
+.grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px
+}
+.card{
+  background:#111221;border-radius:16px;padding:20px
+}
 
 /* PORTFOLIO */
 .portfolio-grid{
   display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px
 }
 .portfolio-card{
-  background:#111221;border-radius:15px;overflow:hidden
+  border-radius:16px;overflow:hidden;background:#111221
 }
 .portfolio-card img{width:100%;display:block}
 
@@ -52,22 +61,26 @@ header{
   display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px
 }
 .order-box,.order-form{
-  background:#111221;padding:20px;border-radius:15px
+  background:#111221;padding:20px;border-radius:16px
 }
 .order-form input,
 .order-form select,
 .order-form textarea{
-  width:100%;margin-bottom:10px;padding:10px;
-  border:none;border-radius:8px;background:#0d0e18;color:#fff
+  width:100%;margin-bottom:10px;padding:12px;
+  border:none;border-radius:10px;background:#0d0e18;color:#fff
 }
 .btn{
+  width:100%;
   background:linear-gradient(135deg,#ff2e7a,#7a00ff);
-  padding:12px;border:none;border-radius:20px;color:#fff;width:100%;
-  cursor:pointer
+  border:none;padding:14px;border-radius:20px;color:#fff;font-weight:700
 }
 
+/* SECTION */
+.section{padding:90px 20px}
+.container{max-width:1100px;margin:auto;text-align:center}
+
 /* FOOTER */
-.footer{text-align:center;padding:20px;opacity:.6}
+.footer{padding:20px;text-align:center;opacity:.7}
 </style>
 </head>
 
@@ -83,60 +96,75 @@ header{
 </header>
 
 <section class="hero">
-  <h1>Premium Design for Modern Brands</h1>
-  <p>Logo, Branding, Websites & Creative Solutions</p>
+  <h1>Designing With Clarity</h1>
+  <p>Premium graphic design, branding & web solutions</p>
 </section>
 
-<section class="section" id="portfolio">
-  <div class="container">
-    <h2>Portfolio</h2>
+<section class="section">
+<div class="container">
+<h2>Services</h2>
 
-    <div class="portfolio-grid">
-      <div class="portfolio-card">
-        <img src="images/work1.jpg">
-      </div>
-      <div class="portfolio-card">
-        <img src="images/work2.jpg">
-      </div>
-      <div class="portfolio-card">
-        <img src="images/work3.jpg">
-      </div>
-    </div>
+<div class="grid">
+<div class="card">Logo Design</div>
+<div class="card">Website Design</div>
+<div class="card">Branding</div>
+<div class="card">Flyer Design</div>
+<div class="card">Social Media</div>
+<div class="card">Animation</div>
+</div>
 
-  </div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<h2>Portfolio</h2>
+
+<div class="portfolio-grid">
+<div class="portfolio-card"><img src="images/work1.jpg"></div>
+<div class="portfolio-card"><img src="images/work2.jpg"></div>
+<div class="portfolio-card"><img src="images/work3.jpg"></div>
+</div>
+
+</div>
 </section>
 
 <section class="section" id="order">
-  <div class="container">
-    <h2>Start Your Project</h2>
+<div class="container">
+<h2>Start Your Project</h2>
 
-    <div class="order-wrap">
+<div class="order-wrap">
 
-      <div class="order-box">
-        <p><strong>Account Name:</strong> Okunola Comfort</p>
-        <p><strong>Account Number:</strong> 08151980291</p>
-      </div>
+<div class="order-box">
+<p><strong>Account Name:</strong> Okunola Comfort</p>
+<p><strong>Account Number:</strong> 08151980291</p>
+</div>
 
-      <div class="order-form">
-        <form onsubmit="event.preventDefault(); saveOrder();">
-          <input type="text" name="name" placeholder="Your Name" required>
-          <input type="email" name="email" placeholder="Your Email" required>
+<div class="order-form">
+<form onsubmit="event.preventDefault(); saveOrder();">
 
-          <select name="service" required>
-            <option value="">Select Service</option>
-            <option>Logo Design</option>
-            <option>Website Design</option>
-            <option>Branding</option>
-          </select>
+<input type="text" name="name" placeholder="Your Name" required>
+<input type="email" name="email" placeholder="Your Email" required>
 
-          <textarea name="message" placeholder="Describe your project..." required></textarea>
+<select name="service" required>
+<option value="">Select Service</option>
+<option>Logo Design</option>
+<option>Website Design</option>
+<option>Branding</option>
+<option>Flyer Design</option>
+<option>Social Media Design</option>
+<option>Animation</option>
+</select>
 
-          <button class="btn">Submit Order</button>
-        </form>
-      </div>
+<textarea name="message" placeholder="Describe your project..." required></textarea>
 
-    </div>
-  </div>
+<button class="btn">Proceed to Payment →</button>
+
+</form>
+</div>
+
+</div>
+</div>
 </section>
 
 <div class="footer">© 2026 DesTech</div>
@@ -151,45 +179,56 @@ import { initializeAppCheck, ReCaptchaEnterpriseProvider }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app-check.js";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_BUCKET",
-  messagingSenderId: "YOUR_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "PASTE_YOURS",
+  authDomain: "PASTE_YOURS",
+  projectId: "PASTE_YOURS",
+  storageBucket: "PASTE_YOURS",
+  messagingSenderId: "PASTE_YOURS",
+  appId: "PASTE_YOURS"
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-initializeAppCheck(app, {
-  provider: new ReCaptchaEnterpriseProvider("YOUR_RECAPTCHA_KEY"),
-  isTokenAutoRefreshEnabled: true
+initializeAppCheck(app,{
+  provider:new ReCaptchaEnterpriseProvider("YOUR_RECAPTCHA_KEY"),
+  isTokenAutoRefreshEnabled:true
 });
 
 window.saveOrder = async function(){
-  const name = document.querySelector('input[name="name"]').value;
-  const email = document.querySelector('input[name="email"]').value;
-  const service = document.querySelector('select[name="service"]').value;
-  const message = document.querySelector('textarea[name="message"]').value;
 
-  if(!name || !email || !service || !message){
-    alert("Fill all fields");
-    return;
-  }
+const user = auth.currentUser;
+if(!user){
+  alert("Login first");
+  window.location.href="client-login.html";
+  return;
+}
 
-  try{
-    await addDoc(collection(db,"orders"),{
-      name,email,service,message,
-      status:"pending",
-      createdAt:serverTimestamp()
-    });
+const name=document.querySelector('input[name="name"]').value.trim();
+const email=document.querySelector('input[name="email"]').value.trim();
+const service=document.querySelector('select[name="service"]').value;
+const message=document.querySelector('textarea[name="message"]').value.trim();
 
-    alert("Order sent!");
-  }catch(e){
-    alert("Error saving order");
-  }
+if(!name||!email||!service||!message){
+  alert("Fill all fields");
+  return;
+}
+
+try{
+const docRef=await addDoc(collection(db,"orders"),{
+ownerUid:user.uid,
+name,email,service,message,
+status:"pending",
+createdAt:serverTimestamp()
+});
+
+window.location.href="client-inbox.html?order="+docRef.id;
+
+}catch(e){
+alert("Error saving order");
+}
+
 }
 </script>
 

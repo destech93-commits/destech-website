@@ -1,57 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DesTech Payment</title>
-
-<style>
-body{
-  background:#07070f;
-  color:#fff;
-  font-family:Poppins,sans-serif;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-}
-
-.box{
-  background:#111221;
-  padding:30px;
-  border-radius:20px;
-  max-width:420px;
-  width:100%;
-  text-align:center;
-  border:1px solid rgba(255,255,255,.08);
-}
-
-.btn{
-  background:linear-gradient(135deg,#ff2e7a,#7a00ff);
-  padding:12px 18px;
-  border:none;
-  border-radius:999px;
-  color:#fff;
-  cursor:pointer;
-  margin-top:15px;
-}
-</style>
-</head>
-
-<body>
-
-<div class="box">
-  <h2>Complete Payment</h2>
-
-  <p id="summary"></p>
-
-  <p><strong>Bank:</strong> OPay</p>
-  <p><strong>Name:</strong> Okunola Comfort</p>
-  <p><strong>Number:</strong> 08151980291</p>
-
-  <button class="btn" onclick="confirmOrder()">I Have Paid</button>
-</div>
-
 <script>
 const data = JSON.parse(localStorage.getItem("destech_order"));
 
@@ -61,19 +7,57 @@ if(data){
 }
 
 function confirmOrder(){
-  const text = `
-New Order:
+
+  const message = `NEW ORDER (DesTech)
 
 Name: ${data.name}
 Email: ${data.email}
 Service: ${data.service}
-Details: ${data.message}
+
+Details:
+${data.message}
+`;
+
+  // Save message so user can copy it
+  localStorage.setItem("destech_message", message);
+
+  // Open Instagram
+  window.open("https://www.instagram.com/destech2026/", "_blank");
+
+  // Show copy popup
+  setTimeout(() => {
+    alert("Instagram opened.\n\nCopy your order message on the next screen and send it to @destech2026.");
+    showCopyBox();
+  }, 800);
+}
+
+function showCopyBox(){
+  const msg = localStorage.getItem("destech_message");
+
+  const box = document.createElement("div");
+  box.style.position = "fixed";
+  box.style.bottom = "20px";
+  box.style.left = "20px";
+  box.style.right = "20px";
+  box.style.background = "#111221";
+  box.style.padding = "20px";
+  box.style.borderRadius = "15px";
+  box.style.border = "1px solid rgba(255,255,255,.1)";
+  box.style.zIndex = "999";
+
+  box.innerHTML = `
+    <h3 style="margin-bottom:10px;">Copy & Send This Message</h3>
+    <textarea style="width:100%;height:120px;background:#0b0c15;color:#fff;border:none;padding:10px;border-radius:10px;">${msg}</textarea>
+    <button onclick="copyMsg()" style="margin-top:10px;padding:10px 16px;border:none;border-radius:999px;background:#7a00ff;color:#fff;">Copy Message</button>
   `;
 
-  window.location.href =
-    "https://wa.me/234XXXXXXXXXX?text=" + encodeURIComponent(text);
+  document.body.appendChild(box);
+}
+
+function copyMsg(){
+  const textarea = document.querySelector("textarea");
+  textarea.select();
+  document.execCommand("copy");
+  alert("Message copied! Now paste it in Instagram DM.");
 }
 </script>
-
-</body>
-</html>

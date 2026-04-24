@@ -718,7 +718,17 @@ function saveOrder(){
 
   window.location.href = "payment.html";
 }
-</script// Import the functions you need from the SDKs you need
+</script/const docRef = await addDoc(collection(db, "orders"), {
+  name,
+  email,
+  service,
+  message,
+  status: "pending",
+  createdAt: serverTimestamp()
+});
+
+alert("Order sent successfully!");
+window.location.href = "client-inbox.html?order=" + docRef.id;/ Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries

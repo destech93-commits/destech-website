@@ -322,7 +322,7 @@ nav a:hover{opacity:1}
 <section class="section" id="portfolio">
   <div class="container">
     <h2>Portfolio</h2>
-    <p class="lead">Animated mockups build trust. Replace these with your real mockups for the strongest result.</p>
+    <p class="lead">get instant response now.</p>
 
     <div class="portfolio-grid">
       <article class="portfolio-card">
@@ -407,7 +407,7 @@ nav a:hover{opacity:1}
       </div>
       <div class="faq">
         <button class="faq-q">Will you send print-ready files?</button>
-        <div class="faq-a">Yes, when the project requires print delivery, files are prepared properly.</div>
+        <div class="faq-a">Yes, when the project requires print delivery,although i dont print, files are prepared properly.</div>
       </div>
     </div>
   </div>
@@ -428,8 +428,29 @@ nav a:hover{opacity:1}
 
       <div class="order-form">
         <h3>Order Form</h3>
-        <form action="mailto:desmondroder93@gmail.com" method="POST" enctype="text/plain">
-          <input type="text" name="name" placeholder="Your Name" required>
+<div class="order-form">
+  <h3>Secure Order Form</h3>
+
+  <form id="orderForm">
+    <input type="text" id="name" placeholder="Your Name" required>
+    <input type="email" id="email" placeholder="Your Email" required>
+
+    <select id="service" required>
+      <option value="">Select Service</option>
+      <option>Logo Design</option>
+      <option>Website Design</option>
+      <option>Branding</option>
+      <option>Flyer Design</option>
+      <option>Social Media Design</option>
+      <option>Animation</option>
+      <option>Job Search</option>
+    </select>
+
+    <textarea id="message" placeholder="Describe your project..." required></textarea>
+
+    <button class="btn" type="submit">Proceed to Payment →</button>
+  </form>
+</div>          <input type="text" name="name" placeholder="Your Name" required>
           <input type="email" name="email" placeholder="Your Email" required>
           <select name="service" required>
             <option value="">Select Service</option>
@@ -603,6 +624,23 @@ setInterval(() => {
   placeholderIndex = (placeholderIndex + 1) % placeholderValues.length;
   searchInput.setAttribute('placeholder', placeholderValues[placeholderIndex]);
 }, 2200);
-</script>
+</script<script>
+document.getElementById("orderForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const orderData = {
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    service: document.getElementById("service").value,
+    message: document.getElementById("message").value
+  };
+
+  // Save securely in browser (not visible publicly)
+  localStorage.setItem("destech_order", JSON.stringify(orderData));
+
+  // Redirect to payment page
+  window.location.href = "payment.html";
+});
+</script>>
 </body>
 </html>

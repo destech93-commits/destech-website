@@ -422,42 +422,25 @@ nav a:hover{opacity:1}
 <section class="section" id="order">
   <div class="container">
     <h2>Start Your Project</h2>
-    <p class="lead">Select a service, send your details, and complete payment via Opay.</p>
+    <p class="lead">Select a service, send your details, and complete payment securely.</p>
 
     <div class="order-wrap">
       <div class="order-box">
         <h3>Payment & Contact</h3>
         <p><strong>Account Name:</strong> Okunola Comfort</p>
         <p><strong>Account Number:</strong> 08151980291</p>
-        <p style="margin-top:14px;opacity:.78;line-height:1.7">After payment, send your proof and project details here. You will get a response within 24 hours.</p>
+        <p style="margin-top:14px;opacity:.78;line-height:1.7">
+          After payment, your order will be saved securely and sent to your inbox flow.
+        </p>
       </div>
 
       <div class="order-form">
-        <h3>Order Form</h3>
-<div class="order-form">
-  <h3>Secure Order Form</h3>
+        <h3>Secure Order Form</h3>
 
-  <form id="orderForm">
-    <input type="text" id="name" placeholder="Your Name" required>
-    <input type="email" id="email" placeholder="Your Email" required>
-<form onsubmit="event.preventDefault(); saveOrder();">
-    <select id="service" required>
-      <option value="">Select Service</option>
-      <option>Logo Design</option>
-      <option>Website Design</option>
-      <option>Branding</option>
-      <option>Flyer Design</option>
-      <option>Social Media Design</option>
-      <option>Animation</option>
-      <option>Job Search</option>
-    </select>
+        <form onsubmit="event.preventDefault(); saveOrder();">
+          <input type="text" name="name" placeholder="Your Name" required autocomplete="off" spellcheck="false" autocapitalize="off">
+          <input type="email" name="email" placeholder="Your Email" required autocomplete="off" spellcheck="false" autocapitalize="off">
 
-    <textarea id="message" placeholder="Describe your project..." required></textarea>
-
-    <button class="btn" type="submit">Proceed to Payment →</button>
-  </form>
-</div>          <input type="text" name="name" placeholder="Your Name" required>
-          <input type="email" name="email" placeholder="Your Email" required>
           <select name="service" required>
             <option value="">Select Service</option>
             <option>Logo Design</option>
@@ -468,8 +451,10 @@ nav a:hover{opacity:1}
             <option>Animation</option>
             <option>Job Search</option>
           </select>
-          <textarea name="message" placeholder="Describe your project..." required></textarea>
-          <button class="btn" type="submit">Submit Order</button>
+
+          <textarea name="message" placeholder="Describe your project..." required autocomplete="off" spellcheck="false"></textarea>
+
+          <button class="btn" type="submit">Proceed to Payment →</button>
         </form>
       </div>
     </div>
@@ -477,263 +462,23 @@ nav a:hover{opacity:1}
 </section>
 
 <div class="footer">
-  © 2026 DesTech. All rights reserved. | <a href="#categories">Terms & Conditions</a>
+  © 2026 DesTech. All rights reserved. | <a href="#faq">Terms & Conditions</a>
 </div>
 
 <a class="instagram-float" href="https://instagram.com/destech2026" target="_blank" rel="noopener">
   <span>💬</span> Message me on Instagram
 </a>
 
-<script>
-const serviceMap = [
-  { key: "logo", title: "Logo Design" },
-  { key: "wordmark", title: "Logo Design" },
-  { key: "lettermark", title: "Logo Design" },
-  { key: "monogram", title: "Logo Design" },
-  { key: "brandmark", title: "Logo Design" },
-  { key: "combination", title: "Logo Design" },
-  { key: "emblem", title: "Logo Design" },
-  { key: "mascot", title: "Logo Design" },
-  { key: "abstract", title: "Logo Design" },
-  { key: "geometric", title: "Logo Design" },
-  { key: "minimalist", title: "Logo Design" },
-  { key: "vintage", title: "Logo Design" },
-  { key: "modern", title: "Logo Design" },
-  { key: "hand-drawn", title: "Logo Design" },
-  { key: "3d", title: "Logo Design" },
-  { key: "flat", title: "Logo Design" },
-  { key: "gradient", title: "Logo Design" },
-  { key: "negative space", title: "Logo Design" },
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {
+  getFirestore, collection, addDoc, serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {
+  initializeAppCheck, ReCaptchaEnterpriseProvider
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app-check.js";
 
-  { key: "website", title: "Website Design" },
-  { key: "ui", title: "Website Design" },
-  { key: "ux", title: "Website Design" },
-  { key: "wireframing", title: "Website Design" },
-  { key: "prototyping", title: "Website Design" },
-
-  { key: "branding", title: "Branding" },
-  { key: "brand strategy", title: "Branding" },
-  { key: "brand identity", title: "Branding" },
-
-  { key: "flyer", title: "Flyer Design" },
-  { key: "poster", title: "Flyer Design" },
-  { key: "brochure", title: "Flyer Design" },
-
-  { key: "social", title: "Social Media Design" },
-  { key: "instagram", title: "Social Media Design" },
-  { key: "caption", title: "Social Media Design" },
-
-  { key: "animation", title: "Video Animation" },
-  { key: "motion", title: "Video Animation" },
-  { key: "logo animation", title: "Video Animation" },
-
-  { key: "cv", title: "Job Search" },
-  { key: "resume", title: "Job Search" },
-  { key: "cover letter", title: "Job Search" },
-  { key: "linkedin", title: "Job Search" }
-];
-
-const titles = [...new Set(serviceMap.map(item => item.title))];
-
-const placeholderValues = [
-  "Type any services...",
-  "Search logo design...",
-  "Find website experts...",
-  "Try branding or flyers..."
-];
-let placeholderIndex = 0;
-
-function showSuggestions(q){
-  const value = q.trim().toLowerCase();
-  resultsBox.innerHTML = '';
-  if(!value){
-    resultsBox.style.display = 'none';
-    return;
-  }
-
-  const matches = titles.filter(t => t.toLowerCase().includes(value));
-  if(!matches.length){
-    resultsBox.style.display = 'none';
-    return;
-  }
-
-  matches.forEach(title => {
-    const div = document.createElement('div');
-    div.className = 'result-item';
-    div.innerHTML = `<strong>${title}</strong><small>Click to open section</small>`;
-    div.onclick = () => {
-      const id = title === "Logo Design" ? "logo"
-      : title === "Website Design" ? "website"
-      : title === "Branding" ? "branding"
-      : title === "Flyer Design" ? "flyers"
-      : title === "Social Media Design" ? "socialmedia"
-      : title === "Video Animation" ? "animation"
-      : "jobsearch";
-      document.getElementById(id).scrollIntoView({behavior:'smooth'});
-      resultsBox.style.display = 'none';
-      searchInput.value = title;
-    };
-    resultsBox.appendChild(div);
-  });
-
-  resultsBox.style.display = 'block';
-}
-
-searchInput.addEventListener('input', e => showSuggestions(e.target.value));
-searchBtn.addEventListener('click', () => showSuggestions(searchInput.value));
-document.addEventListener('click', e => {
-  if(!e.target.closest('.search-wrap')) resultsBox.style.display = 'none';
-});
-
-document.querySelectorAll('.pill').forEach(pill => {
-  pill.addEventListener('click', () => {
-    const target = pill.dataset.target;
-    const route = {
-      logo: "services.html#logo",
-      website: "services.html#website",
-      branding: "services.html#branding",
-      flyers: "services.html#flyers",
-      socialmedia: "services.html#socialmedia",
-      animation: "services.html#animation",
-      jobsearch: "services.html#jobsearch"
-    }[target];
-    if(route) window.location.href = route;
-  });
-});
-
-document.querySelectorAll('.service-card').forEach(card => {
-  card.addEventListener('click', () => {
-    const target = card.dataset.service;
-    const route = {
-      logo: "services.html#logo",
-      website: "services.html#website",
-      branding: "services.html#branding",
-      flyers: "services.html#flyers",
-      socialmedia: "services.html#socialmedia",
-      animation: "services.html#animation",
-      jobsearch: "services.html#jobsearch"
-    }[target];
-    if(route) window.location.href = route;
-  });
-});
-
-document.querySelectorAll('.faq-q').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const a = btn.nextElementSibling;
-    const open = a.style.display === 'block';
-    document.querySelectorAll('.faq-a').forEach(x => x.style.display = 'none');
-    a.style.display = open ? 'none' : 'block';
-  });
-});
-
-setInterval(() => {
-  placeholderIndex = (placeholderIndex + 1) % placeholderValues.length;
-  searchInput.setAttribute('placeholder', placeholderValues[placeholderIndex]);
-}, 2200);
-</script<script>
-document.getElementById("orderForm").addEventListener("submit", function(e){
-  e.preventDefault();
-
-  const orderData = {
-    name: document.getElementById("name").value,
-    email: document.getElementById("email").value,
-    service: document.getElementById("service").value,
-    message: document.getElementById("message").value
-  };
-
-  // Save securely in browser (not visible publicly)
-  localStorage.setItem("destech_order", JSON.stringify(orderData));
-
-  // Redirect to payment page
-  window.location.href = "payment.html";
-});
-</script<script>
-function saveOrder(){
-  const name = document.querySelector('input[name="name"]').value;
-  const email = document.querySelector('input[name="email"]').value;
-  const service = document.querySelector('select[name="service"]').value;
-  const message = document.querySelector('textarea[name="message"]').value;
-
-  if(!name || !email || !service || !message){
-    alert("Please fill all fields");
-    return;
-  }
-
-  let orders = JSON.parse(localStorage.getItem("destech_orders")) || [];
-
-  const orderData = {
-    id: "ORD-" + Date.now(),
-    name,
-    email,
-    service,
-    message,
-    status: "pending",
-    date: new Date().toLocaleString()
-  };
-
-  orders.push(orderData);
-
-  // create message thread
-  let messages = JSON.parse(localStorage.getItem("destech_messages")) || {};
-  messages[orderData.id] = [];
-
-  localStorage.setItem("destech_messages", JSON.stringify(messages));
-  localStorage.setItem("destech_orders", JSON.stringify(orders));
-
-  alert("Order saved successfully!");
-
-  window.location.href = "client-inbox.html";
-}
-</script<script>
-function saveOrder(){
-  const name = document.querySelector('input[name="name"]').value;
-  const email = document.querySelector('input[name="email"]').value;
-  const service = document.querySelector('select[name="service"]').value;
-  const message = document.querySelector('textarea[name="message"]').value;
-
-  if(!name || !email || !service || !message){
-    alert("Please fill all fields");
-    return;
-  }
-
-  let orders = JSON.parse(localStorage.getItem("destech_orders")) || [];
-
-  const orderData = {
-    id: "ORD-" + Date.now(),
-    name,
-    email,
-    service,
-    message,
-    status: "pending",
-    date: new Date().toLocaleString()
-  };
-
-  orders.push(orderData);
-
-  let messages = JSON.parse(localStorage.getItem("destech_messages")) || {};
-  messages[orderData.id] = [];
-
-  localStorage.setItem("destech_messages", JSON.stringify(messages));
-  localStorage.setItem("destech_orders", JSON.stringify(orders));
-
-  window.location.href = "payment.html";
-}
-</script/const docRef = await addDoc(collection(db, "orders"), {
-  name,
-  email,
-  service,
-  message,
-  status: "pending",
-  createdAt: serverTimestamp()
-});
-
-alert("Order sent successfully!");
-window.location.href = "client-inbox.html?order=" + docRef.id;/ Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyC8ccH4jZYZoL7ZYlG-VmAjUx3d8EXzjPI",
   authDomain: "destech-f570c.firebaseapp.com",
@@ -743,7 +488,50 @@ const firebaseConfig = {
   appId: "1:1037212124740:web:f89a8336de6851947d5e11"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);>>>>
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+initializeAppCheck(app, {
+  provider: new ReCaptchaEnterpriseProvider("YOUR_RECAPTCHA_ENTERPRISE_SITE_KEY"),
+  isTokenAutoRefreshEnabled: true
+});
+
+window.saveOrder = async function () {
+  const user = auth.currentUser;
+  if (!user) {
+    alert("Please sign in first.");
+    window.location.href = "client-login.html";
+    return;
+  }
+
+  const name = document.querySelector('input[name="name"]').value.trim();
+  const email = document.querySelector('input[name="email"]').value.trim();
+  const service = document.querySelector('select[name="service"]').value;
+  const message = document.querySelector('textarea[name="message"]').value.trim();
+
+  if (!name || !email || !service || !message) {
+    alert("Please fill all fields.");
+    return;
+  }
+
+  try {
+    const docRef = await addDoc(collection(db, "orders"), {
+      ownerUid: user.uid,
+      name,
+      email,
+      service,
+      message,
+      status: "pending",
+      createdAt: serverTimestamp()
+    });
+
+    window.location.href = "client-inbox.html?order=" + docRef.id;
+  } catch (err) {
+    console.error(err);
+    alert("Could not save order.");
+  }
+};
+</script>
 </body>
 </html>
